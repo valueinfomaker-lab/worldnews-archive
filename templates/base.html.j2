@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ site_title }}{% endblock %}</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+{% block content %}{% endblock %}
+<script src="assets/copy.js"></script>
+</body>
+</html>

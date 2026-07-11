@@ -1,0 +1,46 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ day }} · {{ site_title }}{% endblock %}
+{% block content %}
+<header class="site-header">
+  <p><a class="back" href="index.html">← 날짜 목록</a></p>
+  <h1>{{ site_title }}</h1>
+  <p class="subtitle">{{ day }} · 총 {{ total }}건</p>
+  <div class="copybar">
+    <button type="button" class="btn" data-copy="plain" data-pt="pt-day">📋 전체 카톡용 복사</button>
+    <button type="button" class="btn" data-copy="rich" data-pt="pt-day" data-ht="ht-day">✉️ 전체 메일용 복사</button>
+  </div>
+</header>
+
+<main>
+  {% if not regions %}
+    <p class="empty">해당 권역 기사가 없습니다.</p>
+  {% endif %}
+  {% for region in regions %}
+  <section class="region">
+    <div class="region-head">
+      <h2>{{ region.name }}</h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r{{ region.idx }}">📋 카톡</button>
+        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r{{ region.idx }}" data-ht="ht-r{{ region.idx }}">✉️ 메일</button>
+      </div>
+    </div>
+    {% for a in region.articles %}
+    <article class="item">
+      <a class="title" href="{{ a.url }}" target="_blank" rel="noreferrer">{{ a.title }}</a>
+      <div class="meta">{{ a.press }} · {{ a.topics }} · 추천 {{ a.score }}</div>
+      <div class="summary">{{ a.summary }}</div>
+      <div class="copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-{{ a.key }}">📋 카톡</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-{{ a.key }}" data-ht="ht-{{ a.key }}">✉️ 메일</button>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+  {% endfor %}
+</main>
+
+<div class="payloads" aria-hidden="true">
+  {% for pid, content in embed.items() %}<div class="payload" hidden id="{{ pid }}">{{ content }}</div>
+  {% endfor %}
+</div>
+{% endblock %}

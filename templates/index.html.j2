@@ -1,0 +1,27 @@
+{% extends "base.html.j2" %}
+{% block content %}
+<header class="site-header">
+  <h1>{{ site_title }}</h1>
+  <p class="subtitle">네이버 세계뉴스 권역별 일일 브리핑 · 날짜별 아카이브</p>
+</header>
+
+<main class="date-list">
+  {% if not days %}
+    <p class="empty">아직 브리핑이 없습니다.</p>
+  {% else %}
+  <ul>
+    {% for d in days %}
+    <li>
+      <a class="date-link" href="{{ d.day }}.html">
+        <span class="date">{{ d.day }}</span>
+        <span class="count">{{ d.total }}건</span>
+      </a>
+      <span class="regions">
+        {% for region, n in d.regions.items() %}<span class="chip">{{ region }} {{ n }}</span>{% endfor %}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</main>
+{% endblock %}
