@@ -4,34 +4,53 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>세계뉴스 일일 브리핑 아카이브</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8F%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
+<script>
+/* 테마 조기 적용(깜빡임 방지). localStorage 우선, 없으면 시스템 설정. */
+(function () {
+  try {
+    var t = localStorage.getItem("theme");
+    if (t !== "dark" && t !== "light") {
+      t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
-<header class="site-header">
-  <h1>세계뉴스 일일 브리핑 아카이브</h1>
-  <p class="subtitle">네이버 세계뉴스 권역별 일일 브리핑 · 날짜별 아카이브</p>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="brand">세계뉴스 일일 브리핑 아카이브</span>
+    <span class="tagline">네이버 세계뉴스 권역별 일일 브리핑</span>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="테마 전환" title="테마 전환"></button>
+  </div>
 </header>
 
-<main class="date-list">
+<main class="wrap">
   
-  <ul>
+  <p class="daymeta">전체 1일치</p>
+  <ul class="date-list">
     
-    <li>
-      <a class="date-link" href="2026-07-11.html">
+    <li class="date-card">
+      <a class="date-main" href="2026-07-11.html">
         <span class="date">2026-07-11</span>
         <span class="count">37건</span>
       </a>
-      <span class="regions">
-        <span class="chip">아세안 5</span><span class="chip">인도·남아시아 2</span><span class="chip">아프리카·중동 5</span><span class="chip">중·동부유럽 5</span><span class="chip">러시아·유라시아 5</span><span class="chip">중남미 5</span><span class="chip">중국 5</span><span class="chip">선진국 5</span>
-      </span>
+      <div class="regions">
+        <span class="chip-stat">아세안 <b>5</b></span><span class="chip-stat">인도·남아시아 <b>2</b></span><span class="chip-stat">아프리카·중동 <b>5</b></span><span class="chip-stat">중·동부유럽 <b>5</b></span><span class="chip-stat">러시아·유라시아 <b>5</b></span><span class="chip-stat">중남미 <b>5</b></span><span class="chip-stat">중국 <b>5</b></span><span class="chip-stat">선진국 <b>5</b></span>
+      </div>
     </li>
     
   </ul>
   
 </main>
 
+<button id="to-top" class="to-top" type="button" aria-label="맨 위로" hidden>↑</button>
 <script src="assets/copy.js"></script>
+<script src="assets/ui.js"></script>
 </body>
 </html>

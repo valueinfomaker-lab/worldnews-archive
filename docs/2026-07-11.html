@@ -4,477 +4,590 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026-07-11 · 세계뉴스 일일 브리핑 아카이브</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8F%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
+<script>
+/* 테마 조기 적용(깜빡임 방지). localStorage 우선, 없으면 시스템 설정. */
+(function () {
+  try {
+    var t = localStorage.getItem("theme");
+    if (t !== "dark" && t !== "light") {
+      t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
-<header class="site-header">
-  <p><a class="back" href="index.html">← 날짜 목록</a></p>
-  <h1>세계뉴스 일일 브리핑 아카이브</h1>
-  <p class="subtitle">2026-07-11 · 총 37건</p>
-  <div class="copybar">
-    <button type="button" class="btn" data-copy="plain" data-pt="pt-day">📋 전체 카톡용 복사</button>
-    <button type="button" class="btn" data-copy="rich" data-pt="pt-day" data-ht="ht-day">✉️ 전체 메일용 복사</button>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">세계뉴스 일일 브리핑 아카이브</a>
+    <nav class="date-nav" aria-label="날짜 이동">
+      <span class="navbtn is-disabled">‹</span>
+      <span class="cur-date">2026-07-11</span>
+      <span class="navbtn is-disabled">›</span>
+    </nav>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="테마 전환" title="테마 전환"></button>
   </div>
 </header>
 
-<main>
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="searchbox">
+      <input id="search" type="search" placeholder="제목·요약 검색" autocomplete="off" aria-label="검색">
+    </div>
+    <div class="filters" id="topic-filters" role="group" aria-label="주제 필터">
+      <button class="chip is-active" data-topic="" type="button">전체</button>
+      <button class="chip" data-topic="경제" type="button">경제</button><button class="chip" data-topic="정책" type="button">정책</button><button class="chip" data-topic="외교" type="button">외교</button><button class="chip" data-topic="안보" type="button">안보</button><button class="chip" data-topic="정치" type="button">정치</button><button class="chip" data-topic="환경" type="button">환경</button><button class="chip" data-topic="보건" type="button">보건</button><button class="chip" data-topic="사회" type="button">사회</button>
+    </div>
+    <div class="copybar day-copy">
+      <button type="button" class="btn" data-copy="plain" data-pt="pt-day">📋 전체 카톡</button>
+      <button type="button" class="btn btn-ghost" data-copy="rich" data-pt="pt-day" data-ht="ht-day">✉️ 전체 메일</button>
+    </div>
+  </div>
   
+  <nav class="jump" aria-label="권역 바로가기">
+    <a class="jchip" href="#region-0">아세안 <b>5</b></a><a class="jchip" href="#region-1">인도·남아시아 <b>2</b></a><a class="jchip" href="#region-2">아프리카·중동 <b>5</b></a><a class="jchip" href="#region-3">중·동부유럽 <b>5</b></a><a class="jchip" href="#region-4">러시아·유라시아 <b>5</b></a><a class="jchip" href="#region-5">중남미 <b>5</b></a><a class="jchip" href="#region-6">중국 <b>5</b></a><a class="jchip" href="#region-7">선진국 <b>5</b></a>
+  </nav>
   
-  <section class="region">
+</div>
+
+<main class="wrap">
+  <p class="daymeta">2026-07-11 · 총 <span id="visible-count">37</span>건</p>
+  
+  <p class="empty" id="no-results" hidden>검색 결과가 없습니다.</p>
+
+  
+  <section class="region" id="region-0" data-region>
     <div class="region-head">
-      <h2>아세안</h2>
+      <h2>아세안 <span class="rcount">5</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r0">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r0" data-ht="ht-r0">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r0" data-ht="ht-r0">✉️ 메일</button>
       </div>
     </div>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/001/0016188109" target="_blank" rel="noreferrer">아세안, 미얀마와 외교장관 회의 갖는다…5년여만에 첫 만남</a>
-      <div class="meta">연합뉴스 · 외교 · 추천 75</div>
-      <div class="summary">아세안이 5년 만에 미얀마와 외교장관 회의를 갖는다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188109">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188109" data-ht="ht-a001_0016188109">✉️ 메일</button>
+    <article class="item" data-topics="외교" data-search="아세안, 미얀마와 외교장관 회의 갖는다…5년여만에 첫 만남 아세안이 5년 만에 미얀마와 외교장관 회의를 갖는다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/001/0016188109" target="_blank" rel="noreferrer">아세안, 미얀마와 외교장관 회의 갖는다…5년여만에 첫 만남</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">외교</span><span class="score">추천 75</span></div>
+        <div class="summary">아세안이 5년 만에 미얀마와 외교장관 회의를 갖는다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188109" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188109" data-ht="ht-a001_0016188109" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/277/0005788519" target="_blank" rel="noreferrer">&#39;삼성 전액 장학금&#39; 받는 천재 여고생…&#34;한국이 협력·발전 기회 많아&#34;</a>
-      <div class="meta">아시아경제 · 정책 · 사회 · 외교 · 추천 70</div>
-      <div class="summary">베트남 천재 고등학생이 삼성 전액 장학금을 받고 한국 카이스트 유학을 결정했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a277_0005788519">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a277_0005788519" data-ht="ht-a277_0005788519">✉️ 메일</button>
+    <article class="item" data-topics="정책,사회,외교" data-search="&#39;삼성 전액 장학금&#39; 받는 천재 여고생…&#34;한국이 협력·발전 기회 많아&#34; 베트남 천재 고등학생이 삼성 전액 장학금을 받고 한국 카이스트 유학을 결정했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/277/0005788519" target="_blank" rel="noreferrer">&#39;삼성 전액 장학금&#39; 받는 천재 여고생…&#34;한국이 협력·발전 기회 많아&#34;</a>
+        <div class="meta"><span class="press">아시아경제</span><span class="tag">정책</span><span class="tag">사회</span><span class="tag">외교</span><span class="score">추천 70</span></div>
+        <div class="summary">베트남 천재 고등학생이 삼성 전액 장학금을 받고 한국 카이스트 유학을 결정했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a277_0005788519" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a277_0005788519" data-ht="ht-a277_0005788519" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/003/0014060405" target="_blank" rel="noreferrer">호르무즈 해협 피격 선박 태국인 선원 3명, 해운사 상대 소송 “노동권 침해”</a>
-      <div class="meta">뉴시스 · 외교 · 정책 · 보건 · 추천 65</div>
-      <div class="summary">호르무즈 해협 피격 선박 태국인 선원 3명이 해운사를 상대로 노동권 침해 소송을 제기했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060405">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060405" data-ht="ht-a003_0014060405">✉️ 메일</button>
+    <article class="item" data-topics="외교,정책,보건" data-search="호르무즈 해협 피격 선박 태국인 선원 3명, 해운사 상대 소송 “노동권 침해” 호르무즈 해협 피격 선박 태국인 선원 3명이 해운사를 상대로 노동권 침해 소송을 제기했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014060405" target="_blank" rel="noreferrer">호르무즈 해협 피격 선박 태국인 선원 3명, 해운사 상대 소송 “노동권 침해”</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">외교</span><span class="tag">정책</span><span class="tag">보건</span><span class="score">추천 65</span></div>
+        <div class="summary">호르무즈 해협 피격 선박 태국인 선원 3명이 해운사를 상대로 노동권 침해 소송을 제기했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060405" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060405" data-ht="ht-a003_0014060405" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/001/0016188422" target="_blank" rel="noreferrer">베트남 전국수석, KAIST 선택한 이유…&#34;한국 안전하고 기회 많아&#34;</a>
-      <div class="meta">연합뉴스 · 사회 · 정책 · 추천 60</div>
-      <div class="summary">베트남 슈퍼 영재가 한국의 산학협력과 치안, 문화 등을 높이 평가하며 AI 전문가를 꿈꾸고 있다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188422">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188422" data-ht="ht-a001_0016188422">✉️ 메일</button>
+    <article class="item" data-topics="사회,정책" data-search="베트남 전국수석, kaist 선택한 이유…&#34;한국 안전하고 기회 많아&#34; 베트남 슈퍼 영재가 한국의 산학협력과 치안, 문화 등을 높이 평가하며 ai 전문가를 꿈꾸고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/001/0016188422" target="_blank" rel="noreferrer">베트남 전국수석, KAIST 선택한 이유…&#34;한국 안전하고 기회 많아&#34;</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">사회</span><span class="tag">정책</span><span class="score">추천 60</span></div>
+        <div class="summary">베트남 슈퍼 영재가 한국의 산학협력과 치안, 문화 등을 높이 평가하며 AI 전문가를 꿈꾸고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188422" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188422" data-ht="ht-a001_0016188422" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/mnews/article/448/0000626011" target="_blank" rel="noreferrer">초강력 태풍 &#39;바비&#39; 북상에 동아시아 비상…필리핀선 15명 사망</a>
-      <div class="meta">TV조선 · 사회 · 환경 · 보건 · 추천 55</div>
-      <div class="summary">초강력 태풍 &#39;바비&#39;가 북상하며 필리핀 등 동아시아 지역에 피해가 발생했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a448_0000626011">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a448_0000626011" data-ht="ht-a448_0000626011">✉️ 메일</button>
+    <article class="item" data-topics="사회,환경,보건" data-search="초강력 태풍 &#39;바비&#39; 북상에 동아시아 비상…필리핀선 15명 사망 초강력 태풍 &#39;바비&#39;가 북상하며 필리핀 등 동아시아 지역에 피해가 발생했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/448/0000626011" target="_blank" rel="noreferrer">초강력 태풍 &#39;바비&#39; 북상에 동아시아 비상…필리핀선 15명 사망</a>
+        <div class="meta"><span class="press">TV조선</span><span class="tag">사회</span><span class="tag">환경</span><span class="tag">보건</span><span class="score">추천 55</span></div>
+        <div class="summary">초강력 태풍 &#39;바비&#39;가 북상하며 필리핀 등 동아시아 지역에 피해가 발생했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a448_0000626011" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a448_0000626011" data-ht="ht-a448_0000626011" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
   </section>
   
-  <section class="region">
+  <section class="region" id="region-1" data-region>
     <div class="region-head">
-      <h2>인도·남아시아</h2>
+      <h2>인도·남아시아 <span class="rcount">2</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r1">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r1" data-ht="ht-r1">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r1" data-ht="ht-r1">✉️ 메일</button>
       </div>
     </div>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/mnews/article/001/0016187631" target="_blank" rel="noreferrer">파키스탄, 아프가니스탄 우회하는 육상무역로 2개 개설</a>
-      <div class="meta">연합뉴스 · 경제 · 정책 · 외교 · 추천 80</div>
-      <div class="summary">파키스탄이 아프가니스탄을 우회하는 이란·중국 경유 육상무역로 2개를 개설했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016187631">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016187631" data-ht="ht-a001_0016187631">✉️ 메일</button>
+    <article class="item" data-topics="경제,정책,외교" data-search="파키스탄, 아프가니스탄 우회하는 육상무역로 2개 개설 파키스탄이 아프가니스탄을 우회하는 이란·중국 경유 육상무역로 2개를 개설했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016187631" target="_blank" rel="noreferrer">파키스탄, 아프가니스탄 우회하는 육상무역로 2개 개설</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">경제</span><span class="tag">정책</span><span class="tag">외교</span><span class="score">추천 80</span></div>
+        <div class="summary">파키스탄이 아프가니스탄을 우회하는 이란·중국 경유 육상무역로 2개를 개설했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016187631" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016187631" data-ht="ht-a001_0016187631" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/003/0014059809" target="_blank" rel="noreferrer">인도, 스마트폰 부품 등 수입관세 면제…&#34;삼성·샤오미 등 수혜 기대&#34;</a>
-      <div class="meta">뉴시스 · 경제 · 정책 · 추천 70</div>
-      <div class="summary">인도 정부가 스마트폰 부품 등 수입 관세를 면제해 삼성·샤오미 등 기업들이 수혜를 기대하고 있다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014059809">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014059809" data-ht="ht-a003_0014059809">✉️ 메일</button>
+    <article class="item" data-topics="경제,정책" data-search="인도, 스마트폰 부품 등 수입관세 면제…&#34;삼성·샤오미 등 수혜 기대&#34; 인도 정부가 스마트폰 부품 등 수입 관세를 면제해 삼성·샤오미 등 기업들이 수혜를 기대하고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014059809" target="_blank" rel="noreferrer">인도, 스마트폰 부품 등 수입관세 면제…&#34;삼성·샤오미 등 수혜 기대&#34;</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">경제</span><span class="tag">정책</span><span class="score">추천 70</span></div>
+        <div class="summary">인도 정부가 스마트폰 부품 등 수입 관세를 면제해 삼성·샤오미 등 기업들이 수혜를 기대하고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014059809" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014059809" data-ht="ht-a003_0014059809" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
   </section>
   
-  <section class="region">
+  <section class="region" id="region-2" data-region>
     <div class="region-head">
-      <h2>아프리카·중동</h2>
+      <h2>아프리카·중동 <span class="rcount">5</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r2">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r2" data-ht="ht-r2">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r2" data-ht="ht-r2">✉️ 메일</button>
       </div>
     </div>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/mnews/article/277/0005788521" target="_blank" rel="noreferrer">&#34;이란, 종전 MOU 체결 뒤 핵시설 복구 정황&#34;</a>
-      <div class="meta">아시아경제 · 안보 · 외교 · 정책 · 경제 · 추천 90</div>
-      <div class="summary">이란이 미국과 종전 MOU 체결 후 핵시설 복구 작업을 진행한 정황이 위성사진으로 포착되었다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a277_0005788521">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a277_0005788521" data-ht="ht-a277_0005788521">✉️ 메일</button>
+    <article class="item" data-topics="안보,외교,정책,경제" data-search="&#34;이란, 종전 mou 체결 뒤 핵시설 복구 정황&#34; 이란이 미국과 종전 mou 체결 후 핵시설 복구 작업을 진행한 정황이 위성사진으로 포착되었다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/277/0005788521" target="_blank" rel="noreferrer">&#34;이란, 종전 MOU 체결 뒤 핵시설 복구 정황&#34;</a>
+        <div class="meta"><span class="press">아시아경제</span><span class="tag">안보</span><span class="tag">외교</span><span class="tag">정책</span><span class="tag">경제</span><span class="score">추천 90</span></div>
+        <div class="summary">이란이 미국과 종전 MOU 체결 후 핵시설 복구 작업을 진행한 정황이 위성사진으로 포착되었다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a277_0005788521" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a277_0005788521" data-ht="ht-a277_0005788521" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/mnews/article/015/0005308680" target="_blank" rel="noreferrer">&#34;이란, 트럼프 암살 노려&#34;…美에 전달한 이스라엘</a>
-      <div class="meta">한국경제 · 안보 · 외교 · 정치 · 추천 90</div>
-      <div class="summary">이스라엘이 이란이 트럼프 미국 대통령 암살을 노린 첩보를 입수해 미국에 전달했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a015_0005308680">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a015_0005308680" data-ht="ht-a015_0005308680">✉️ 메일</button>
+    <article class="item" data-topics="안보,외교,정치" data-search="&#34;이란, 트럼프 암살 노려&#34;…美에 전달한 이스라엘 이스라엘이 이란이 트럼프 미국 대통령 암살을 노린 첩보를 입수해 미국에 전달했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/015/0005308680" target="_blank" rel="noreferrer">&#34;이란, 트럼프 암살 노려&#34;…美에 전달한 이스라엘</a>
+        <div class="meta"><span class="press">한국경제</span><span class="tag">안보</span><span class="tag">외교</span><span class="tag">정치</span><span class="score">추천 90</span></div>
+        <div class="summary">이스라엘이 이란이 트럼프 미국 대통령 암살을 노린 첩보를 입수해 미국에 전달했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a015_0005308680" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a015_0005308680" data-ht="ht-a015_0005308680" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/025/0003536742" target="_blank" rel="noreferrer">미·이란 이틀 연속 맞불 공습에 물밑 외교전도…휴전 중대 기로</a>
-      <div class="meta">중앙일보 · 외교 · 안보 · 정책 · 추천 90</div>
-      <div class="summary">미국과 이란이 이틀 연속 맞불 공습하며 휴전이 중대 기로에 섰다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a025_0003536742">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a025_0003536742" data-ht="ht-a025_0003536742">✉️ 메일</button>
+    <article class="item" data-topics="외교,안보,정책" data-search="미·이란 이틀 연속 맞불 공습에 물밑 외교전도…휴전 중대 기로 미국과 이란이 이틀 연속 맞불 공습하며 휴전이 중대 기로에 섰다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/025/0003536742" target="_blank" rel="noreferrer">미·이란 이틀 연속 맞불 공습에 물밑 외교전도…휴전 중대 기로</a>
+        <div class="meta"><span class="press">중앙일보</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정책</span><span class="score">추천 90</span></div>
+        <div class="summary">미국과 이란이 이틀 연속 맞불 공습하며 휴전이 중대 기로에 섰다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a025_0003536742" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a025_0003536742" data-ht="ht-a025_0003536742" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/421/0009051601" target="_blank" rel="noreferrer">[포토] 하메네이 마지막 길에 등장한 반트럼프 현수막</a>
-      <div class="meta">뉴스1 · 외교 · 안보 · 정치 · 추천 90</div>
-      <div class="summary">이란 마슈하드에서 고(故) 아야톨라 알리 하메네이 전 최고지도자 안장식에 반트럼프 현수막이 등장했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009051601">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009051601" data-ht="ht-a421_0009051601">✉️ 메일</button>
+    <article class="item" data-topics="외교,안보,정치" data-search="[포토] 하메네이 마지막 길에 등장한 반트럼프 현수막 이란 마슈하드에서 고(故) 아야톨라 알리 하메네이 전 최고지도자 안장식에 반트럼프 현수막이 등장했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/421/0009051601" target="_blank" rel="noreferrer">[포토] 하메네이 마지막 길에 등장한 반트럼프 현수막</a>
+        <div class="meta"><span class="press">뉴스1</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정치</span><span class="score">추천 90</span></div>
+        <div class="summary">이란 마슈하드에서 고(故) 아야톨라 알리 하메네이 전 최고지도자 안장식에 반트럼프 현수막이 등장했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009051601" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009051601" data-ht="ht-a421_0009051601" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/mnews/article/056/0012215985" target="_blank" rel="noreferrer">미-이란 사흘째 공방 격화…이스라엘 “작전 재개 준비돼”</a>
-      <div class="meta">KBS · 안보 · 외교 · 정치 · 추천 90</div>
-      <div class="summary">이란과 미국 간 무력 공방이 사흘째 이어지는 가운데 이스라엘이 작전 재개 준비를 밝혀 긴장이 고조되고 있다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a056_0012215985">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a056_0012215985" data-ht="ht-a056_0012215985">✉️ 메일</button>
+    <article class="item" data-topics="안보,외교,정치" data-search="미-이란 사흘째 공방 격화…이스라엘 “작전 재개 준비돼” 이란과 미국 간 무력 공방이 사흘째 이어지는 가운데 이스라엘이 작전 재개 준비를 밝혀 긴장이 고조되고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/056/0012215985" target="_blank" rel="noreferrer">미-이란 사흘째 공방 격화…이스라엘 “작전 재개 준비돼”</a>
+        <div class="meta"><span class="press">KBS</span><span class="tag">안보</span><span class="tag">외교</span><span class="tag">정치</span><span class="score">추천 90</span></div>
+        <div class="summary">이란과 미국 간 무력 공방이 사흘째 이어지는 가운데 이스라엘이 작전 재개 준비를 밝혀 긴장이 고조되고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a056_0012215985" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a056_0012215985" data-ht="ht-a056_0012215985" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
   </section>
   
-  <section class="region">
+  <section class="region" id="region-3" data-region>
     <div class="region-head">
-      <h2>중·동부유럽</h2>
+      <h2>중·동부유럽 <span class="rcount">5</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r3">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r3" data-ht="ht-r3">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r3" data-ht="ht-r3">✉️ 메일</button>
       </div>
     </div>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/003/0014058986" target="_blank" rel="noreferrer">에르도안, 권총·실탄 선물…귀국길 나토 정상들 &#39;난감&#39;</a>
-      <div class="meta">뉴시스 · 외교 · 정치 · 추천 85</div>
-      <div class="summary">튀르키예 에르도안 대통령이 북대서양조약기구 정상들에게 권총과 실탄을 선물해 논란이 일었다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014058986">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014058986" data-ht="ht-a003_0014058986">✉️ 메일</button>
+    <article class="item" data-topics="외교,정치" data-search="에르도안, 권총·실탄 선물…귀국길 나토 정상들 &#39;난감&#39; 튀르키예 에르도안 대통령이 북대서양조약기구 정상들에게 권총과 실탄을 선물해 논란이 일었다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014058986" target="_blank" rel="noreferrer">에르도안, 권총·실탄 선물…귀국길 나토 정상들 &#39;난감&#39;</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">외교</span><span class="tag">정치</span><span class="score">추천 85</span></div>
+        <div class="summary">튀르키예 에르도안 대통령이 북대서양조약기구 정상들에게 권총과 실탄을 선물해 논란이 일었다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014058986" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014058986" data-ht="ht-a003_0014058986" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/mnews/article/003/0014060060" target="_blank" rel="noreferrer">EU &#34;페이스북·인스타그램, 사용자들 중독 유발되도록 설계&#34;</a>
-      <div class="meta">뉴시스 · 정책 · 보건 · 사회 · 추천 80</div>
-      <div class="summary">EU가 페이스북과 인스타그램 사용자 중독 유발 설계 문제를 지적하며 소셜미디어 법 위반을 비판했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060060">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060060" data-ht="ht-a003_0014060060">✉️ 메일</button>
+    <article class="item" data-topics="정책,보건,사회" data-search="eu &#34;페이스북·인스타그램, 사용자들 중독 유발되도록 설계&#34; eu가 페이스북과 인스타그램 사용자 중독 유발 설계 문제를 지적하며 소셜미디어 법 위반을 비판했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/003/0014060060" target="_blank" rel="noreferrer">EU &#34;페이스북·인스타그램, 사용자들 중독 유발되도록 설계&#34;</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">정책</span><span class="tag">보건</span><span class="tag">사회</span><span class="score">추천 80</span></div>
+        <div class="summary">EU가 페이스북과 인스타그램 사용자 중독 유발 설계 문제를 지적하며 소셜미디어 법 위반을 비판했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060060" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060060" data-ht="ht-a003_0014060060" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/119/0003109945" target="_blank" rel="noreferrer">우크라·폴란드 정상, 역사 갈등 후 첫 회동</a>
-      <div class="meta">데일리안 · 외교 · 정치 · 추천 80</div>
-      <div class="summary">우크라이나와 폴란드 정상들이 역사 갈등 이후 첫 정상회담을 갖고 관계 개선을 논의했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a119_0003109945">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a119_0003109945" data-ht="ht-a119_0003109945">✉️ 메일</button>
+    <article class="item" data-topics="외교,정치" data-search="우크라·폴란드 정상, 역사 갈등 후 첫 회동 우크라이나와 폴란드 정상들이 역사 갈등 이후 첫 정상회담을 갖고 관계 개선을 논의했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/119/0003109945" target="_blank" rel="noreferrer">우크라·폴란드 정상, 역사 갈등 후 첫 회동</a>
+        <div class="meta"><span class="press">데일리안</span><span class="tag">외교</span><span class="tag">정치</span><span class="score">추천 80</span></div>
+        <div class="summary">우크라이나와 폴란드 정상들이 역사 갈등 이후 첫 정상회담을 갖고 관계 개선을 논의했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a119_0003109945" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a119_0003109945" data-ht="ht-a119_0003109945" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/421/0009053340" target="_blank" rel="noreferrer">튀르키예, 러 방공망 S-400 걸프국에 판매…F-35 도입 청신호</a>
-      <div class="meta">뉴스1 · 외교 · 안보 · 추천 75</div>
-      <div class="summary">튀르키예가 러시아 S-400 방공망을 걸프국에 판매하며 미국 F-35 도입 기대를 높였다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053340">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053340" data-ht="ht-a421_0009053340">✉️ 메일</button>
+    <article class="item" data-topics="외교,안보" data-search="튀르키예, 러 방공망 s-400 걸프국에 판매…f-35 도입 청신호 튀르키예가 러시아 s-400 방공망을 걸프국에 판매하며 미국 f-35 도입 기대를 높였다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/421/0009053340" target="_blank" rel="noreferrer">튀르키예, 러 방공망 S-400 걸프국에 판매…F-35 도입 청신호</a>
+        <div class="meta"><span class="press">뉴스1</span><span class="tag">외교</span><span class="tag">안보</span><span class="score">추천 75</span></div>
+        <div class="summary">튀르키예가 러시아 S-400 방공망을 걸프국에 판매하며 미국 F-35 도입 기대를 높였다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053340" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053340" data-ht="ht-a421_0009053340" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/003/0014059397" target="_blank" rel="noreferrer">EU, 중국산 오리고기 반덤핑 조사…무역 갈등 농산물로 확산</a>
-      <div class="meta">뉴시스 · 경제 · 외교 · 추천 75</div>
-      <div class="summary">EU가 중국산 오리고기 반덤핑 조사에 착수하며 무역 갈등이 농산물로 확산됐다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014059397">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014059397" data-ht="ht-a003_0014059397">✉️ 메일</button>
+    <article class="item" data-topics="경제,외교" data-search="eu, 중국산 오리고기 반덤핑 조사…무역 갈등 농산물로 확산 eu가 중국산 오리고기 반덤핑 조사에 착수하며 무역 갈등이 농산물로 확산됐다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014059397" target="_blank" rel="noreferrer">EU, 중국산 오리고기 반덤핑 조사…무역 갈등 농산물로 확산</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">경제</span><span class="tag">외교</span><span class="score">추천 75</span></div>
+        <div class="summary">EU가 중국산 오리고기 반덤핑 조사에 착수하며 무역 갈등이 농산물로 확산됐다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014059397" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014059397" data-ht="ht-a003_0014059397" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
   </section>
   
-  <section class="region">
+  <section class="region" id="region-4" data-region>
     <div class="region-head">
-      <h2>러시아·유라시아</h2>
+      <h2>러시아·유라시아 <span class="rcount">5</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r4">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r4" data-ht="ht-r4">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r4" data-ht="ht-r4">✉️ 메일</button>
       </div>
     </div>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/119/0003110320" target="_blank" rel="noreferrer">우크라, 러 정유시설 집중 타격…정제능력 최대 40% 마비</a>
-      <div class="meta">데일리안 · 안보 · 외교 · 추천 90</div>
-      <div class="summary">우크라이나가 러시아 정유시설에 드론 공격을 강화해 러시아 석유 정제 능력이 최대 40% 마비됐다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a119_0003110320">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a119_0003110320" data-ht="ht-a119_0003110320">✉️ 메일</button>
+    <article class="item" data-topics="안보,외교" data-search="우크라, 러 정유시설 집중 타격…정제능력 최대 40% 마비 우크라이나가 러시아 정유시설에 드론 공격을 강화해 러시아 석유 정제 능력이 최대 40% 마비됐다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/119/0003110320" target="_blank" rel="noreferrer">우크라, 러 정유시설 집중 타격…정제능력 최대 40% 마비</a>
+        <div class="meta"><span class="press">데일리안</span><span class="tag">안보</span><span class="tag">외교</span><span class="score">추천 90</span></div>
+        <div class="summary">우크라이나가 러시아 정유시설에 드론 공격을 강화해 러시아 석유 정제 능력이 최대 40% 마비됐다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a119_0003110320" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a119_0003110320" data-ht="ht-a119_0003110320" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/421/0009053336" target="_blank" rel="noreferrer">우크라, 러 에너지 시설 전방위 공습…러 휘발유 생산 65%로 감소</a>
-      <div class="meta">뉴스1 · 안보 · 추천 90</div>
-      <div class="summary">우크라이나가 러시아 정유시설, 원유 터미널 등 에너지 시설을 집중 타격해 휘발유 생산이 급감했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053336">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053336" data-ht="ht-a421_0009053336">✉️ 메일</button>
+    <article class="item" data-topics="안보" data-search="우크라, 러 에너지 시설 전방위 공습…러 휘발유 생산 65%로 감소 우크라이나가 러시아 정유시설, 원유 터미널 등 에너지 시설을 집중 타격해 휘발유 생산이 급감했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/421/0009053336" target="_blank" rel="noreferrer">우크라, 러 에너지 시설 전방위 공습…러 휘발유 생산 65%로 감소</a>
+        <div class="meta"><span class="press">뉴스1</span><span class="tag">안보</span><span class="score">추천 90</span></div>
+        <div class="summary">우크라이나가 러시아 정유시설, 원유 터미널 등 에너지 시설을 집중 타격해 휘발유 생산이 급감했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053336" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053336" data-ht="ht-a421_0009053336" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/001/0016188427" target="_blank" rel="noreferrer">패트리엇 면허 쥔 우크라, 러 몰아치나…석유시설 4곳 타격(종합)</a>
-      <div class="meta">연합뉴스 · 안보 · 외교 · 추천 90</div>
-      <div class="summary">우크라이나가 미국에서 패트리엇 지원을 확보해 러시아 에너지 시설에 핀셋 타격을 이어가고 있다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188427">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188427" data-ht="ht-a001_0016188427">✉️ 메일</button>
+    <article class="item" data-topics="안보,외교" data-search="패트리엇 면허 쥔 우크라, 러 몰아치나…석유시설 4곳 타격(종합) 우크라이나가 미국에서 패트리엇 지원을 확보해 러시아 에너지 시설에 핀셋 타격을 이어가고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/001/0016188427" target="_blank" rel="noreferrer">패트리엇 면허 쥔 우크라, 러 몰아치나…석유시설 4곳 타격(종합)</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">안보</span><span class="tag">외교</span><span class="score">추천 90</span></div>
+        <div class="summary">우크라이나가 미국에서 패트리엇 지원을 확보해 러시아 에너지 시설에 핀셋 타격을 이어가고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188427" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188427" data-ht="ht-a001_0016188427" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/119/0003109953" target="_blank" rel="noreferrer">젤렌스키 &#34;美와 패트리엇 생산 정치적 합의…수일 내 요격미사일 도착&#34;</a>
-      <div class="meta">데일리안 · 외교 · 안보 · 추천 90</div>
-      <div class="summary">우크라이나 젤렌스키 대통령이 미국과 패트리엇 생산에 정치적 합의를 맺고 곧 미사일이 도착할 것이라 밝혔다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a119_0003109953">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a119_0003109953" data-ht="ht-a119_0003109953">✉️ 메일</button>
+    <article class="item" data-topics="외교,안보" data-search="젤렌스키 &#34;美와 패트리엇 생산 정치적 합의…수일 내 요격미사일 도착&#34; 우크라이나 젤렌스키 대통령이 미국과 패트리엇 생산에 정치적 합의를 맺고 곧 미사일이 도착할 것이라 밝혔다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/119/0003109953" target="_blank" rel="noreferrer">젤렌스키 &#34;美와 패트리엇 생산 정치적 합의…수일 내 요격미사일 도착&#34;</a>
+        <div class="meta"><span class="press">데일리안</span><span class="tag">외교</span><span class="tag">안보</span><span class="score">추천 90</span></div>
+        <div class="summary">우크라이나 젤렌스키 대통령이 미국과 패트리엇 생산에 정치적 합의를 맺고 곧 미사일이 도착할 것이라 밝혔다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a119_0003109953" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a119_0003109953" data-ht="ht-a119_0003109953" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/421/0009053501" target="_blank" rel="noreferrer">북중 우호조약 65주년 계기 박태성 북한 총리 방중…&#34;전략적 협력 강화&#34;</a>
-      <div class="meta">뉴스1 · 외교 · 정치 · 안보 · 추천 85</div>
-      <div class="summary">북한 내각총리 박태성이 북중 우호조약 65주년 행사 참석차 중국을 방문했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053501">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053501" data-ht="ht-a421_0009053501">✉️ 메일</button>
+    <article class="item" data-topics="외교,정치,안보" data-search="북중 우호조약 65주년 계기 박태성 북한 총리 방중…&#34;전략적 협력 강화&#34; 북한 내각총리 박태성이 북중 우호조약 65주년 행사 참석차 중국을 방문했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/421/0009053501" target="_blank" rel="noreferrer">북중 우호조약 65주년 계기 박태성 북한 총리 방중…&#34;전략적 협력 강화&#34;</a>
+        <div class="meta"><span class="press">뉴스1</span><span class="tag">외교</span><span class="tag">정치</span><span class="tag">안보</span><span class="score">추천 85</span></div>
+        <div class="summary">북한 내각총리 박태성이 북중 우호조약 65주년 행사 참석차 중국을 방문했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053501" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053501" data-ht="ht-a421_0009053501" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
   </section>
   
-  <section class="region">
+  <section class="region" id="region-5" data-region>
     <div class="region-head">
-      <h2>중남미</h2>
+      <h2>중남미 <span class="rcount">5</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r5">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r5" data-ht="ht-r5">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r5" data-ht="ht-r5">✉️ 메일</button>
       </div>
     </div>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/421/0009053479" target="_blank" rel="noreferrer">베네수 강진 사망자 4000명 넘어서…여진 이어져 수색 작업 난항</a>
-      <div class="meta">뉴스1 · 사회 · 보건 · 정책 · 추천 80</div>
-      <div class="summary">베네수엘라 강진으로 사망자가 4000명을 넘어섰고 수색 작업이 여진으로 어려움을 겪고 있다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053479">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053479" data-ht="ht-a421_0009053479">✉️ 메일</button>
+    <article class="item" data-topics="사회,보건,정책" data-search="베네수 강진 사망자 4000명 넘어서…여진 이어져 수색 작업 난항 베네수엘라 강진으로 사망자가 4000명을 넘어섰고 수색 작업이 여진으로 어려움을 겪고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/421/0009053479" target="_blank" rel="noreferrer">베네수 강진 사망자 4000명 넘어서…여진 이어져 수색 작업 난항</a>
+        <div class="meta"><span class="press">뉴스1</span><span class="tag">사회</span><span class="tag">보건</span><span class="tag">정책</span><span class="score">추천 80</span></div>
+        <div class="summary">베네수엘라 강진으로 사망자가 4000명을 넘어섰고 수색 작업이 여진으로 어려움을 겪고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053479" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053479" data-ht="ht-a421_0009053479" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/003/0014060316" target="_blank" rel="noreferrer">베네수엘라 지진 사망자 4118명, 부상자 1만7000명</a>
-      <div class="meta">뉴시스 · 사회 · 보건 · 정책 · 추천 80</div>
-      <div class="summary">베네수엘라 쌍둥이 지진 사망자가 4118명, 부상자가 1만 7000명을 넘었다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060316">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060316" data-ht="ht-a003_0014060316">✉️ 메일</button>
+    <article class="item" data-topics="사회,보건,정책" data-search="베네수엘라 지진 사망자 4118명, 부상자 1만7000명 베네수엘라 쌍둥이 지진 사망자가 4118명, 부상자가 1만 7000명을 넘었다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014060316" target="_blank" rel="noreferrer">베네수엘라 지진 사망자 4118명, 부상자 1만7000명</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">사회</span><span class="tag">보건</span><span class="tag">정책</span><span class="score">추천 80</span></div>
+        <div class="summary">베네수엘라 쌍둥이 지진 사망자가 4118명, 부상자가 1만 7000명을 넘었다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060316" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060316" data-ht="ht-a003_0014060316" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/mnews/article/277/0005788559" target="_blank" rel="noreferrer">쿠바서 또 전국 대정전…올해 들어 네 번째</a>
-      <div class="meta">아시아경제 · 경제 · 환경 · 추천 70</div>
-      <div class="summary">쿠바에서 에너지 부족으로 인해 올해 들어 네 번째 전국 대정전이 발생했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a277_0005788559">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a277_0005788559" data-ht="ht-a277_0005788559">✉️ 메일</button>
+    <article class="item" data-topics="경제,환경" data-search="쿠바서 또 전국 대정전…올해 들어 네 번째 쿠바에서 에너지 부족으로 인해 올해 들어 네 번째 전국 대정전이 발생했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/277/0005788559" target="_blank" rel="noreferrer">쿠바서 또 전국 대정전…올해 들어 네 번째</a>
+        <div class="meta"><span class="press">아시아경제</span><span class="tag">경제</span><span class="tag">환경</span><span class="score">추천 70</span></div>
+        <div class="summary">쿠바에서 에너지 부족으로 인해 올해 들어 네 번째 전국 대정전이 발생했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a277_0005788559" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a277_0005788559" data-ht="ht-a277_0005788559" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/422/0000883995" target="_blank" rel="noreferrer">&#34;절단 수술 고통까지&#34;…지진이 앗아간 일상</a>
-      <div class="meta">연합뉴스TV · 사회 · 보건 · 추천 70</div>
-      <div class="summary">베네수엘라 지진 이후 생존 어린이들이 절단 수술 고통을 겪고 있으며 일상 복귀가 어려운 상황이다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a422_0000883995">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a422_0000883995" data-ht="ht-a422_0000883995">✉️ 메일</button>
+    <article class="item" data-topics="사회,보건" data-search="&#34;절단 수술 고통까지&#34;…지진이 앗아간 일상 베네수엘라 지진 이후 생존 어린이들이 절단 수술 고통을 겪고 있으며 일상 복귀가 어려운 상황이다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/422/0000883995" target="_blank" rel="noreferrer">&#34;절단 수술 고통까지&#34;…지진이 앗아간 일상</a>
+        <div class="meta"><span class="press">연합뉴스TV</span><span class="tag">사회</span><span class="tag">보건</span><span class="score">추천 70</span></div>
+        <div class="summary">베네수엘라 지진 이후 생존 어린이들이 절단 수술 고통을 겪고 있으며 일상 복귀가 어려운 상황이다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a422_0000883995" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a422_0000883995" data-ht="ht-a422_0000883995" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/277/0005788520" target="_blank" rel="noreferrer">&#34;돈도 친구도 없었다&#34; 7세부터 55년간 착취당한 브라질 여성</a>
-      <div class="meta">아시아경제 · 사회 · 보건 · 추천 70</div>
-      <div class="summary">브라질에서 7세부터 55년간 착취당한 여성이 구조됐다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a277_0005788520">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a277_0005788520" data-ht="ht-a277_0005788520">✉️ 메일</button>
+    <article class="item" data-topics="사회,보건" data-search="&#34;돈도 친구도 없었다&#34; 7세부터 55년간 착취당한 브라질 여성 브라질에서 7세부터 55년간 착취당한 여성이 구조됐다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/277/0005788520" target="_blank" rel="noreferrer">&#34;돈도 친구도 없었다&#34; 7세부터 55년간 착취당한 브라질 여성</a>
+        <div class="meta"><span class="press">아시아경제</span><span class="tag">사회</span><span class="tag">보건</span><span class="score">추천 70</span></div>
+        <div class="summary">브라질에서 7세부터 55년간 착취당한 여성이 구조됐다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a277_0005788520" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a277_0005788520" data-ht="ht-a277_0005788520" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
   </section>
   
-  <section class="region">
+  <section class="region" id="region-6" data-region>
     <div class="region-head">
-      <h2>중국</h2>
+      <h2>중국 <span class="rcount">5</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r6">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r6" data-ht="ht-r6">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r6" data-ht="ht-r6">✉️ 메일</button>
       </div>
     </div>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/008/0005384481" target="_blank" rel="noreferrer">중국, 반도체 필수 소재 &#39;헬륨&#39; 수출 막았다...&#34;효력 즉시 발휘&#34;</a>
-      <div class="meta">머니투데이 · 경제 · 정책 · 추천 90</div>
-      <div class="summary">중국 정부가 반도체 필수 소재 헬륨의 수출을 일시 금지하는 조치 발표.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a008_0005384481">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a008_0005384481" data-ht="ht-a008_0005384481">✉️ 메일</button>
+    <article class="item" data-topics="경제,정책" data-search="중국, 반도체 필수 소재 &#39;헬륨&#39; 수출 막았다...&#34;효력 즉시 발휘&#34; 중국 정부가 반도체 필수 소재 헬륨의 수출을 일시 금지하는 조치 발표.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/008/0005384481" target="_blank" rel="noreferrer">중국, 반도체 필수 소재 &#39;헬륨&#39; 수출 막았다...&#34;효력 즉시 발휘&#34;</a>
+        <div class="meta"><span class="press">머니투데이</span><span class="tag">경제</span><span class="tag">정책</span><span class="score">추천 90</span></div>
+        <div class="summary">중국 정부가 반도체 필수 소재 헬륨의 수출을 일시 금지하는 조치 발표.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a008_0005384481" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a008_0005384481" data-ht="ht-a008_0005384481" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/022/0004142238" target="_blank" rel="noreferrer">민족 억지 동화·역외활동 억압… 中, 초국가 사법통제 신호탄 [세계는 지금]</a>
-      <div class="meta">세계일보 · 정책 · 외교 · 보건 · 추천 85</div>
-      <div class="summary">중국이 소수민족 문화 억압과 초국가 사법통제를 강화하는 &#39;민족단결진보촉진법&#39;을 본격 시행했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a022_0004142238">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a022_0004142238" data-ht="ht-a022_0004142238">✉️ 메일</button>
+    <article class="item" data-topics="정책,외교,보건" data-search="민족 억지 동화·역외활동 억압… 中, 초국가 사법통제 신호탄 [세계는 지금] 중국이 소수민족 문화 억압과 초국가 사법통제를 강화하는 &#39;민족단결진보촉진법&#39;을 본격 시행했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/022/0004142238" target="_blank" rel="noreferrer">민족 억지 동화·역외활동 억압… 中, 초국가 사법통제 신호탄 [세계는 지금]</a>
+        <div class="meta"><span class="press">세계일보</span><span class="tag">정책</span><span class="tag">외교</span><span class="tag">보건</span><span class="score">추천 85</span></div>
+        <div class="summary">중국이 소수민족 문화 억압과 초국가 사법통제를 강화하는 &#39;민족단결진보촉진법&#39;을 본격 시행했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a022_0004142238" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a022_0004142238" data-ht="ht-a022_0004142238" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/422/0000883977" target="_blank" rel="noreferrer">美 칩 막자 中 모델 잠근다…AI패권 &#39;상호 봉쇄&#39;</a>
-      <div class="meta">연합뉴스TV · 경제 · 안보 · 정책 · 추천 85</div>
-      <div class="summary">중국이 AI 분야 독립 강화 위해 자체 AI칩 개발과 해외 AI 모델 수출 제한을 추진 중이다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a422_0000883977">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a422_0000883977" data-ht="ht-a422_0000883977">✉️ 메일</button>
+    <article class="item" data-topics="경제,안보,정책" data-search="美 칩 막자 中 모델 잠근다…ai패권 &#39;상호 봉쇄&#39; 중국이 ai 분야 독립 강화 위해 자체 ai칩 개발과 해외 ai 모델 수출 제한을 추진 중이다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/422/0000883977" target="_blank" rel="noreferrer">美 칩 막자 中 모델 잠근다…AI패권 &#39;상호 봉쇄&#39;</a>
+        <div class="meta"><span class="press">연합뉴스TV</span><span class="tag">경제</span><span class="tag">안보</span><span class="tag">정책</span><span class="score">추천 85</span></div>
+        <div class="summary">중국이 AI 분야 독립 강화 위해 자체 AI칩 개발과 해외 AI 모델 수출 제한을 추진 중이다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a422_0000883977" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a422_0000883977" data-ht="ht-a422_0000883977" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/422/0000883944" target="_blank" rel="noreferrer">시진핑, 北 박태성 접견…북중 밀착 재확인</a>
-      <div class="meta">연합뉴스TV · 외교 · 정책 · 추천 85</div>
-      <div class="summary">시진핑 중국 국가주석이 북한 내각총리 박태성을 접견하며 북중 밀착을 재확인했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a422_0000883944">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a422_0000883944" data-ht="ht-a422_0000883944">✉️ 메일</button>
+    <article class="item" data-topics="외교,정책" data-search="시진핑, 北 박태성 접견…북중 밀착 재확인 시진핑 중국 국가주석이 북한 내각총리 박태성을 접견하며 북중 밀착을 재확인했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/422/0000883944" target="_blank" rel="noreferrer">시진핑, 北 박태성 접견…북중 밀착 재확인</a>
+        <div class="meta"><span class="press">연합뉴스TV</span><span class="tag">외교</span><span class="tag">정책</span><span class="score">추천 85</span></div>
+        <div class="summary">시진핑 중국 국가주석이 북한 내각총리 박태성을 접견하며 북중 밀착을 재확인했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a422_0000883944" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a422_0000883944" data-ht="ht-a422_0000883944" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/mnews/article/001/0016188374" target="_blank" rel="noreferrer">시진핑, 박태성 北총리 만나 &#34;사회주의 건설·현대화 함께 추진&#34;(종합)</a>
-      <div class="meta">연합뉴스 · 외교 · 정치 · 추천 85</div>
-      <div class="summary">시진핑 중국 주석이 박태성 북한 내각총리를 만나 전략적 협력과 주권·안보 수호를 강조했다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188374">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188374" data-ht="ht-a001_0016188374">✉️ 메일</button>
+    <article class="item" data-topics="외교,정치" data-search="시진핑, 박태성 北총리 만나 &#34;사회주의 건설·현대화 함께 추진&#34;(종합) 시진핑 중국 주석이 박태성 북한 내각총리를 만나 전략적 협력과 주권·안보 수호를 강조했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016188374" target="_blank" rel="noreferrer">시진핑, 박태성 北총리 만나 &#34;사회주의 건설·현대화 함께 추진&#34;(종합)</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">외교</span><span class="tag">정치</span><span class="score">추천 85</span></div>
+        <div class="summary">시진핑 중국 주석이 박태성 북한 내각총리를 만나 전략적 협력과 주권·안보 수호를 강조했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188374" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188374" data-ht="ht-a001_0016188374" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
   </section>
   
-  <section class="region">
+  <section class="region" id="region-7" data-region>
     <div class="region-head">
-      <h2>선진국</h2>
+      <h2>선진국 <span class="rcount">5</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r7">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r7" data-ht="ht-r7">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r7" data-ht="ht-r7">✉️ 메일</button>
       </div>
     </div>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/015/0005308823" target="_blank" rel="noreferrer">&#34;휴전 끝났다&#34; 트럼프 통보에 이란도 &#34;항복 없다&#34;…강대강 대치</a>
-      <div class="meta">한국경제 · 외교 · 안보 · 정치 · 추천 90</div>
-      <div class="summary">도널드 트럼프 미국 대통령이 이란과의 휴전 종료를 통보하고 이란도 이에 맞서 강대강 대치 국면이 고조되고 있다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a015_0005308823">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a015_0005308823" data-ht="ht-a015_0005308823">✉️ 메일</button>
+    <article class="item" data-topics="외교,안보,정치" data-search="&#34;휴전 끝났다&#34; 트럼프 통보에 이란도 &#34;항복 없다&#34;…강대강 대치 도널드 트럼프 미국 대통령이 이란과의 휴전 종료를 통보하고 이란도 이에 맞서 강대강 대치 국면이 고조되고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/015/0005308823" target="_blank" rel="noreferrer">&#34;휴전 끝났다&#34; 트럼프 통보에 이란도 &#34;항복 없다&#34;…강대강 대치</a>
+        <div class="meta"><span class="press">한국경제</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정치</span><span class="score">추천 90</span></div>
+        <div class="summary">도널드 트럼프 미국 대통령이 이란과의 휴전 종료를 통보하고 이란도 이에 맞서 강대강 대치 국면이 고조되고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a015_0005308823" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a015_0005308823" data-ht="ht-a015_0005308823" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/421/0009053388" target="_blank" rel="noreferrer">트럼프 &#34;이란 대화 요청 동의했으나 휴전종료 통보&#34;…이란 &#34;대화 요청 안 해&#34;(종합)</a>
-      <div class="meta">뉴스1 · 외교 · 안보 · 정치 · 추천 90</div>
-      <div class="summary">트럼프 대통령이 이란과 대화를 요청했으나 휴전 종료 통보하며 긴장이 지속됐다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053388">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053388" data-ht="ht-a421_0009053388">✉️ 메일</button>
+    <article class="item" data-topics="외교,안보,정치" data-search="트럼프 &#34;이란 대화 요청 동의했으나 휴전종료 통보&#34;…이란 &#34;대화 요청 안 해&#34;(종합) 트럼프 대통령이 이란과 대화를 요청했으나 휴전 종료 통보하며 긴장이 지속됐다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/421/0009053388" target="_blank" rel="noreferrer">트럼프 &#34;이란 대화 요청 동의했으나 휴전종료 통보&#34;…이란 &#34;대화 요청 안 해&#34;(종합)</a>
+        <div class="meta"><span class="press">뉴스1</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정치</span><span class="score">추천 90</span></div>
+        <div class="summary">트럼프 대통령이 이란과 대화를 요청했으나 휴전 종료 통보하며 긴장이 지속됐다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053388" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053388" data-ht="ht-a421_0009053388" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/003/0014060192" target="_blank" rel="noreferrer">美, 이란 최고지도자 자금책 제재…&#34;글로벌 금융 시스템서 퇴출&#34;</a>
-      <div class="meta">뉴시스 · 외교 · 정책 · 추천 90</div>
-      <div class="summary">미국이 이란 최고지도자 자금책을 제재하며 글로벌 금융 시스템에서 퇴출시켰다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060192">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060192" data-ht="ht-a003_0014060192">✉️ 메일</button>
+    <article class="item" data-topics="외교,정책" data-search="美, 이란 최고지도자 자금책 제재…&#34;글로벌 금융 시스템서 퇴출&#34; 미국이 이란 최고지도자 자금책을 제재하며 글로벌 금융 시스템에서 퇴출시켰다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014060192" target="_blank" rel="noreferrer">美, 이란 최고지도자 자금책 제재…&#34;글로벌 금융 시스템서 퇴출&#34;</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">외교</span><span class="tag">정책</span><span class="score">추천 90</span></div>
+        <div class="summary">미국이 이란 최고지도자 자금책을 제재하며 글로벌 금융 시스템에서 퇴출시켰다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060192" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060192" data-ht="ht-a003_0014060192" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/028/0002813661" target="_blank" rel="noreferrer">미, 이란에 사실상 최후통첩…“‘상선 공격 중단’ 공개성명 내라”</a>
-      <div class="meta">한겨레 · 외교 · 안보 · 정책 · 추천 90</div>
-      <div class="summary">미국이 이란에 호르무즈해협 상선 공격 중단과 항로 개방 공개성명을 내놓으라 사실상 최후통첩을 보냈다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a028_0002813661">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a028_0002813661" data-ht="ht-a028_0002813661">✉️ 메일</button>
+    <article class="item" data-topics="외교,안보,정책" data-search="미, 이란에 사실상 최후통첩…“‘상선 공격 중단’ 공개성명 내라” 미국이 이란에 호르무즈해협 상선 공격 중단과 항로 개방 공개성명을 내놓으라 사실상 최후통첩을 보냈다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/028/0002813661" target="_blank" rel="noreferrer">미, 이란에 사실상 최후통첩…“‘상선 공격 중단’ 공개성명 내라”</a>
+        <div class="meta"><span class="press">한겨레</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정책</span><span class="score">추천 90</span></div>
+        <div class="summary">미국이 이란에 호르무즈해협 상선 공격 중단과 항로 개방 공개성명을 내놓으라 사실상 최후통첩을 보냈다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a028_0002813661" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a028_0002813661" data-ht="ht-a028_0002813661" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
-    <article class="item">
-      <a class="title" href="https://n.news.naver.com/article/421/0009053341" target="_blank" rel="noreferrer">미국, 이란 정권 금융책 안사리 등 제재…대이란 자금줄 압박 강화</a>
-      <div class="meta">뉴스1 · 정책 · 외교 · 안보 · 경제 · 추천 90</div>
-      <div class="summary">미국이 이란 핵심 금융 인사와 정권 관련자에 대한 제재를 강화해 대이란 자금줄을 압박하고 있다.</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053341">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053341" data-ht="ht-a421_0009053341">✉️ 메일</button>
+    <article class="item" data-topics="정책,외교,안보,경제" data-search="미국, 이란 정권 금융책 안사리 등 제재…대이란 자금줄 압박 강화 미국이 이란 핵심 금융 인사와 정권 관련자에 대한 제재를 강화해 대이란 자금줄을 압박하고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/421/0009053341" target="_blank" rel="noreferrer">미국, 이란 정권 금융책 안사리 등 제재…대이란 자금줄 압박 강화</a>
+        <div class="meta"><span class="press">뉴스1</span><span class="tag">정책</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">경제</span><span class="score">추천 90</span></div>
+        <div class="summary">미국이 이란 핵심 금융 인사와 정권 관련자에 대한 제재를 강화해 대이란 자금줄을 압박하고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053341" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053341" data-ht="ht-a421_0009053341" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     
@@ -838,6 +951,8 @@ https://n.news.naver.com/article/421/0009053341</div>
   
 </div>
 
+<button id="to-top" class="to-top" type="button" aria-label="맨 위로" hidden>↑</button>
 <script src="assets/copy.js"></script>
+<script src="assets/ui.js"></script>
 </body>
 </html>
