@@ -21,7 +21,7 @@ TEMPLATE_DIR = REPO_ROOT / "templates"
 ASSETS_DIR = REPO_ROOT / "assets"
 
 # 권역별 표시 건수(이메일과 동일한 기본값).
-TOP_N = int(os.environ.get("ARCHIVE_TOP_N", "3"))
+TOP_N = int(os.environ.get("ARCHIVE_TOP_N", "5"))
 
 SITE_TITLE = "세계뉴스 일일 브리핑 아카이브"
 

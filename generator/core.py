@@ -10,7 +10,11 @@ Source of truth:
 검증한다. 원본이 바뀌면 그 테스트가 실패하므로 여기서 맞춰 갱신한다.
 """
 
+import re
 from dataclasses import dataclass
+
+# 표시 단계 중복 제거 임계값 (briefing/config.py DEDUP_SUMMARY_THRESHOLD 와 동일해야 함)
+DEDUP_SUMMARY_THRESHOLD: float = 0.20
 
 REGIONS: tuple[str, ...] = (
     "아세안",
@@ -59,11 +63,35 @@ class Classification:
 Selection = dict[str, tuple[tuple[Article, Classification], ...]]
 
 
+def _summary_tokens(article: Article, classification: Classification) -> frozenset[str]:
+    """제목+요약을 정규화한 토큰 집합. 1글자 토큰은 제외."""
+    cleaned = re.sub(r"[^\w\s]", " ", f"{article.title} {classification.summary}")
+    return frozenset(word for word in cleaned.split() if len(word) > 1)
+
+
+def _dedup_paraphrases(
+    ranked: list[tuple[Article, Classification]], threshold: float
+) -> list[tuple[Article, Classification]]:
+    """점수 내림차순 목록에서 같은 사건(패러프레이즈) 중복을 제거한다."""
+    kept: list[tuple[Article, Classification]] = []
+    kept_tokens: list[frozenset[str]] = []
+    for article, classification in ranked:
+        tokens = _summary_tokens(article, classification)
+        if any(
+            tokens and kt and len(tokens & kt) / len(tokens | kt) >= threshold
+            for kt in kept_tokens
+        ):
+            continue
+        kept.append((article, classification))
+        kept_tokens.append(tokens)
+    return kept
+
+
 def select(
     articles: tuple[Article, ...],
     classifications: tuple[Classification, ...],
     *,
-    top_n: int = 3,
+    top_n: int = 5,
     min_score: int = 0,
     topics: tuple[str, ...] | None = None,
 ) -> Selection:
@@ -85,6 +113,7 @@ def select(
         if not matched:
             continue
         ranked = sorted(matched, key=lambda pair: pair[1].score, reverse=True)
+        ranked = _dedup_paraphrases(ranked, DEDUP_SUMMARY_THRESHOLD)
         selection = {**selection, region: tuple(ranked[:top_n])}
 
     return selection

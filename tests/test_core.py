@@ -1,15 +1,19 @@
 from generator.core import REGIONS, TOPICS, Article, Classification, select
 
 
-def _article(aid, title="제목", score_url="x"):
+def _article(aid, title=None, score_url="x"):
+    # 기사마다 고유 제목 — 표시단계 중복 제거가 서로 다른 기사를 합치지 않도록.
+    safe = aid.replace("/", "")
     return Article(
-        id=aid, title=title, press="언론사", lede="요약",
+        id=aid, title=title or f"고유기사{safe}제목내용", press="언론사", lede="요약",
         url=f"https://n.news.naver.com/mnews/article/{aid}", date="20260711", section="231",
     )
 
 
 def _cls(aid, region, score, topics=("경제",)):
-    return Classification(id=aid, region=region, topics=topics, score=score, summary="한 줄")
+    safe = aid.replace("/", "")
+    return Classification(id=aid, region=region, topics=topics, score=score,
+                          summary=f"고유기사{safe}요약본문서로다름")
 
 
 def test_regions_and_topics_shape():

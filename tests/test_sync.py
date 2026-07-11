@@ -35,9 +35,12 @@ def _sample():
         for i in range(3)
     )
     cls = (
-        Classification(id="020/0", region="아세안", topics=("경제",), score=90, summary="가"),
+        Classification(id="020/0", region="아세안", topics=("경제",), score=90,
+                       summary="필리핀 남부 산사태로 다수 사상자 발생 복구 난항"),
         Classification(id="020/1", region="중국", topics=("외교",), score=60, summary="나"),
-        Classification(id="020/2", region="해당없음", topics=("사회",), score=80, summary="다"),
+        # 020/0 과 같은 사건(패러프레이즈) → 표시 단계 중복 제거 대상. 두 앱이 동일하게 처리해야 한다.
+        Classification(id="020/2", region="아세안", topics=("사회",), score=50,
+                       summary="필리핀 남부 산사태 사상자 다수 복구 작업 난항 지속"),
     )
     return arts, cls
 
