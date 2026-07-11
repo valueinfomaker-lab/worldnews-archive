@@ -1,40 +1,50 @@
 # 뉴스레터 구독 백엔드 (Google Apps Script)
 
-정적 사이트(GitHub Pages/Vercel)에는 서버가 없으므로, 구독 폼 데이터는
-구글 시트에 붙이는 **Apps Script 웹앱**이 받는다.
+정적 사이트(GitHub Pages/Vercel)에는 서버가 없으므로, 구독 폼 데이터와 목록 조회·수신거부를
+구글 시트에 붙인 **Apps Script 웹앱**이 처리한다.
 
 ## 데이터 흐름
 
 ```
-사이트 구독 폼(index) ──POST(JSON, text/plain)──▶ Apps Script 웹앱 ──appendRow──▶ 구글 시트(Subscribers)
+사이트 구독 폼 ──POST(JSON)──▶ Apps Script ──▶ 구글 시트(Subscribers: 신청일시·이름·이메일·상태)
+브리핑 파이프라인 ──GET ?action=list&key=─▶ Apps Script ──▶ 활성 구독자 JSON ──▶ 개별 메일 발송
+구독자(메일의 링크) ─GET ?action=unsubscribe&email=&token=─▶ Apps Script ──▶ 상태='구독취소'
 ```
 
-- `assets/subscribe.js` 가 이름·이메일을 검증한 뒤 `config.SUBSCRIBE_ENDPOINT` 로 POST.
-- `Code.gs` 의 `doPost` 가 이메일 재검증 + 중복 확인 후 `[신청일시, 이름, 이메일]` 행 추가.
-- 응답: `{ok:true}` / `{ok:true, duplicate:true}` / `{ok:false, error:...}`.
+## 엔드포인트
 
-## 설치(한 번만)
+| 요청 | 설명 |
+|---|---|
+| `POST {name,email}` | 신규 구독. 이미 있으면 `{ok,duplicate}`, 취소했던 이메일이면 재활성 `{ok,reactivated}` |
+| `GET ?action=list&key=LIST_KEY` | 활성 구독자 `{ok, subscribers:[{name,email}]}` (키 불일치 시 unauthorized) |
+| `GET ?action=unsubscribe&email=&token=` | 토큰(=HMAC-SHA256(email, UNSUB_SECRET)) 검증 후 상태='구독취소', HTML 확인 페이지 |
+| `GET` (기본) | 헬스체크 |
 
-1. **시트 생성**: 새 구글 시트를 만든다(제목 예: `GRIP 구독자`). 소유자는 본인.
-2. **스크립트 붙여넣기**: 시트에서 `확장 프로그램 > Apps Script` → `Code.gs` 내용 전체 붙여넣기 → 저장.
-3. **웹앱 배포**: `배포 > 새 배포` → 유형 **웹 앱**
-   - 실행 계정: **나**
-   - 액세스 권한: **모든 사용자**
-   - 배포 → 권한 승인(최초 1회) → **웹 앱 URL**(`.../exec`) 복사.
-4. **엔드포인트 연결**: 아래 중 하나로 URL을 사이트에 넣는다.
-   - 배포 스크립트에 환경변수로: `export GRIP_SUBSCRIBE_ENDPOINT="https://script.google.com/.../exec"`
-   - 또는 `generator/config.py` 의 `SUBSCRIBE_ENDPOINT` 기본값에 직접 기입.
-5. **재빌드·배포**: `scripts/build_and_publish.sh` 실행.
+## 설치 / 갱신
 
-> URL은 비밀이 아니다(공개 폼 제출용). 시트 편집 권한은 URL로 노출되지 않는다.
+1. **스크립트 갱신**: 구독 시트에서 `확장 프로그램 > Apps Script` → `Code.gs` 내용 전체를 최신본으로 교체 → 저장.
+2. **스크립트 속성 추가**: `프로젝트 설정(⚙️) > 스크립트 속성 > 속성 추가` 로 두 개 등록
+   - `LIST_KEY` = (파이프라인 .env 의 `NEWSLETTER_LIST_KEY` 와 동일한 값)
+   - `UNSUB_SECRET` = (파이프라인 .env 의 `NEWSLETTER_UNSUB_SECRET` 와 동일한 값)
+3. **재배포(같은 URL 유지)**: `배포 > 배포 관리 > (기존 웹앱) 편집(연필) > 버전: 새 버전 > 배포`.
+   - ⚠️ "새 배포"를 누르면 URL이 바뀐다. 반드시 **기존 배포를 편집해 새 버전**으로 올려야 `/exec` URL이 유지된다.
 
-## 향후 뉴스레터 발송
+> 비밀값은 코드에 넣지 않는다. `Code.gs` 는 공개 저장소에 커밋되므로 값은 스크립트 속성에만 둔다.
 
-기존 브리핑 파이프라인(`korean_worldnews_dailybriefing`)의 mailer가 이 시트의
-`이메일` 열을 수신자 목록으로 읽어 발송하도록 확장할 수 있다. (별도 작업)
+## 시트 컬럼
 
-## CORS 참고
+`A 신청일시 | B 이름 | C 이메일 | D 상태`. 기존 3컬럼 시트는 실행 시 D열 헤더('상태')가 자동 보강되며,
+상태가 비어 있으면 활성으로 간주한다. 수신거부는 행을 지우지 않고 상태만 '구독취소'로 바꾼다(감사 목적).
 
-폼은 커스텀 헤더 없이 문자열 본문으로 POST 하므로 `Content-Type: text/plain` 이 되어
-프리플라이트가 발생하지 않는다. 만약 특정 환경에서 응답 읽기가 막히면 `subscribe.js` 의
-fetch 를 `mode:"no-cors"` + 낙관적 성공 표시로 바꾸면 된다(중복/에러 피드백은 포기).
+## 발송 파이프라인 연결
+
+`korean_worldnews_dailybriefing/.env` 에 아래 3개를 넣으면 08:00 자동 실행이 본 브리핑 발송 직후
+활성 구독자에게 개별 발송한다(각 메일 하단에 수신거부 링크 포함).
+
+```
+NEWSLETTER_ENDPOINT=https://script.google.com/macros/s/…/exec
+NEWSLETTER_LIST_KEY=<LIST_KEY 와 동일>
+NEWSLETTER_UNSUB_SECRET=<UNSUB_SECRET 와 동일>
+```
+
+셋 중 하나라도 비면 구독자 발송은 건너뛰고 본 브리핑만 나간다.
