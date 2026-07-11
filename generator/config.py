@@ -36,6 +36,11 @@ SITE_URL = os.environ.get(
     "ARCHIVE_SITE_URL", "https://valueinfomaker-lab.github.io/worldnews-archive/"
 )
 
+# 카카오톡 오픈채팅 참여 링크(공개). 비우면 버튼이 표시되지 않는다.
+KAKAO_OPENCHAT_URL = os.environ.get(
+    "KAKAO_OPENCHAT_URL", "https://open.kakao.com/o/gnZNxBDi"
+)
+
 # 뉴스레터 구독 폼이 POST 할 Google Apps Script 웹앱 URL(공개, 비밀 아님).
 # 미설정이면 폼은 보이되 제출 시 "준비 중" 안내만 표시한다. 환경변수로 override 가능.
 SUBSCRIBE_ENDPOINT = os.environ.get(

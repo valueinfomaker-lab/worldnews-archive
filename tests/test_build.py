@@ -82,6 +82,21 @@ def test_build_emits_og_tags_and_image(tmp_path):
     assert (out_dir / "assets" / "og-image.png").exists()
 
 
+def test_build_index_has_kakao_openchat_button(tmp_path, monkeypatch):
+    from generator import config
+
+    monkeypatch.setattr(config, "KAKAO_OPENCHAT_URL", "https://open.kakao.com/o/testABC")
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    build(data_dir=data_dir, output_dir=out_dir)
+
+    index = (out_dir / "index.html").read_text(encoding="utf-8")
+    assert 'href="https://open.kakao.com/o/testABC"' in index
+    assert "카카오톡 오픈채팅" in index
+
+
 def test_build_empty_day_renders_placeholder(tmp_path):
     data_dir = tmp_path / "data"
     out_dir = tmp_path / "docs"

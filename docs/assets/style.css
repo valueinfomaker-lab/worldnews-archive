@@ -197,6 +197,14 @@ a { color: inherit; }
   background: var(--gold); flex: 0 0 auto;
 }
 .sub-desc { color: var(--muted); font-size: 13px; margin: 5px 0 0; }
+/* 카카오톡 오픈채팅 버튼 — 브랜드 옐로우 고정(라이트/다크 동일) */
+.kakao-btn {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 12px;
+  background: #fee500; color: #3c1e1e; text-decoration: none;
+  font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: 8px;
+}
+.kakao-btn:hover { filter: brightness(.96); }
+.kakao-ico { width: 18px; height: 18px; flex: 0 0 auto; }
 .sub-form { flex: 1 1 380px; min-width: 260px; }
 .sub-fields { display: flex; gap: 8px; flex-wrap: wrap; }
 .sub-input {
