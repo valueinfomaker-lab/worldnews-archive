@@ -66,6 +66,22 @@ def test_build_index_has_subscribe_form(tmp_path, monkeypatch):
     assert (out_dir / "assets" / "subscribe.js").exists()
 
 
+def test_build_emits_og_tags_and_image(tmp_path):
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    build(data_dir=data_dir, output_dir=out_dir)
+
+    for page in ("index.html", "2026-07-11.html"):
+        html = (out_dir / page).read_text(encoding="utf-8")
+        assert 'property="og:image"' in html
+        assert "assets/og-image.png" in html
+        assert 'name="twitter:card" content="summary_large_image"' in html
+        assert 'property="og:title"' in html
+    assert (out_dir / "assets" / "og-image.png").exists()
+
+
 def test_build_empty_day_renders_placeholder(tmp_path):
     data_dir = tmp_path / "data"
     out_dir = tmp_path / "docs"
