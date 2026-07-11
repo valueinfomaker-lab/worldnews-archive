@@ -209,12 +209,15 @@ a { color: inherit; }
 .sub-status { font-size: 13px; margin: 9px 0 0; }
 .sub-status.is-ok { color: var(--accent); font-weight: 600; }
 .sub-status.is-error { color: #c0392b; font-weight: 600; }
+.sub-status.is-warn { color: #b26a00; font-weight: 600; }
 .sub-status.is-pending { color: var(--muted); }
 .sub-note { color: var(--muted); font-size: 11px; margin: 7px 0 0; }
 
 :root[data-theme="dark"] .sub-status.is-error { color: #e57373; }
+:root[data-theme="dark"] .sub-status.is-warn { color: #e0a44d; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .sub-status.is-error { color: #e57373; }
+  :root:not([data-theme]) .sub-status.is-warn { color: #e0a44d; }
 }
 
 /* 섹션 라벨 */

@@ -53,14 +53,13 @@
         signal: controller.signal,
       });
       const data = await res.json().catch(() => ({ ok: res.ok }));
-      if (data && data.ok) {
+      if (data && data.ok && data.duplicate) {
+        // 이미 등록된 이메일 — 추가 등록하지 않고 경고로 알린다.
+        show("⚠ 이미 등록된 이메일입니다. 추가로 등록되지 않았습니다.", "warn");
+        if (typeof toast === "function") toast("이미 등록된 이메일입니다");
+      } else if (data && data.ok) {
         form.reset();
-        show(
-          data.duplicate
-            ? "이미 구독 중인 이메일입니다."
-            : "구독 신청이 완료되었습니다. 감사합니다!",
-          "ok"
-        );
+        show("구독 신청이 완료되었습니다. 감사합니다!", "ok");
       } else {
         show("신청에 실패했습니다. 잠시 후 다시 시도해 주세요.", "error");
       }
