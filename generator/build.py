@@ -86,7 +86,13 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         if asset.is_file():
             shutil.copy2(asset, assets_out / asset.name)
 
-    common = {"site_title": config.SITE_TITLE, "base_path": config.BASE_PATH}
+    common = {
+        "site_title": config.SITE_TITLE,
+        "site_full": config.SITE_FULL,
+        "site_tagline": config.SITE_TAGLINE,
+        "site_desc": config.SITE_DESC,
+        "base_path": config.BASE_PATH,
+    }
 
     # contexts 는 최신 날짜가 먼저다. 이전날=더 과거(i+1), 다음날=더 최신(i-1).
     for i, ctx in enumerate(contexts):

@@ -23,7 +23,10 @@ ASSETS_DIR = REPO_ROOT / "assets"
 # 권역별 표시 건수(이메일과 동일한 기본값).
 TOP_N = int(os.environ.get("ARCHIVE_TOP_N", "5"))
 
-SITE_TITLE = "세계뉴스 일일 브리핑 아카이브"
+SITE_TITLE = "GRIP"
+SITE_FULL = "Global Regional Intelligence Platform"
+SITE_TAGLINE = "세계의 변화를 읽고, 비즈니스 기회를 연결합니다."
+SITE_DESC = "국가별 정책·산업·시장 변화를 선별하여 기업과 기관에 필요한 인사이트를 제공합니다."
 
 # GitHub Pages 프로젝트 서브패스. 링크가 이 경로 아래에서 해석된다.
 BASE_PATH = os.environ.get("ARCHIVE_BASE_PATH", "/worldnews-archive/")

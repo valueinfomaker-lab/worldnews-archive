@@ -7,11 +7,13 @@
   --accent: #1a5490;
   --accent-ink: #ffffff;
   --accent-weak: #e8eef5;
+  --gold: #d99f45;
   --line: #e5e7eb;
   --chip-bg: #eef2f6;
   --shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 :root[data-theme="dark"] {
+  --gold: #e6b25f;
   --bg: #14171a;
   --surface: #1b1f24;
   --ink: #e8eaed;
@@ -29,7 +31,7 @@
   :root:not([data-theme]) {
     --bg: #14171a; --surface: #1b1f24; --ink: #e8eaed; --muted: #9aa2ac;
     --summary: #c2c7cd; --accent: #6fa8dc; --accent-ink: #10151a;
-    --accent-weak: #22303d; --line: #2a2f36; --chip-bg: #232830;
+    --accent-weak: #22303d; --line: #2a2f36; --chip-bg: #232830; --gold: #e6b25f;
   }
 }
 
@@ -56,7 +58,16 @@ a { color: inherit; }
   max-width: 860px; margin: 0 auto; padding: 10px 16px;
   display: flex; align-items: center; gap: 12px;
 }
-.brand { font-weight: 800; font-size: 15px; color: var(--accent); text-decoration: none; letter-spacing: -.01em; }
+/* 로고 마크 (자오선 G) */
+.lg-ink { fill: none; stroke: var(--accent); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.lg-thin { fill: none; stroke: var(--accent); stroke-width: 1.3; opacity: .45; }
+.lg-gold { fill: var(--gold); }
+
+/* 브랜드 락업 */
+.brand { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.brand .logo { width: 26px; height: 26px; flex: 0 0 auto; }
+.wm { font-weight: 800; font-size: 18px; letter-spacing: -.02em; color: var(--ink); }
+.wm i { color: var(--gold); font-style: normal; }
 .tagline { color: var(--muted); font-size: 12px; flex: 1; }
 .date-nav { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .cur-date { font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; }
@@ -146,6 +157,36 @@ a { color: inherit; }
 .btn-sm { font-size: 12px; padding: 4px 10px; }
 .btn-xs { font-size: 12px; padding: 3px 8px; background: var(--chip-bg); color: var(--ink); border-color: var(--line); }
 .btn-xs:hover { border-color: var(--accent); filter: none; }
+
+/* 인덱스 히어로 */
+.hero { border-bottom: 1px solid var(--line); background: var(--surface); }
+.hero-inner { max-width: 860px; margin: 0 auto; padding: 40px 16px 34px; }
+.hero-lock { display: inline-flex; align-items: center; gap: 12px; }
+.hero-logo { width: 46px; height: 46px; flex: 0 0 auto; }
+.hero-wm { font-weight: 800; font-size: 26px; letter-spacing: -.02em; line-height: 1.05; color: var(--ink); }
+.hero-wm i { color: var(--gold); font-style: normal; }
+.hero-full {
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); margin-top: 2px;
+}
+.hero-title {
+  font-size: clamp(24px, 4.4vw, 34px); font-weight: 800; line-height: 1.28;
+  letter-spacing: -.02em; color: var(--ink); margin: 22px 0 0; text-wrap: balance;
+}
+.hero-title b { color: var(--accent); font-weight: 800; }
+.hero-title b::after {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-left: 5px;
+  border-radius: 50%; background: var(--gold); vertical-align: middle;
+}
+.hero-desc { color: var(--summary); font-size: 15px; margin: 14px 0 0; max-width: 62ch; }
+
+/* 섹션 라벨 */
+.sec-label {
+  font-size: 13px; font-weight: 700; color: var(--ink); text-transform: uppercase;
+  letter-spacing: .08em; margin: 24px 0 4px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+}
+.sec-label span { color: var(--muted); font-weight: 500; letter-spacing: 0; text-transform: none; }
 
 /* 인덱스 날짜 목록 */
 .date-list { list-style: none; padding: 0; margin: 12px 0; }

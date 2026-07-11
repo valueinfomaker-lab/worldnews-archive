@@ -3,7 +3,10 @@
 {% block content %}
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="index.html">{{ site_title }}</a>
+    <a class="brand" href="index.html" aria-label="GRIP 홈">
+      <svg class="logo" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="wm">GR<i>I</i>P</span>
+    </a>
     <nav class="date-nav" aria-label="날짜 이동">
       {% if prev_day %}<a class="navbtn" href="{{ prev_day }}.html" title="이전 날">‹ {{ prev_day[5:] }}</a>
       {% else %}<span class="navbtn is-disabled">‹</span>{% endif %}

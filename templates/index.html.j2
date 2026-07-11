@@ -2,17 +2,33 @@
 {% block content %}
 <header class="topbar">
   <div class="topbar-inner">
-    <span class="brand">{{ site_title }}</span>
-    <span class="tagline">네이버 세계뉴스 권역별 일일 브리핑</span>
+    <a class="brand" href="index.html" aria-label="GRIP 홈">
+      <svg class="logo" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="wm">GR<i>I</i>P</span>
+    </a>
     <button id="theme-toggle" class="iconbtn" type="button" aria-label="테마 전환" title="테마 전환"></button>
   </div>
 </header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-lock">
+      <svg class="hero-logo" aria-hidden="true"><use href="#logo"/></svg>
+      <div>
+        <div class="hero-wm">GR<i>I</i>P</div>
+        <div class="hero-full">{{ site_full }}</div>
+      </div>
+    </div>
+    <h1 class="hero-title">{{ site_tagline.split(', ')[0] }},<br><b>{{ site_tagline.split(', ')[1] }}</b></h1>
+    <p class="hero-desc">{{ site_desc }}</p>
+  </div>
+</section>
 
 <main class="wrap">
   {% if not days %}
     <p class="empty">아직 브리핑이 없습니다.</p>
   {% else %}
-  <p class="daymeta">전체 {{ days|length }}일치</p>
+  <div class="sec-label">일일 브리핑 아카이브 <span>· 전체 {{ days|length }}일치</span></div>
   <ul class="date-list">
     {% for d in days %}
     <li class="date-card">
