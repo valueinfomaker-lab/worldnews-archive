@@ -180,32 +180,37 @@ a { color: inherit; }
 }
 .hero-desc { color: var(--summary); font-size: 15px; margin: 14px 0 0; max-width: 62ch; }
 
-/* 뉴스레터 구독 */
-.subscribe { border-bottom: 1px solid var(--line); background: var(--bg); }
-.sub-inner {
-  max-width: 860px; margin: 0 auto; padding: 24px 16px 26px;
-  display: flex; align-items: flex-start; justify-content: space-between;
-  gap: 20px; flex-wrap: wrap;
+/* 하단 연결(구독 · 오픈채팅) — 두 카드로 분리 */
+.connect { border-top: 1px solid var(--line); background: var(--surface); margin-top: 8px; }
+.connect-grid {
+  max-width: 860px; margin: 0 auto; padding: 32px 16px 44px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
 }
-.sub-copy { flex: 1 1 220px; }
-.sub-title {
-  font-size: 16px; font-weight: 700; color: var(--ink); margin: 0;
-  display: flex; align-items: center; gap: 7px;
+.connect-card {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+  padding: 22px 22px 24px; display: flex; flex-direction: column;
 }
-.sub-title::before {
-  content: ""; width: 7px; height: 7px; border-radius: 50%;
-  background: var(--gold); flex: 0 0 auto;
+.connect-head { display: flex; align-items: center; gap: 10px; }
+.connect-ico {
+  width: 30px; height: 30px; border-radius: 8px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center; font-size: 15px;
 }
-.sub-desc { color: var(--muted); font-size: 13px; margin: 5px 0 0; }
+.connect-ico-nl { background: var(--accent-weak); color: var(--accent); }
+.connect-ico-oc { background: #fee500; color: #3c1e1e; }
+.connect-title { font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; }
+.connect-desc { color: var(--muted); font-size: 13px; margin: 10px 0 14px; }
+/* 오픈채팅 카드는 버튼을 아래로 밀어 두 카드 높이감을 맞춘다 */
+.connect-card .kakao-btn { margin-top: auto; align-self: flex-start; }
+
 /* 카카오톡 오픈채팅 버튼 — 브랜드 옐로우 고정(라이트/다크 동일) */
 .kakao-btn {
-  display: inline-flex; align-items: center; gap: 7px; margin-top: 12px;
+  display: inline-flex; align-items: center; gap: 7px;
   background: #fee500; color: #3c1e1e; text-decoration: none;
-  font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: 8px;
+  font-weight: 700; font-size: 14px; padding: 11px 18px; border-radius: 8px;
 }
 .kakao-btn:hover { filter: brightness(.96); }
 .kakao-ico { width: 18px; height: 18px; flex: 0 0 auto; }
-.sub-form { flex: 1 1 380px; min-width: 260px; }
+.sub-form { display: flex; flex-direction: column; }
 .sub-fields { display: flex; gap: 8px; flex-wrap: wrap; }
 .sub-input {
   flex: 1 1 130px; min-width: 0; font: inherit; font-size: 14px; padding: 9px 12px;
@@ -270,4 +275,5 @@ a { color: inherit; }
   .tagline { display: none; }
   .item { flex-wrap: wrap; }
   .item-copy { order: 3; }
+  .connect-grid { grid-template-columns: 1fr; }
 }
