@@ -92,6 +92,7 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         "site_tagline": config.SITE_TAGLINE,
         "site_desc": config.SITE_DESC,
         "base_path": config.BASE_PATH,
+        "subscribe_endpoint": config.SUBSCRIBE_ENDPOINT,
     }
 
     # contexts 는 최신 날짜가 먼저다. 이전날=더 과거(i+1), 다음날=더 최신(i-1).

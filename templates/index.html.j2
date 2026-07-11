@@ -24,6 +24,24 @@
   </div>
 </section>
 
+<section class="subscribe" id="subscribe">
+  <div class="sub-inner">
+    <div class="sub-copy">
+      <h2 class="sub-title">뉴스레터 구독</h2>
+      <p class="sub-desc">매일 아침, 권역별 핵심 브리핑을 이메일로 받아보세요.</p>
+    </div>
+    <form class="sub-form" id="subscribe-form" data-endpoint="{{ subscribe_endpoint }}" novalidate>
+      <div class="sub-fields">
+        <input class="sub-input" type="text" name="name" id="sub-name" placeholder="이름" autocomplete="name" required>
+        <input class="sub-input" type="email" name="email" id="sub-email" placeholder="이메일 주소" autocomplete="email" required>
+        <button class="btn sub-btn" type="submit">구독 신청</button>
+      </div>
+      <p class="sub-status" id="sub-status" role="status" aria-live="polite" hidden></p>
+      <p class="sub-note">신청 시 뉴스레터 수신에 동의하는 것으로 간주하며, 언제든 수신거부할 수 있습니다.</p>
+    </form>
+  </div>
+</section>
+
 <main class="wrap">
   {% if not days %}
     <p class="empty">아직 브리핑이 없습니다.</p>

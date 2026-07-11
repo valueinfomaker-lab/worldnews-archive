@@ -49,6 +49,23 @@ def test_build_emits_expected_files(tmp_path):
     assert "아세안" in page and "중국" in page
 
 
+def test_build_index_has_subscribe_form(tmp_path, monkeypatch):
+    from generator import config
+
+    monkeypatch.setattr(config, "SUBSCRIBE_ENDPOINT", "https://script.example/exec")
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    build(data_dir=data_dir, output_dir=out_dir)
+
+    index = (out_dir / "index.html").read_text(encoding="utf-8")
+    assert 'id="subscribe-form"' in index
+    assert 'data-endpoint="https://script.example/exec"' in index
+    assert 'id="sub-name"' in index and 'id="sub-email"' in index
+    assert (out_dir / "assets" / "subscribe.js").exists()
+
+
 def test_build_empty_day_renders_placeholder(tmp_path):
     data_dir = tmp_path / "data"
     out_dir = tmp_path / "docs"
