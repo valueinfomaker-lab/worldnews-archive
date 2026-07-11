@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-07-12 · GRIP</title>
+<meta name="description" content="국가별 정책·산업·시장 변화를 선별하여 기업과 기관에 필요한 인사이트를 제공합니다.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GRIP · Global Regional Intelligence Platform">
+<meta property="og:title" content="GRIP — 세계뉴스 일일 브리핑">
+<meta property="og:description" content="세계의 변화를 읽고, 비즈니스 기회를 연결합니다. 국가별 정책·산업·시장 변화를 선별하여 기업과 기관에 필요한 인사이트를 제공합니다.">
+<meta property="og:url" content="https://valueinfomaker-lab.github.io/worldnews-archive/">
+<meta property="og:image" content="https://valueinfomaker-lab.github.io/worldnews-archive/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GRIP — 세계뉴스 일일 브리핑">
+<meta name="twitter:description" content="세계의 변화를 읽고, 비즈니스 기회를 연결합니다.">
+<meta name="twitter:image" content="https://valueinfomaker-lab.github.io/worldnews-archive/assets/og-image.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2048%2048'%3E%3Cpath%20d='M37.1%2014.8%20A16%2016%200%201%200%2037.1%2033.2'%20fill='none'%20stroke='%231a5490'%20stroke-width='3.4'%20stroke-linecap='round'/%3E%3Cellipse%20cx='24'%20cy='24'%20rx='7.2'%20ry='16'%20fill='none'%20stroke='%231a5490'%20stroke-width='1.3'%20opacity='0.45'/%3E%3Cpath%20d='M24%2024%20L33.5%2024'%20fill='none'%20stroke='%231a5490'%20stroke-width='3.4'%20stroke-linecap='round'/%3E%3Ccircle%20cx='33.8'%20cy='24'%20r='3'%20fill='%23d99f45'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+/* 테마 조기 적용(깜빡임 방지). localStorage 우선, 없으면 시스템 설정. */
+(function () {
+  try {
+    var t = localStorage.getItem("theme");
+    if (t !== "dark" && t !== "light") {
+      t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="logo" viewBox="0 0 48 48">
+    <path class="lg-ink" d="M 37.1 14.8 A 16 16 0 1 0 37.1 33.2"/>
+    <ellipse class="lg-thin" cx="24" cy="24" rx="7.2" ry="16"/>
+    <path class="lg-ink" d="M 24 24 L 33.5 24"/>
+    <circle class="lg-gold" cx="33.8" cy="24" r="3"/>
+  </symbol>
+</defs></svg>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" aria-label="GRIP 홈">
+      <svg class="logo" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="wm">GR<i>I</i>P</span>
+    </a>
+    <nav class="date-nav" aria-label="날짜 이동">
+      <a class="navbtn" href="2026-07-11.html" title="이전 날">‹ 07-11</a>
+      
+      <span class="cur-date">2026-07-12</span>
+      <span class="navbtn is-disabled">›</span>
+    </nav>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="테마 전환" title="테마 전환"></button>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="searchbox">
+      <input id="search" type="search" placeholder="제목·요약 검색" autocomplete="off" aria-label="검색">
+    </div>
+    <div class="filters" id="topic-filters" role="group" aria-label="주제 필터">
+      <button class="chip is-active" data-topic="" type="button">전체</button>
+      <button class="chip" data-topic="경제" type="button">경제</button><button class="chip" data-topic="정책" type="button">정책</button><button class="chip" data-topic="외교" type="button">외교</button><button class="chip" data-topic="안보" type="button">안보</button><button class="chip" data-topic="정치" type="button">정치</button><button class="chip" data-topic="환경" type="button">환경</button><button class="chip" data-topic="보건" type="button">보건</button><button class="chip" data-topic="사회" type="button">사회</button>
+    </div>
+    <div class="copybar day-copy">
+      <button type="button" class="btn" data-copy="plain" data-pt="pt-day">📋 전체 카톡</button>
+      <button type="button" class="btn btn-ghost" data-copy="rich" data-pt="pt-day" data-ht="ht-day">✉️ 전체 메일</button>
+    </div>
+  </div>
+  
+  <nav class="jump" aria-label="권역 바로가기">
+    <a class="jchip" href="#region-0">아세안 <b>5</b></a><a class="jchip" href="#region-1">인도·남아시아 <b>1</b></a><a class="jchip" href="#region-2">아프리카·중동 <b>5</b></a><a class="jchip" href="#region-3">중·동부유럽 <b>3</b></a><a class="jchip" href="#region-4">러시아·유라시아 <b>5</b></a><a class="jchip" href="#region-5">중남미 <b>5</b></a><a class="jchip" href="#region-6">중국 <b>5</b></a><a class="jchip" href="#region-7">선진국 <b>5</b></a>
+  </nav>
+  
+</div>
+
+<main class="wrap">
+  <p class="daymeta">2026-07-12 · 총 <span id="visible-count">34</span>건</p>
+  
+  <p class="empty" id="no-results" hidden>검색 결과가 없습니다.</p>
+
+  
+  <section class="region" id="region-0" data-region>
+    <div class="region-head">
+      <h2>아세안 <span class="rcount">5</span></h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r0">📋 카톡</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r0" data-ht="ht-r0">✉️ 메일</button>
+      </div>
+    </div>
+    
+    <article class="item" data-topics="경제,정책" data-search="롯데마트, 베트남 지방도시 공략 속도낸다…3년만에 신규 출점 롯데마트가 베트남 지방 도시에서 신규 점포를 열어 현지 시장 확장에 속도를 내고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/003/0014060984" target="_blank" rel="noreferrer">롯데마트, 베트남 지방도시 공략 속도낸다…3년만에 신규 출점</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">경제</span><span class="tag">정책</span><span class="score">추천 80</span></div>
+        <div class="summary">롯데마트가 베트남 지방 도시에서 신규 점포를 열어 현지 시장 확장에 속도를 내고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060984" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060984" data-ht="ht-a003_0014060984" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="정치,사회" data-search="집에서 400억대 금괴 현금 발견…반부패 스타검사의 몰락, 인니 ‘발칵’ 인도네시아 반부패 책임자의 집에서 400억원대 금괴와 현금이 발견돼 사임했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/009/0005706025" target="_blank" rel="noreferrer">집에서 400억대 금괴 현금 발견…반부패 스타검사의 몰락, 인니 ‘발칵’</a>
+        <div class="meta"><span class="press">매일경제</span><span class="tag">정치</span><span class="tag">사회</span><span class="score">추천 80</span></div>
+        <div class="summary">인도네시아 반부패 책임자의 집에서 400억원대 금괴와 현금이 발견돼 사임했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a009_0005706025" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a009_0005706025" data-ht="ht-a009_0005706025" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="정치,사회" data-search="금고 열자 395억 쏟아졌다…&#39;스타 검사&#39;의 추락 인도네시아 반부패 검사 자택에서 395억원 상당 금괴와 현금이 발견돼 추락했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/015/0005308883" target="_blank" rel="noreferrer">금고 열자 395억 쏟아졌다…&#39;스타 검사&#39;의 추락</a>
+        <div class="meta"><span class="press">한국경제</span><span class="tag">정치</span><span class="tag">사회</span><span class="score">추천 80</span></div>
+        <div class="summary">인도네시아 반부패 검사 자택에서 395억원 상당 금괴와 현금이 발견돼 추락했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a015_0005308883" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a015_0005308883" data-ht="ht-a015_0005308883" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="사회,안보" data-search="베트남 푸꾸옥 바다서 고속정 전복…인도인 관광객 15명 사망 베트남 푸꾸옥 해상에서 고속정이 전복돼 인도인 관광객 15명이 사망했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016189066" target="_blank" rel="noreferrer">베트남 푸꾸옥 바다서 고속정 전복…인도인 관광객 15명 사망</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">사회</span><span class="tag">안보</span><span class="score">추천 75</span></div>
+        <div class="summary">베트남 푸꾸옥 해상에서 고속정이 전복돼 인도인 관광객 15명이 사망했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016189066" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016189066" data-ht="ht-a001_0016189066" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="사회,정책" data-search="베트남 &#39;전국 1등&#39; 여고생, 미국 명문대 아닌 카이스트 진학한다 베트남 전국 수석 여고생이 미국 명문대 대신 한국 카이스트 진학을 결정해 화제다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/417/0001151283" target="_blank" rel="noreferrer">베트남 &#39;전국 1등&#39; 여고생, 미국 명문대 아닌 카이스트 진학한다</a>
+        <div class="meta"><span class="press">동행미디어 시대</span><span class="tag">사회</span><span class="tag">정책</span><span class="score">추천 70</span></div>
+        <div class="summary">베트남 전국 수석 여고생이 미국 명문대 대신 한국 카이스트 진학을 결정해 화제다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a417_0001151283" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a417_0001151283" data-ht="ht-a417_0001151283" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+  </section>
+  
+  <section class="region" id="region-1" data-region>
+    <div class="region-head">
+      <h2>인도·남아시아 <span class="rcount">1</span></h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r1">📋 카톡</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r1" data-ht="ht-r1">✉️ 메일</button>
+      </div>
+    </div>
+    
+    <article class="item" data-topics="외교,정책" data-search="인도·뉴질랜드 정상회담…양국관계 &#39;전략적 동반자&#39;로 격상 인도와 뉴질랜드가 정상회담에서 양국 관계를 전략적 동반자로 격상했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/001/0016188837" target="_blank" rel="noreferrer">인도·뉴질랜드 정상회담…양국관계 &#39;전략적 동반자&#39;로 격상</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">외교</span><span class="tag">정책</span><span class="score">추천 75</span></div>
+        <div class="summary">인도와 뉴질랜드가 정상회담에서 양국 관계를 전략적 동반자로 격상했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188837" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188837" data-ht="ht-a001_0016188837" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+  </section>
+  
+  <section class="region" id="region-2" data-region>
+    <div class="region-head">
+      <h2>아프리카·중동 <span class="rcount">5</span></h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r2">📋 카톡</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r2" data-ht="ht-r2">✉️ 메일</button>
+      </div>
+    </div>
+    
+    <article class="item" data-topics="안보,외교" data-search="[속보]이란 혁명수비대 “호르무즈 해협, 추가 공지시까지 폐쇄” 이란 혁명수비대가 호르무즈 해협을 추가 공지시까지 폐쇄하겠다고 선언했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/020/0003733208" target="_blank" rel="noreferrer">[속보]이란 혁명수비대 “호르무즈 해협, 추가 공지시까지 폐쇄”</a>
+        <div class="meta"><span class="press">동아일보</span><span class="tag">안보</span><span class="tag">외교</span><span class="score">추천 90</span></div>
+        <div class="summary">이란 혁명수비대가 호르무즈 해협을 추가 공지시까지 폐쇄하겠다고 선언했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a020_0003733208" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a020_0003733208" data-ht="ht-a020_0003733208" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="외교,안보" data-search="이란군 &#34;호르무즈 해협, 추가 공지까지 전면 봉쇄&#34; 이란군이 호르무즈 해협을 불법 항로 사용 이유로 전면 봉쇄한다고 발표했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016189189" target="_blank" rel="noreferrer">이란군 &#34;호르무즈 해협, 추가 공지까지 전면 봉쇄&#34;</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">외교</span><span class="tag">안보</span><span class="score">추천 90</span></div>
+        <div class="summary">이란군이 호르무즈 해협을 불법 항로 사용 이유로 전면 봉쇄한다고 발표했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016189189" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016189189" data-ht="ht-a001_0016189189" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="경제,정책,외교,안보,정치" data-search="美, &#39;휴전 종료&#39; 선언 후 이란 최고지도자 자금책 제재 미국이 휴전 종료 선언 후 이란 최고지도자 자금책을 제재하며 이란 정권의 자금줄 차단을 시도했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/001/0016188445" target="_blank" rel="noreferrer">美, &#39;휴전 종료&#39; 선언 후 이란 최고지도자 자금책 제재</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">경제</span><span class="tag">정책</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정치</span><span class="score">추천 90</span></div>
+        <div class="summary">미국이 휴전 종료 선언 후 이란 최고지도자 자금책을 제재하며 이란 정권의 자금줄 차단을 시도했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188445" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188445" data-ht="ht-a001_0016188445" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="안보,외교" data-search="호르무즈 해협, 이란·오만 항로로 분리되나? 이란과 오만이 호르무즈 해협 항로 분리 방안을 논의하고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/079/0004167419" target="_blank" rel="noreferrer">호르무즈 해협, 이란·오만 항로로 분리되나?</a>
+        <div class="meta"><span class="press">노컷뉴스</span><span class="tag">안보</span><span class="tag">외교</span><span class="score">추천 85</span></div>
+        <div class="summary">이란과 오만이 호르무즈 해협 항로 분리 방안을 논의하고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a079_0004167419" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a079_0004167419" data-ht="ht-a079_0004167419" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="외교,안보,정치" data-search="주유엔 이란 대사 &#34;美 의무 위반 계속되면 합의 준수 안 해&#34; 이란 주유엔 대사가 미국의 합의 위반 시 이란도 합의 준수하지 않을 수 있다고 경고했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016189065" target="_blank" rel="noreferrer">주유엔 이란 대사 &#34;美 의무 위반 계속되면 합의 준수 안 해&#34;</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정치</span><span class="score">추천 85</span></div>
+        <div class="summary">이란 주유엔 대사가 미국의 합의 위반 시 이란도 합의 준수하지 않을 수 있다고 경고했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016189065" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016189065" data-ht="ht-a001_0016189065" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+  </section>
+  
+  <section class="region" id="region-3" data-region>
+    <div class="region-head">
+      <h2>중·동부유럽 <span class="rcount">3</span></h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r3">📋 카톡</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r3" data-ht="ht-r3">✉️ 메일</button>
+      </div>
+    </div>
+    
+    <article class="item" data-topics="외교,안보" data-search="&#34;튀르키예, s-400 걸프 국가에 매각&#34;…f-35 도입 열리나(종합) 튀르키예가 러시아제 s-400 방공시스템을 걸프 국가에 매각하고 f-35 도입 가능성이 논의되고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/001/0016188437" target="_blank" rel="noreferrer">&#34;튀르키예, S-400 걸프 국가에 매각&#34;…F-35 도입 열리나(종합)</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">외교</span><span class="tag">안보</span><span class="score">추천 75</span></div>
+        <div class="summary">튀르키예가 러시아제 S-400 방공시스템을 걸프 국가에 매각하고 F-35 도입 가능성이 논의되고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188437" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188437" data-ht="ht-a001_0016188437" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="외교,안보,정책" data-search="&#34;튀르키예, s400 걸프국가에 매각할 듯… 美 f-35 도입 성사 관심&#34; 트럼프가 튀르키예에 f-35 판매를 시사하며 튀르키예가 s-400을 걸프국가에 매각할 전망이다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014060194" target="_blank" rel="noreferrer">&#34;튀르키예, S400 걸프국가에 매각할 듯… 美 F-35 도입 성사 관심&#34;</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정책</span><span class="score">추천 70</span></div>
+        <div class="summary">트럼프가 튀르키예에 F-35 판매를 시사하며 튀르키예가 S-400을 걸프국가에 매각할 전망이다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060194" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060194" data-ht="ht-a003_0014060194" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="사회" data-search="&#39;황금세대&#39; 쿠르투아 &#34;우승 못했다? 우린 벨기에…자랑스럽다&#34;[월드컵24시] 벨기에 골키퍼 쿠르투아가 자국 황금세대에 자부심을 표했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014060698" target="_blank" rel="noreferrer">&#39;황금세대&#39; 쿠르투아 &#34;우승 못했다? 우린 벨기에…자랑스럽다&#34;[월드컵24시]</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">사회</span><span class="score">추천 40</span></div>
+        <div class="summary">벨기에 골키퍼 쿠르투아가 자국 황금세대에 자부심을 표했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060698" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060698" data-ht="ht-a003_0014060698" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+  </section>
+  
+  <section class="region" id="region-4" data-region>
+    <div class="region-head">
+      <h2>러시아·유라시아 <span class="rcount">5</span></h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r4">📋 카톡</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r4" data-ht="ht-r4">✉️ 메일</button>
+      </div>
+    </div>
+    
+    <article class="item" data-topics="안보,외교" data-search="시베리아 정유공장까지 때린 우크라 드론…푸틴 &#39;소모전 구상&#39; 흔들 우크라이나가 러시아 본토 정유시설을 드론으로 공격하며 러시아의 소모전 전략을 흔들고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/003/0014061010" target="_blank" rel="noreferrer">시베리아 정유공장까지 때린 우크라 드론…푸틴 &#39;소모전 구상&#39; 흔들</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">안보</span><span class="tag">외교</span><span class="score">추천 90</span></div>
+        <div class="summary">우크라이나가 러시아 본토 정유시설을 드론으로 공격하며 러시아의 소모전 전략을 흔들고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014061010" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014061010" data-ht="ht-a003_0014061010" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="경제,정책,외교" data-search="산유국의 굴욕…러시아, 정유공장 줄줄이 불타자 결국 ‘기름 구걸’ 러시아가 에너지 시설 피해로 인해 인도 등에서 휘발유를 수입하기 시작했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/011/0004640560" target="_blank" rel="noreferrer">산유국의 굴욕…러시아, 정유공장 줄줄이 불타자 결국 ‘기름 구걸’</a>
+        <div class="meta"><span class="press">서울경제</span><span class="tag">경제</span><span class="tag">정책</span><span class="tag">외교</span><span class="score">추천 85</span></div>
+        <div class="summary">러시아가 에너지 시설 피해로 인해 인도 등에서 휘발유를 수입하기 시작했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a011_0004640560" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a011_0004640560" data-ht="ht-a011_0004640560" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="안보,외교,정치" data-search="미국 지원 얻은 우크라, 러 정유시설 대대적 공습으로 반전 노려 미국 지원을 받은 우크라이나가 러시아 정유시설을 공격하며 전세 역전을 노리고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/021/0002804019" target="_blank" rel="noreferrer">미국 지원 얻은 우크라, 러 정유시설 대대적 공습으로 반전 노려</a>
+        <div class="meta"><span class="press">문화일보</span><span class="tag">안보</span><span class="tag">외교</span><span class="tag">정치</span><span class="score">추천 85</span></div>
+        <div class="summary">미국 지원을 받은 우크라이나가 러시아 정유시설을 공격하며 전세 역전을 노리고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a021_0002804019" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a021_0002804019" data-ht="ht-a021_0002804019" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="안보,정치,외교" data-search="우크라, 러 에너지 시설 겨냥 &#39;장거리 타격 사령부&#39; 신설키로 우크라이나가 러시아 에너지 시설 공격을 위해 &#39;장거리 타격 사령부&#39;를 신설하기로 했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016188836" target="_blank" rel="noreferrer">우크라, 러 에너지 시설 겨냥 &#39;장거리 타격 사령부&#39; 신설키로</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">안보</span><span class="tag">정치</span><span class="tag">외교</span><span class="score">추천 85</span></div>
+        <div class="summary">우크라이나가 러시아 에너지 시설 공격을 위해 &#39;장거리 타격 사령부&#39;를 신설하기로 했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016188836" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016188836" data-ht="ht-a001_0016188836" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="안보" data-search="우크라, 러 에너지 인프라 연일 공격…모스크바 정유공장 재타격 정황 우크라이나가 러시아 남부 정유공장 등 에너지 인프라를 연일 공격하고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014060183" target="_blank" rel="noreferrer">우크라, 러 에너지 인프라 연일 공격…모스크바 정유공장 재타격 정황</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">안보</span><span class="score">추천 80</span></div>
+        <div class="summary">우크라이나가 러시아 남부 정유공장 등 에너지 인프라를 연일 공격하고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060183" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060183" data-ht="ht-a003_0014060183" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+  </section>
+  
+  <section class="region" id="region-5" data-region>
+    <div class="region-head">
+      <h2>중남미 <span class="rcount">5</span></h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r5">📋 카톡</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r5" data-ht="ht-r5">✉️ 메일</button>
+      </div>
+    </div>
+    
+    <article class="item" data-topics="보건,사회" data-search="베네수 지진 사망자 4,300명 넘어… 실종자 여전히 5만명 베네수엘라 연쇄 강진으로 사망자가 4,300명을 넘고 실종자가 많다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/469/0000941716" target="_blank" rel="noreferrer">베네수 지진 사망자 4,300명 넘어… 실종자 여전히 5만명</a>
+        <div class="meta"><span class="press">한국일보</span><span class="tag">보건</span><span class="tag">사회</span><span class="score">추천 90</span></div>
+        <div class="summary">베네수엘라 연쇄 강진으로 사망자가 4,300명을 넘고 실종자가 많다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a469_0000941716" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a469_0000941716" data-ht="ht-a469_0000941716" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="보건,사회" data-search="베네수엘라 강진 사망 4333명…하루 새 215명 늘어 베네수엘라 연쇄 강진 사망자가 4,333명으로 급증했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/079/0004167429" target="_blank" rel="noreferrer">베네수엘라 강진 사망 4333명…하루 새 215명 늘어</a>
+        <div class="meta"><span class="press">노컷뉴스</span><span class="tag">보건</span><span class="tag">사회</span><span class="score">추천 90</span></div>
+        <div class="summary">베네수엘라 연쇄 강진 사망자가 4,333명으로 급증했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a079_0004167429" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a079_0004167429" data-ht="ht-a079_0004167429" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="사회,보건,정책" data-search="베네수 사망자 4333명 부상 16740명…주거시설 위해 동결자금 해제 요청 베네수엘라 강진 사망자 4,333명, 부상자 16,740명, 구조자 6,462명으로 집계돼 동결자금 해제를 요청했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/003/0014061008" target="_blank" rel="noreferrer">베네수 사망자 4333명 부상 16740명…주거시설 위해 동결자금 해제 요청</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">사회</span><span class="tag">보건</span><span class="tag">정책</span><span class="score">추천 90</span></div>
+        <div class="summary">베네수엘라 강진 사망자 4,333명, 부상자 16,740명, 구조자 6,462명으로 집계돼 동결자금 해제를 요청했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014061008" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014061008" data-ht="ht-a003_0014061008" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="사회,보건" data-search="[특파원 시선] 폐허 속 희망 베네수엘라 연쇄 지진으로 수천 명의 사상자와 막대한 피해가 발생했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016189162" target="_blank" rel="noreferrer">[특파원 시선] 폐허 속 희망</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">사회</span><span class="tag">보건</span><span class="score">추천 85</span></div>
+        <div class="summary">베네수엘라 연쇄 지진으로 수천 명의 사상자와 막대한 피해가 발생했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016189162" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016189162" data-ht="ht-a001_0016189162" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="경제,정책" data-search="룰라, 브라질 희토류 개발 강조…&#34;원자재 아닌 기술수출국 돼야&#34; 브라질 루라 대통령이 희토류 개발과 기술 수출 육성을 강조했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016189082" target="_blank" rel="noreferrer">룰라, 브라질 희토류 개발 강조…&#34;원자재 아닌 기술수출국 돼야&#34;</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">경제</span><span class="tag">정책</span><span class="score">추천 75</span></div>
+        <div class="summary">브라질 루라 대통령이 희토류 개발과 기술 수출 육성을 강조했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016189082" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016189082" data-ht="ht-a001_0016189082" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+  </section>
+  
+  <section class="region" id="region-6" data-region>
+    <div class="region-head">
+      <h2>중국 <span class="rcount">5</span></h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r6">📋 카톡</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r6" data-ht="ht-r6">✉️ 메일</button>
+      </div>
+    </div>
+    
+    <article class="item" data-topics="외교,정치" data-search="北, 박태성-리창 회담 전해… &#34;각 분야 교류협력 확대발전 토의&#34; 북한 박태성 내각총리가 중국 리창 국무원 총리와 회담하며 교류협력 확대를 논의했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/001/0016189167" target="_blank" rel="noreferrer">北, 박태성-리창 회담 전해… &#34;각 분야 교류협력 확대발전 토의&#34;</a>
+        <div class="meta"><span class="press">연합뉴스</span><span class="tag">외교</span><span class="tag">정치</span><span class="score">추천 85</span></div>
+        <div class="summary">북한 박태성 내각총리가 중국 리창 국무원 총리와 회담하며 교류협력 확대를 논의했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a001_0016189167" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a001_0016189167" data-ht="ht-a001_0016189167" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="정책,경제" data-search="&#34;행정학, 광고학과 줄줄이 폐지&#34; 충격...ai·반도체에 올인[차이나는 중국] 중국 대학들이 인공지능 및 반도체 관련 학부 중심으로 전공 개편을 진행 중이다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/008/0005384622" target="_blank" rel="noreferrer">&#34;행정학, 광고학과 줄줄이 폐지&#34; 충격...AI·반도체에 올인[차이나는 중국]</a>
+        <div class="meta"><span class="press">머니투데이</span><span class="tag">정책</span><span class="tag">경제</span><span class="score">추천 80</span></div>
+        <div class="summary">중국 대학들이 인공지능 및 반도체 관련 학부 중심으로 전공 개편을 진행 중이다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a008_0005384622" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a008_0005384622" data-ht="ht-a008_0005384622" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="환경,사회" data-search="日 통과한 태풍 &#39;바비&#39; 中 접근…39명 사망, 200만명 대피(종합) 일본 태풍 &#39;바비&#39;가 중국에 접근하며 39명 사망, 200만명 대피했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/421/0009053985" target="_blank" rel="noreferrer">日 통과한 태풍 &#39;바비&#39; 中 접근…39명 사망, 200만명 대피(종합)</a>
+        <div class="meta"><span class="press">뉴스1</span><span class="tag">환경</span><span class="tag">사회</span><span class="score">추천 80</span></div>
+        <div class="summary">일본 태풍 &#39;바비&#39;가 중국에 접근하며 39명 사망, 200만명 대피했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a421_0009053985" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a421_0009053985" data-ht="ht-a421_0009053985" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="정책,경제,외교" data-search="“보고 있나, 머스크?”…중국, 로켓 회수 성공 중국이 재사용 로켓 회수 시험에 성공하며 미국 우주 개발에 도전장을 냈다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/449/0000352478" target="_blank" rel="noreferrer">“보고 있나, 머스크?”…중국, 로켓 회수 성공</a>
+        <div class="meta"><span class="press">채널A</span><span class="tag">정책</span><span class="tag">경제</span><span class="tag">외교</span><span class="score">추천 80</span></div>
+        <div class="summary">중국이 재사용 로켓 회수 시험에 성공하며 미국 우주 개발에 도전장을 냈다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a449_0000352478" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a449_0000352478" data-ht="ht-a449_0000352478" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="경제,정책" data-search="“中 헬륨 수출금지, 희토류와 다르다”…전문가가 본 속내 중국이 반도체 핵심 소재 헬륨 수출 금지 조치로 국내 공급 확보에 주력하고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/022/0004142328" target="_blank" rel="noreferrer">“中 헬륨 수출금지, 희토류와 다르다”…전문가가 본 속내</a>
+        <div class="meta"><span class="press">세계일보</span><span class="tag">경제</span><span class="tag">정책</span><span class="score">추천 75</span></div>
+        <div class="summary">중국이 반도체 핵심 소재 헬륨 수출 금지 조치로 국내 공급 확보에 주력하고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a022_0004142328" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a022_0004142328" data-ht="ht-a022_0004142328" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+  </section>
+  
+  <section class="region" id="region-7" data-region>
+    <div class="region-head">
+      <h2>선진국 <span class="rcount">5</span></h2>
+      <div class="copybar">
+        <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r7">📋 카톡</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r7" data-ht="ht-r7">✉️ 메일</button>
+      </div>
+    </div>
+    
+    <article class="item" data-topics="경제,정책,외교" data-search="美·中 최첨단 ai 기술 수출통제에 ‘장군 멍군’ [김규환의 핸디 차이나] 미국과 중국이 최첨단 ai 기술 수출 통제를 강화하며 기술 유출을 막고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/mnews/article/119/0003110431" target="_blank" rel="noreferrer">美·中 최첨단 AI 기술 수출통제에 ‘장군 멍군’ [김규환의 핸디 차이나]</a>
+        <div class="meta"><span class="press">데일리안</span><span class="tag">경제</span><span class="tag">정책</span><span class="tag">외교</span><span class="score">추천 95</span></div>
+        <div class="summary">미국과 중국이 최첨단 AI 기술 수출 통제를 강화하며 기술 유출을 막고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a119_0003110431" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a119_0003110431" data-ht="ht-a119_0003110431" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="외교,안보,정치" data-search="트럼프 “암살 시도 시 이란 초토화”…휴전 공식 종료 선언[美·이란 종전 합의] 트럼프 미국 대통령이 이란이 암살 시도 시 전역을 초토화하겠다고 강력 경고하며 휴전 종료를 공식 선언했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/011/0004640565" target="_blank" rel="noreferrer">트럼프 “암살 시도 시 이란 초토화”…휴전 공식 종료 선언[美·이란 종전 합의]</a>
+        <div class="meta"><span class="press">서울경제</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정치</span><span class="score">추천 95</span></div>
+        <div class="summary">트럼프 미국 대통령이 이란이 암살 시도 시 전역을 초토화하겠다고 강력 경고하며 휴전 종료를 공식 선언했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a011_0004640565" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a011_0004640565" data-ht="ht-a011_0004640565" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="외교,안보,정치" data-search="트럼프, 이란에 경고 “내 암살 시도하면 완전히 몰살” 트럼프 대통령이 이란이 자신을 암살 시도하면 전역을 파괴하겠다고 경고했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/658/0000149231" target="_blank" rel="noreferrer">트럼프, 이란에 경고 “내 암살 시도하면 완전히 몰살”</a>
+        <div class="meta"><span class="press">국제신문</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정치</span><span class="score">추천 90</span></div>
+        <div class="summary">트럼프 대통령이 이란이 자신을 암살 시도하면 전역을 파괴하겠다고 경고했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a658_0000149231" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a658_0000149231" data-ht="ht-a658_0000149231" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="외교,안보" data-search="[속보] 트럼프 &#34;나를 암살·암살 시도시 이란 전역 파괴, 미사일 1000기 장전 중&#34; 트럼프 대통령이 이란에 대한 암살 시도 시 전국 파괴와 1000기 미사일 장전을 경고했다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/003/0014060490" target="_blank" rel="noreferrer">[속보] 트럼프 &#34;나를 암살·암살 시도시 이란 전역 파괴, 미사일 1000기 장전 중&#34;</a>
+        <div class="meta"><span class="press">뉴시스</span><span class="tag">외교</span><span class="tag">안보</span><span class="score">추천 90</span></div>
+        <div class="summary">트럼프 대통령이 이란에 대한 암살 시도 시 전국 파괴와 1000기 미사일 장전을 경고했다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a003_0014060490" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a003_0014060490" data-ht="ht-a003_0014060490" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+    <article class="item" data-topics="외교,안보,정치" data-search="트럼프 “이란에 휴전종료 단호히 밝혔다”…이란 ”항복 없다“ 트럼프 대통령이 이란과의 휴전 종료를 선언하자 이란은 항복하지 않겠다고 맞서고 있다.">
+      <div class="item-body">
+        <a class="title" href="https://n.news.naver.com/article/119/0003110334" target="_blank" rel="noreferrer">트럼프 “이란에 휴전종료 단호히 밝혔다”…이란 ”항복 없다“</a>
+        <div class="meta"><span class="press">데일리안</span><span class="tag">외교</span><span class="tag">안보</span><span class="tag">정치</span><span class="score">추천 90</span></div>
+        <div class="summary">트럼프 대통령이 이란과의 휴전 종료를 선언하자 이란은 항복하지 않겠다고 맞서고 있다.</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-a119_0003110334" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-a119_0003110334" data-ht="ht-a119_0003110334" title="메일용 서식 복사">✉️</button>
+      </div>
+    </article>
+    
+  </section>
+  
+</main>
+
+<div class="payloads" aria-hidden="true">
+  <div class="payload" hidden id="pt-day">세계뉴스 일일 브리핑 2026-07-12
+
+[아세안]
+롯데마트, 베트남 지방도시 공략 속도낸다…3년만에 신규 출점 (80)
+https://n.news.naver.com/mnews/article/003/0014060984
+
+집에서 400억대 금괴 현금 발견…반부패 스타검사의 몰락, 인니 ‘발칵’ (80)
+https://n.news.naver.com/mnews/article/009/0005706025
+
+금고 열자 395억 쏟아졌다…&#39;스타 검사&#39;의 추락 (80)
+https://n.news.naver.com/mnews/article/015/0005308883
+
+베트남 푸꾸옥 바다서 고속정 전복…인도인 관광객 15명 사망 (75)
+https://n.news.naver.com/mnews/article/001/0016189066
+
+베트남 &#39;전국 1등&#39; 여고생, 미국 명문대 아닌 카이스트 진학한다 (70)
+https://n.news.naver.com/article/417/0001151283
+
+[인도·남아시아]
+인도·뉴질랜드 정상회담…양국관계 &#39;전략적 동반자&#39;로 격상 (75)
+https://n.news.naver.com/article/001/0016188837
+
+[아프리카·중동]
+[속보]이란 혁명수비대 “호르무즈 해협, 추가 공지시까지 폐쇄” (90)
+https://n.news.naver.com/mnews/article/020/0003733208
+
+이란군 &#34;호르무즈 해협, 추가 공지까지 전면 봉쇄&#34; (90)
+https://n.news.naver.com/mnews/article/001/0016189189
+
+美, &#39;휴전 종료&#39; 선언 후 이란 최고지도자 자금책 제재 (90)
+https://n.news.naver.com/article/001/0016188445
+
+호르무즈 해협, 이란·오만 항로로 분리되나? (85)
+https://n.news.naver.com/mnews/article/079/0004167419
+
+주유엔 이란 대사 &#34;美 의무 위반 계속되면 합의 준수 안 해&#34; (85)
+https://n.news.naver.com/mnews/article/001/0016189065
+
+[중·동부유럽]
+&#34;튀르키예, S-400 걸프 국가에 매각&#34;…F-35 도입 열리나(종합) (75)
+https://n.news.naver.com/article/001/0016188437
+
+&#34;튀르키예, S400 걸프국가에 매각할 듯… 美 F-35 도입 성사 관심&#34; (70)
+https://n.news.naver.com/article/003/0014060194
+
+&#39;황금세대&#39; 쿠르투아 &#34;우승 못했다? 우린 벨기에…자랑스럽다&#34;[월드컵24시] (40)
+https://n.news.naver.com/article/003/0014060698
+
+[러시아·유라시아]
+시베리아 정유공장까지 때린 우크라 드론…푸틴 &#39;소모전 구상&#39; 흔들 (90)
+https://n.news.naver.com/mnews/article/003/0014061010
+
+산유국의 굴욕…러시아, 정유공장 줄줄이 불타자 결국 ‘기름 구걸’ (85)
+https://n.news.naver.com/article/011/0004640560
+
+미국 지원 얻은 우크라, 러 정유시설 대대적 공습으로 반전 노려 (85)
+https://n.news.naver.com/mnews/article/021/0002804019
+
+우크라, 러 에너지 시설 겨냥 &#39;장거리 타격 사령부&#39; 신설키로 (85)
+https://n.news.naver.com/mnews/article/001/0016188836
+
+우크라, 러 에너지 인프라 연일 공격…모스크바 정유공장 재타격 정황 (80)
+https://n.news.naver.com/article/003/0014060183
+
+[중남미]
+베네수 지진 사망자 4,300명 넘어… 실종자 여전히 5만명 (90)
+https://n.news.naver.com/mnews/article/469/0000941716
+
+베네수엘라 강진 사망 4333명…하루 새 215명 늘어 (90)
+https://n.news.naver.com/mnews/article/079/0004167429
+
+베네수 사망자 4333명 부상 16740명…주거시설 위해 동결자금 해제 요청 (90)
+https://n.news.naver.com/mnews/article/003/0014061008
+
+[특파원 시선] 폐허 속 희망 (85)
+https://n.news.naver.com/mnews/article/001/0016189162
+
+룰라, 브라질 희토류 개발 강조…&#34;원자재 아닌 기술수출국 돼야&#34; (75)
+https://n.news.naver.com/mnews/article/001/0016189082
+
+[중국]
+北, 박태성-리창 회담 전해… &#34;각 분야 교류협력 확대발전 토의&#34; (85)
+https://n.news.naver.com/mnews/article/001/0016189167
+
+&#34;행정학, 광고학과 줄줄이 폐지&#34; 충격...AI·반도체에 올인[차이나는 중국] (80)
+https://n.news.naver.com/article/008/0005384622
+
+日 통과한 태풍 &#39;바비&#39; 中 접근…39명 사망, 200만명 대피(종합) (80)
+https://n.news.naver.com/mnews/article/421/0009053985
+
+“보고 있나, 머스크?”…중국, 로켓 회수 성공 (80)
+https://n.news.naver.com/article/449/0000352478
+
+“中 헬륨 수출금지, 희토류와 다르다”…전문가가 본 속내 (75)
+https://n.news.naver.com/article/022/0004142328
+
+[선진국]
+美·中 최첨단 AI 기술 수출통제에 ‘장군 멍군’ [김규환의 핸디 차이나] (95)
+https://n.news.naver.com/mnews/article/119/0003110431
+
+트럼프 “암살 시도 시 이란 초토화”…휴전 공식 종료 선언[美·이란 종전 합의] (95)
+https://n.news.naver.com/article/011/0004640565
+
+트럼프, 이란에 경고 “내 암살 시도하면 완전히 몰살” (90)
+https://n.news.naver.com/article/658/0000149231
+
+[속보] 트럼프 &#34;나를 암살·암살 시도시 이란 전역 파괴, 미사일 1000기 장전 중&#34; (90)
+https://n.news.naver.com/article/003/0014060490
+
+트럼프 “이란에 휴전종료 단호히 밝혔다”…이란 ”항복 없다“ (90)
+https://n.news.naver.com/article/119/0003110334
+</div>
+  <div class="payload" hidden id="ht-day">&lt;div style=&#34;font-family:-apple-system,&#34;Apple SD Gothic Neo&#34;,sans-serif;max-width:680px;margin:0 auto;color:#1a1a1a;line-height:1.6&#34;&gt;&lt;h1 style=&#34;font-size:20px;margin:0 0 4px&#34;&gt;세계뉴스 일일 브리핑&lt;/h1&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;2026-07-12 · 총 34건&lt;/div&gt;&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;아세안&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014060984&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;롯데마트, 베트남 지방도시 공략 속도낸다…3년만에 신규 출점&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 경제 · 정책 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;롯데마트가 베트남 지방 도시에서 신규 점포를 열어 현지 시장 확장에 속도를 내고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/009/0005706025&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;집에서 400억대 금괴 현금 발견…반부패 스타검사의 몰락, 인니 ‘발칵’&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;매일경제 · 정치 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도네시아 반부패 책임자의 집에서 400억원대 금괴와 현금이 발견돼 사임했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/015/0005308883&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;금고 열자 395억 쏟아졌다…&amp;#x27;스타 검사&amp;#x27;의 추락&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;한국경제 · 정치 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도네시아 반부패 검사 자택에서 395억원 상당 금괴와 현금이 발견돼 추락했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189066&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베트남 푸꾸옥 바다서 고속정 전복…인도인 관광객 15명 사망&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 사회 · 안보 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베트남 푸꾸옥 해상에서 고속정이 전복돼 인도인 관광객 15명이 사망했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/417/0001151283&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베트남 &amp;#x27;전국 1등&amp;#x27; 여고생, 미국 명문대 아닌 카이스트 진학한다&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;동행미디어 시대 · 사회 · 정책 · 추천 70&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베트남 전국 수석 여고생이 미국 명문대 대신 한국 카이스트 진학을 결정해 화제다.&lt;/div&gt;&lt;/div&gt;&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;인도·남아시아&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188837&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;인도·뉴질랜드 정상회담…양국관계 &amp;#x27;전략적 동반자&amp;#x27;로 격상&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도와 뉴질랜드가 정상회담에서 양국 관계를 전략적 동반자로 격상했다.&lt;/div&gt;&lt;/div&gt;&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;아프리카·중동&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/020/0003733208&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[속보]이란 혁명수비대 “호르무즈 해협, 추가 공지시까지 폐쇄”&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;동아일보 · 안보 · 외교 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란 혁명수비대가 호르무즈 해협을 추가 공지시까지 폐쇄하겠다고 선언했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189189&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;이란군 &amp;quot;호르무즈 해협, 추가 공지까지 전면 봉쇄&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란군이 호르무즈 해협을 불법 항로 사용 이유로 전면 봉쇄한다고 발표했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188445&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;美, &amp;#x27;휴전 종료&amp;#x27; 선언 후 이란 최고지도자 자금책 제재&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 경제 · 정책 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국이 휴전 종료 선언 후 이란 최고지도자 자금책을 제재하며 이란 정권의 자금줄 차단을 시도했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/079/0004167419&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;호르무즈 해협, 이란·오만 항로로 분리되나?&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;노컷뉴스 · 안보 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란과 오만이 호르무즈 해협 항로 분리 방안을 논의하고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189065&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;주유엔 이란 대사 &amp;quot;美 의무 위반 계속되면 합의 준수 안 해&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란 주유엔 대사가 미국의 합의 위반 시 이란도 합의 준수하지 않을 수 있다고 경고했다.&lt;/div&gt;&lt;/div&gt;&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;중·동부유럽&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188437&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;튀르키예, S-400 걸프 국가에 매각&amp;quot;…F-35 도입 열리나(종합)&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;튀르키예가 러시아제 S-400 방공시스템을 걸프 국가에 매각하고 F-35 도입 가능성이 논의되고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060194&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;튀르키예, S400 걸프국가에 매각할 듯… 美 F-35 도입 성사 관심&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 외교 · 안보 · 정책 · 추천 70&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프가 튀르키예에 F-35 판매를 시사하며 튀르키예가 S-400을 걸프국가에 매각할 전망이다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060698&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;#x27;황금세대&amp;#x27; 쿠르투아 &amp;quot;우승 못했다? 우린 벨기에…자랑스럽다&amp;quot;[월드컵24시]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 사회 · 추천 40&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;벨기에 골키퍼 쿠르투아가 자국 황금세대에 자부심을 표했다.&lt;/div&gt;&lt;/div&gt;&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;러시아·유라시아&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014061010&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;시베리아 정유공장까지 때린 우크라 드론…푸틴 &amp;#x27;소모전 구상&amp;#x27; 흔들&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 안보 · 외교 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 본토 정유시설을 드론으로 공격하며 러시아의 소모전 전략을 흔들고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/011/0004640560&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;산유국의 굴욕…러시아, 정유공장 줄줄이 불타자 결국 ‘기름 구걸’&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;서울경제 · 경제 · 정책 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;러시아가 에너지 시설 피해로 인해 인도 등에서 휘발유를 수입하기 시작했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/021/0002804019&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;미국 지원 얻은 우크라, 러 정유시설 대대적 공습으로 반전 노려&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;문화일보 · 안보 · 외교 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국 지원을 받은 우크라이나가 러시아 정유시설을 공격하며 전세 역전을 노리고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016188836&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;우크라, 러 에너지 시설 겨냥 &amp;#x27;장거리 타격 사령부&amp;#x27; 신설키로&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 안보 · 정치 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 에너지 시설 공격을 위해 &amp;#x27;장거리 타격 사령부&amp;#x27;를 신설하기로 했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060183&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;우크라, 러 에너지 인프라 연일 공격…모스크바 정유공장 재타격 정황&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 안보 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 남부 정유공장 등 에너지 인프라를 연일 공격하고 있다.&lt;/div&gt;&lt;/div&gt;&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;중남미&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/469/0000941716&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수 지진 사망자 4,300명 넘어… 실종자 여전히 5만명&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;한국일보 · 보건 · 사회 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 강진으로 사망자가 4,300명을 넘고 실종자가 많다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/079/0004167429&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수엘라 강진 사망 4333명…하루 새 215명 늘어&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;노컷뉴스 · 보건 · 사회 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 강진 사망자가 4,333명으로 급증했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014061008&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수 사망자 4333명 부상 16740명…주거시설 위해 동결자금 해제 요청&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 사회 · 보건 · 정책 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 강진 사망자 4,333명, 부상자 16,740명, 구조자 6,462명으로 집계돼 동결자금 해제를 요청했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189162&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[특파원 시선] 폐허 속 희망&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 사회 · 보건 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 지진으로 수천 명의 사상자와 막대한 피해가 발생했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189082&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;룰라, 브라질 희토류 개발 강조…&amp;quot;원자재 아닌 기술수출국 돼야&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 경제 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;브라질 루라 대통령이 희토류 개발과 기술 수출 육성을 강조했다.&lt;/div&gt;&lt;/div&gt;&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;중국&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189167&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;北, 박태성-리창 회담 전해… &amp;quot;각 분야 교류협력 확대발전 토의&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;북한 박태성 내각총리가 중국 리창 국무원 총리와 회담하며 교류협력 확대를 논의했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/008/0005384622&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;행정학, 광고학과 줄줄이 폐지&amp;quot; 충격...AI·반도체에 올인[차이나는 중국]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;머니투데이 · 정책 · 경제 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국 대학들이 인공지능 및 반도체 관련 학부 중심으로 전공 개편을 진행 중이다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/421/0009053985&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;日 통과한 태풍 &amp;#x27;바비&amp;#x27; 中 접근…39명 사망, 200만명 대피(종합)&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴스1 · 환경 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;일본 태풍 &amp;#x27;바비&amp;#x27;가 중국에 접근하며 39명 사망, 200만명 대피했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/449/0000352478&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;“보고 있나, 머스크?”…중국, 로켓 회수 성공&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;채널A · 정책 · 경제 · 외교 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국이 재사용 로켓 회수 시험에 성공하며 미국 우주 개발에 도전장을 냈다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/022/0004142328&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;“中 헬륨 수출금지, 희토류와 다르다”…전문가가 본 속내&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;세계일보 · 경제 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국이 반도체 핵심 소재 헬륨 수출 금지 조치로 국내 공급 확보에 주력하고 있다.&lt;/div&gt;&lt;/div&gt;&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;선진국&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/119/0003110431&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;美·中 최첨단 AI 기술 수출통제에 ‘장군 멍군’ [김규환의 핸디 차이나]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;데일리안 · 경제 · 정책 · 외교 · 추천 95&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국과 중국이 최첨단 AI 기술 수출 통제를 강화하며 기술 유출을 막고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/011/0004640565&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프 “암살 시도 시 이란 초토화”…휴전 공식 종료 선언[美·이란 종전 합의]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;서울경제 · 외교 · 안보 · 정치 · 추천 95&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 미국 대통령이 이란이 암살 시도 시 전역을 초토화하겠다고 강력 경고하며 휴전 종료를 공식 선언했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/658/0000149231&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프, 이란에 경고 “내 암살 시도하면 완전히 몰살”&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;국제신문 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란이 자신을 암살 시도하면 전역을 파괴하겠다고 경고했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060490&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[속보] 트럼프 &amp;quot;나를 암살·암살 시도시 이란 전역 파괴, 미사일 1000기 장전 중&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 외교 · 안보 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란에 대한 암살 시도 시 전국 파괴와 1000기 미사일 장전을 경고했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/119/0003110334&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프 “이란에 휴전종료 단호히 밝혔다”…이란 ”항복 없다“&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;데일리안 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란과의 휴전 종료를 선언하자 이란은 항복하지 않겠다고 맞서고 있다.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-r0">[아세안]
+롯데마트, 베트남 지방도시 공략 속도낸다…3년만에 신규 출점 (80)
+https://n.news.naver.com/mnews/article/003/0014060984
+
+집에서 400억대 금괴 현금 발견…반부패 스타검사의 몰락, 인니 ‘발칵’ (80)
+https://n.news.naver.com/mnews/article/009/0005706025
+
+금고 열자 395억 쏟아졌다…&#39;스타 검사&#39;의 추락 (80)
+https://n.news.naver.com/mnews/article/015/0005308883
+
+베트남 푸꾸옥 바다서 고속정 전복…인도인 관광객 15명 사망 (75)
+https://n.news.naver.com/mnews/article/001/0016189066
+
+베트남 &#39;전국 1등&#39; 여고생, 미국 명문대 아닌 카이스트 진학한다 (70)
+https://n.news.naver.com/article/417/0001151283</div>
+  <div class="payload" hidden id="ht-r0">&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;아세안&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014060984&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;롯데마트, 베트남 지방도시 공략 속도낸다…3년만에 신규 출점&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 경제 · 정책 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;롯데마트가 베트남 지방 도시에서 신규 점포를 열어 현지 시장 확장에 속도를 내고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/009/0005706025&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;집에서 400억대 금괴 현금 발견…반부패 스타검사의 몰락, 인니 ‘발칵’&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;매일경제 · 정치 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도네시아 반부패 책임자의 집에서 400억원대 금괴와 현금이 발견돼 사임했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/015/0005308883&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;금고 열자 395억 쏟아졌다…&amp;#x27;스타 검사&amp;#x27;의 추락&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;한국경제 · 정치 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도네시아 반부패 검사 자택에서 395억원 상당 금괴와 현금이 발견돼 추락했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189066&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베트남 푸꾸옥 바다서 고속정 전복…인도인 관광객 15명 사망&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 사회 · 안보 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베트남 푸꾸옥 해상에서 고속정이 전복돼 인도인 관광객 15명이 사망했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/417/0001151283&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베트남 &amp;#x27;전국 1등&amp;#x27; 여고생, 미국 명문대 아닌 카이스트 진학한다&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;동행미디어 시대 · 사회 · 정책 · 추천 70&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베트남 전국 수석 여고생이 미국 명문대 대신 한국 카이스트 진학을 결정해 화제다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a003_0014060984">롯데마트, 베트남 지방도시 공략 속도낸다…3년만에 신규 출점 (80)
+https://n.news.naver.com/mnews/article/003/0014060984</div>
+  <div class="payload" hidden id="ht-a003_0014060984">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014060984&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;롯데마트, 베트남 지방도시 공략 속도낸다…3년만에 신규 출점&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 경제 · 정책 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;롯데마트가 베트남 지방 도시에서 신규 점포를 열어 현지 시장 확장에 속도를 내고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a009_0005706025">집에서 400억대 금괴 현금 발견…반부패 스타검사의 몰락, 인니 ‘발칵’ (80)
+https://n.news.naver.com/mnews/article/009/0005706025</div>
+  <div class="payload" hidden id="ht-a009_0005706025">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/009/0005706025&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;집에서 400억대 금괴 현금 발견…반부패 스타검사의 몰락, 인니 ‘발칵’&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;매일경제 · 정치 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도네시아 반부패 책임자의 집에서 400억원대 금괴와 현금이 발견돼 사임했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a015_0005308883">금고 열자 395억 쏟아졌다…&#39;스타 검사&#39;의 추락 (80)
+https://n.news.naver.com/mnews/article/015/0005308883</div>
+  <div class="payload" hidden id="ht-a015_0005308883">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/015/0005308883&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;금고 열자 395억 쏟아졌다…&amp;#x27;스타 검사&amp;#x27;의 추락&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;한국경제 · 정치 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도네시아 반부패 검사 자택에서 395억원 상당 금괴와 현금이 발견돼 추락했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016189066">베트남 푸꾸옥 바다서 고속정 전복…인도인 관광객 15명 사망 (75)
+https://n.news.naver.com/mnews/article/001/0016189066</div>
+  <div class="payload" hidden id="ht-a001_0016189066">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189066&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베트남 푸꾸옥 바다서 고속정 전복…인도인 관광객 15명 사망&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 사회 · 안보 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베트남 푸꾸옥 해상에서 고속정이 전복돼 인도인 관광객 15명이 사망했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a417_0001151283">베트남 &#39;전국 1등&#39; 여고생, 미국 명문대 아닌 카이스트 진학한다 (70)
+https://n.news.naver.com/article/417/0001151283</div>
+  <div class="payload" hidden id="ht-a417_0001151283">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/417/0001151283&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베트남 &amp;#x27;전국 1등&amp;#x27; 여고생, 미국 명문대 아닌 카이스트 진학한다&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;동행미디어 시대 · 사회 · 정책 · 추천 70&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베트남 전국 수석 여고생이 미국 명문대 대신 한국 카이스트 진학을 결정해 화제다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-r1">[인도·남아시아]
+인도·뉴질랜드 정상회담…양국관계 &#39;전략적 동반자&#39;로 격상 (75)
+https://n.news.naver.com/article/001/0016188837</div>
+  <div class="payload" hidden id="ht-r1">&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;인도·남아시아&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188837&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;인도·뉴질랜드 정상회담…양국관계 &amp;#x27;전략적 동반자&amp;#x27;로 격상&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도와 뉴질랜드가 정상회담에서 양국 관계를 전략적 동반자로 격상했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016188837">인도·뉴질랜드 정상회담…양국관계 &#39;전략적 동반자&#39;로 격상 (75)
+https://n.news.naver.com/article/001/0016188837</div>
+  <div class="payload" hidden id="ht-a001_0016188837">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188837&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;인도·뉴질랜드 정상회담…양국관계 &amp;#x27;전략적 동반자&amp;#x27;로 격상&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;인도와 뉴질랜드가 정상회담에서 양국 관계를 전략적 동반자로 격상했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-r2">[아프리카·중동]
+[속보]이란 혁명수비대 “호르무즈 해협, 추가 공지시까지 폐쇄” (90)
+https://n.news.naver.com/mnews/article/020/0003733208
+
+이란군 &#34;호르무즈 해협, 추가 공지까지 전면 봉쇄&#34; (90)
+https://n.news.naver.com/mnews/article/001/0016189189
+
+美, &#39;휴전 종료&#39; 선언 후 이란 최고지도자 자금책 제재 (90)
+https://n.news.naver.com/article/001/0016188445
+
+호르무즈 해협, 이란·오만 항로로 분리되나? (85)
+https://n.news.naver.com/mnews/article/079/0004167419
+
+주유엔 이란 대사 &#34;美 의무 위반 계속되면 합의 준수 안 해&#34; (85)
+https://n.news.naver.com/mnews/article/001/0016189065</div>
+  <div class="payload" hidden id="ht-r2">&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;아프리카·중동&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/020/0003733208&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[속보]이란 혁명수비대 “호르무즈 해협, 추가 공지시까지 폐쇄”&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;동아일보 · 안보 · 외교 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란 혁명수비대가 호르무즈 해협을 추가 공지시까지 폐쇄하겠다고 선언했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189189&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;이란군 &amp;quot;호르무즈 해협, 추가 공지까지 전면 봉쇄&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란군이 호르무즈 해협을 불법 항로 사용 이유로 전면 봉쇄한다고 발표했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188445&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;美, &amp;#x27;휴전 종료&amp;#x27; 선언 후 이란 최고지도자 자금책 제재&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 경제 · 정책 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국이 휴전 종료 선언 후 이란 최고지도자 자금책을 제재하며 이란 정권의 자금줄 차단을 시도했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/079/0004167419&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;호르무즈 해협, 이란·오만 항로로 분리되나?&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;노컷뉴스 · 안보 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란과 오만이 호르무즈 해협 항로 분리 방안을 논의하고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189065&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;주유엔 이란 대사 &amp;quot;美 의무 위반 계속되면 합의 준수 안 해&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란 주유엔 대사가 미국의 합의 위반 시 이란도 합의 준수하지 않을 수 있다고 경고했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a020_0003733208">[속보]이란 혁명수비대 “호르무즈 해협, 추가 공지시까지 폐쇄” (90)
+https://n.news.naver.com/mnews/article/020/0003733208</div>
+  <div class="payload" hidden id="ht-a020_0003733208">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/020/0003733208&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[속보]이란 혁명수비대 “호르무즈 해협, 추가 공지시까지 폐쇄”&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;동아일보 · 안보 · 외교 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란 혁명수비대가 호르무즈 해협을 추가 공지시까지 폐쇄하겠다고 선언했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016189189">이란군 &#34;호르무즈 해협, 추가 공지까지 전면 봉쇄&#34; (90)
+https://n.news.naver.com/mnews/article/001/0016189189</div>
+  <div class="payload" hidden id="ht-a001_0016189189">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189189&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;이란군 &amp;quot;호르무즈 해협, 추가 공지까지 전면 봉쇄&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란군이 호르무즈 해협을 불법 항로 사용 이유로 전면 봉쇄한다고 발표했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016188445">美, &#39;휴전 종료&#39; 선언 후 이란 최고지도자 자금책 제재 (90)
+https://n.news.naver.com/article/001/0016188445</div>
+  <div class="payload" hidden id="ht-a001_0016188445">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188445&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;美, &amp;#x27;휴전 종료&amp;#x27; 선언 후 이란 최고지도자 자금책 제재&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 경제 · 정책 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국이 휴전 종료 선언 후 이란 최고지도자 자금책을 제재하며 이란 정권의 자금줄 차단을 시도했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a079_0004167419">호르무즈 해협, 이란·오만 항로로 분리되나? (85)
+https://n.news.naver.com/mnews/article/079/0004167419</div>
+  <div class="payload" hidden id="ht-a079_0004167419">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/079/0004167419&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;호르무즈 해협, 이란·오만 항로로 분리되나?&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;노컷뉴스 · 안보 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란과 오만이 호르무즈 해협 항로 분리 방안을 논의하고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016189065">주유엔 이란 대사 &#34;美 의무 위반 계속되면 합의 준수 안 해&#34; (85)
+https://n.news.naver.com/mnews/article/001/0016189065</div>
+  <div class="payload" hidden id="ht-a001_0016189065">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189065&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;주유엔 이란 대사 &amp;quot;美 의무 위반 계속되면 합의 준수 안 해&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;이란 주유엔 대사가 미국의 합의 위반 시 이란도 합의 준수하지 않을 수 있다고 경고했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-r3">[중·동부유럽]
+&#34;튀르키예, S-400 걸프 국가에 매각&#34;…F-35 도입 열리나(종합) (75)
+https://n.news.naver.com/article/001/0016188437
+
+&#34;튀르키예, S400 걸프국가에 매각할 듯… 美 F-35 도입 성사 관심&#34; (70)
+https://n.news.naver.com/article/003/0014060194
+
+&#39;황금세대&#39; 쿠르투아 &#34;우승 못했다? 우린 벨기에…자랑스럽다&#34;[월드컵24시] (40)
+https://n.news.naver.com/article/003/0014060698</div>
+  <div class="payload" hidden id="ht-r3">&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;중·동부유럽&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188437&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;튀르키예, S-400 걸프 국가에 매각&amp;quot;…F-35 도입 열리나(종합)&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;튀르키예가 러시아제 S-400 방공시스템을 걸프 국가에 매각하고 F-35 도입 가능성이 논의되고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060194&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;튀르키예, S400 걸프국가에 매각할 듯… 美 F-35 도입 성사 관심&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 외교 · 안보 · 정책 · 추천 70&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프가 튀르키예에 F-35 판매를 시사하며 튀르키예가 S-400을 걸프국가에 매각할 전망이다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060698&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;#x27;황금세대&amp;#x27; 쿠르투아 &amp;quot;우승 못했다? 우린 벨기에…자랑스럽다&amp;quot;[월드컵24시]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 사회 · 추천 40&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;벨기에 골키퍼 쿠르투아가 자국 황금세대에 자부심을 표했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016188437">&#34;튀르키예, S-400 걸프 국가에 매각&#34;…F-35 도입 열리나(종합) (75)
+https://n.news.naver.com/article/001/0016188437</div>
+  <div class="payload" hidden id="ht-a001_0016188437">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/001/0016188437&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;튀르키예, S-400 걸프 국가에 매각&amp;quot;…F-35 도입 열리나(종합)&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 안보 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;튀르키예가 러시아제 S-400 방공시스템을 걸프 국가에 매각하고 F-35 도입 가능성이 논의되고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a003_0014060194">&#34;튀르키예, S400 걸프국가에 매각할 듯… 美 F-35 도입 성사 관심&#34; (70)
+https://n.news.naver.com/article/003/0014060194</div>
+  <div class="payload" hidden id="ht-a003_0014060194">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060194&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;튀르키예, S400 걸프국가에 매각할 듯… 美 F-35 도입 성사 관심&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 외교 · 안보 · 정책 · 추천 70&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프가 튀르키예에 F-35 판매를 시사하며 튀르키예가 S-400을 걸프국가에 매각할 전망이다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a003_0014060698">&#39;황금세대&#39; 쿠르투아 &#34;우승 못했다? 우린 벨기에…자랑스럽다&#34;[월드컵24시] (40)
+https://n.news.naver.com/article/003/0014060698</div>
+  <div class="payload" hidden id="ht-a003_0014060698">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060698&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;#x27;황금세대&amp;#x27; 쿠르투아 &amp;quot;우승 못했다? 우린 벨기에…자랑스럽다&amp;quot;[월드컵24시]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 사회 · 추천 40&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;벨기에 골키퍼 쿠르투아가 자국 황금세대에 자부심을 표했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-r4">[러시아·유라시아]
+시베리아 정유공장까지 때린 우크라 드론…푸틴 &#39;소모전 구상&#39; 흔들 (90)
+https://n.news.naver.com/mnews/article/003/0014061010
+
+산유국의 굴욕…러시아, 정유공장 줄줄이 불타자 결국 ‘기름 구걸’ (85)
+https://n.news.naver.com/article/011/0004640560
+
+미국 지원 얻은 우크라, 러 정유시설 대대적 공습으로 반전 노려 (85)
+https://n.news.naver.com/mnews/article/021/0002804019
+
+우크라, 러 에너지 시설 겨냥 &#39;장거리 타격 사령부&#39; 신설키로 (85)
+https://n.news.naver.com/mnews/article/001/0016188836
+
+우크라, 러 에너지 인프라 연일 공격…모스크바 정유공장 재타격 정황 (80)
+https://n.news.naver.com/article/003/0014060183</div>
+  <div class="payload" hidden id="ht-r4">&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;러시아·유라시아&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014061010&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;시베리아 정유공장까지 때린 우크라 드론…푸틴 &amp;#x27;소모전 구상&amp;#x27; 흔들&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 안보 · 외교 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 본토 정유시설을 드론으로 공격하며 러시아의 소모전 전략을 흔들고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/011/0004640560&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;산유국의 굴욕…러시아, 정유공장 줄줄이 불타자 결국 ‘기름 구걸’&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;서울경제 · 경제 · 정책 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;러시아가 에너지 시설 피해로 인해 인도 등에서 휘발유를 수입하기 시작했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/021/0002804019&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;미국 지원 얻은 우크라, 러 정유시설 대대적 공습으로 반전 노려&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;문화일보 · 안보 · 외교 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국 지원을 받은 우크라이나가 러시아 정유시설을 공격하며 전세 역전을 노리고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016188836&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;우크라, 러 에너지 시설 겨냥 &amp;#x27;장거리 타격 사령부&amp;#x27; 신설키로&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 안보 · 정치 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 에너지 시설 공격을 위해 &amp;#x27;장거리 타격 사령부&amp;#x27;를 신설하기로 했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060183&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;우크라, 러 에너지 인프라 연일 공격…모스크바 정유공장 재타격 정황&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 안보 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 남부 정유공장 등 에너지 인프라를 연일 공격하고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a003_0014061010">시베리아 정유공장까지 때린 우크라 드론…푸틴 &#39;소모전 구상&#39; 흔들 (90)
+https://n.news.naver.com/mnews/article/003/0014061010</div>
+  <div class="payload" hidden id="ht-a003_0014061010">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014061010&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;시베리아 정유공장까지 때린 우크라 드론…푸틴 &amp;#x27;소모전 구상&amp;#x27; 흔들&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 안보 · 외교 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 본토 정유시설을 드론으로 공격하며 러시아의 소모전 전략을 흔들고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a011_0004640560">산유국의 굴욕…러시아, 정유공장 줄줄이 불타자 결국 ‘기름 구걸’ (85)
+https://n.news.naver.com/article/011/0004640560</div>
+  <div class="payload" hidden id="ht-a011_0004640560">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/011/0004640560&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;산유국의 굴욕…러시아, 정유공장 줄줄이 불타자 결국 ‘기름 구걸’&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;서울경제 · 경제 · 정책 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;러시아가 에너지 시설 피해로 인해 인도 등에서 휘발유를 수입하기 시작했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a021_0002804019">미국 지원 얻은 우크라, 러 정유시설 대대적 공습으로 반전 노려 (85)
+https://n.news.naver.com/mnews/article/021/0002804019</div>
+  <div class="payload" hidden id="ht-a021_0002804019">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/021/0002804019&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;미국 지원 얻은 우크라, 러 정유시설 대대적 공습으로 반전 노려&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;문화일보 · 안보 · 외교 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국 지원을 받은 우크라이나가 러시아 정유시설을 공격하며 전세 역전을 노리고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016188836">우크라, 러 에너지 시설 겨냥 &#39;장거리 타격 사령부&#39; 신설키로 (85)
+https://n.news.naver.com/mnews/article/001/0016188836</div>
+  <div class="payload" hidden id="ht-a001_0016188836">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016188836&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;우크라, 러 에너지 시설 겨냥 &amp;#x27;장거리 타격 사령부&amp;#x27; 신설키로&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 안보 · 정치 · 외교 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 에너지 시설 공격을 위해 &amp;#x27;장거리 타격 사령부&amp;#x27;를 신설하기로 했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a003_0014060183">우크라, 러 에너지 인프라 연일 공격…모스크바 정유공장 재타격 정황 (80)
+https://n.news.naver.com/article/003/0014060183</div>
+  <div class="payload" hidden id="ht-a003_0014060183">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060183&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;우크라, 러 에너지 인프라 연일 공격…모스크바 정유공장 재타격 정황&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 안보 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;우크라이나가 러시아 남부 정유공장 등 에너지 인프라를 연일 공격하고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-r5">[중남미]
+베네수 지진 사망자 4,300명 넘어… 실종자 여전히 5만명 (90)
+https://n.news.naver.com/mnews/article/469/0000941716
+
+베네수엘라 강진 사망 4333명…하루 새 215명 늘어 (90)
+https://n.news.naver.com/mnews/article/079/0004167429
+
+베네수 사망자 4333명 부상 16740명…주거시설 위해 동결자금 해제 요청 (90)
+https://n.news.naver.com/mnews/article/003/0014061008
+
+[특파원 시선] 폐허 속 희망 (85)
+https://n.news.naver.com/mnews/article/001/0016189162
+
+룰라, 브라질 희토류 개발 강조…&#34;원자재 아닌 기술수출국 돼야&#34; (75)
+https://n.news.naver.com/mnews/article/001/0016189082</div>
+  <div class="payload" hidden id="ht-r5">&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;중남미&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/469/0000941716&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수 지진 사망자 4,300명 넘어… 실종자 여전히 5만명&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;한국일보 · 보건 · 사회 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 강진으로 사망자가 4,300명을 넘고 실종자가 많다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/079/0004167429&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수엘라 강진 사망 4333명…하루 새 215명 늘어&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;노컷뉴스 · 보건 · 사회 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 강진 사망자가 4,333명으로 급증했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014061008&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수 사망자 4333명 부상 16740명…주거시설 위해 동결자금 해제 요청&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 사회 · 보건 · 정책 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 강진 사망자 4,333명, 부상자 16,740명, 구조자 6,462명으로 집계돼 동결자금 해제를 요청했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189162&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[특파원 시선] 폐허 속 희망&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 사회 · 보건 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 지진으로 수천 명의 사상자와 막대한 피해가 발생했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189082&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;룰라, 브라질 희토류 개발 강조…&amp;quot;원자재 아닌 기술수출국 돼야&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 경제 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;브라질 루라 대통령이 희토류 개발과 기술 수출 육성을 강조했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a469_0000941716">베네수 지진 사망자 4,300명 넘어… 실종자 여전히 5만명 (90)
+https://n.news.naver.com/mnews/article/469/0000941716</div>
+  <div class="payload" hidden id="ht-a469_0000941716">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/469/0000941716&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수 지진 사망자 4,300명 넘어… 실종자 여전히 5만명&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;한국일보 · 보건 · 사회 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 강진으로 사망자가 4,300명을 넘고 실종자가 많다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a079_0004167429">베네수엘라 강진 사망 4333명…하루 새 215명 늘어 (90)
+https://n.news.naver.com/mnews/article/079/0004167429</div>
+  <div class="payload" hidden id="ht-a079_0004167429">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/079/0004167429&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수엘라 강진 사망 4333명…하루 새 215명 늘어&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;노컷뉴스 · 보건 · 사회 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 강진 사망자가 4,333명으로 급증했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a003_0014061008">베네수 사망자 4333명 부상 16740명…주거시설 위해 동결자금 해제 요청 (90)
+https://n.news.naver.com/mnews/article/003/0014061008</div>
+  <div class="payload" hidden id="ht-a003_0014061008">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/003/0014061008&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;베네수 사망자 4333명 부상 16740명…주거시설 위해 동결자금 해제 요청&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 사회 · 보건 · 정책 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 강진 사망자 4,333명, 부상자 16,740명, 구조자 6,462명으로 집계돼 동결자금 해제를 요청했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016189162">[특파원 시선] 폐허 속 희망 (85)
+https://n.news.naver.com/mnews/article/001/0016189162</div>
+  <div class="payload" hidden id="ht-a001_0016189162">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189162&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[특파원 시선] 폐허 속 희망&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 사회 · 보건 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;베네수엘라 연쇄 지진으로 수천 명의 사상자와 막대한 피해가 발생했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016189082">룰라, 브라질 희토류 개발 강조…&#34;원자재 아닌 기술수출국 돼야&#34; (75)
+https://n.news.naver.com/mnews/article/001/0016189082</div>
+  <div class="payload" hidden id="ht-a001_0016189082">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189082&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;룰라, 브라질 희토류 개발 강조…&amp;quot;원자재 아닌 기술수출국 돼야&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 경제 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;브라질 루라 대통령이 희토류 개발과 기술 수출 육성을 강조했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-r6">[중국]
+北, 박태성-리창 회담 전해… &#34;각 분야 교류협력 확대발전 토의&#34; (85)
+https://n.news.naver.com/mnews/article/001/0016189167
+
+&#34;행정학, 광고학과 줄줄이 폐지&#34; 충격...AI·반도체에 올인[차이나는 중국] (80)
+https://n.news.naver.com/article/008/0005384622
+
+日 통과한 태풍 &#39;바비&#39; 中 접근…39명 사망, 200만명 대피(종합) (80)
+https://n.news.naver.com/mnews/article/421/0009053985
+
+“보고 있나, 머스크?”…중국, 로켓 회수 성공 (80)
+https://n.news.naver.com/article/449/0000352478
+
+“中 헬륨 수출금지, 희토류와 다르다”…전문가가 본 속내 (75)
+https://n.news.naver.com/article/022/0004142328</div>
+  <div class="payload" hidden id="ht-r6">&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;중국&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189167&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;北, 박태성-리창 회담 전해… &amp;quot;각 분야 교류협력 확대발전 토의&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;북한 박태성 내각총리가 중국 리창 국무원 총리와 회담하며 교류협력 확대를 논의했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/008/0005384622&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;행정학, 광고학과 줄줄이 폐지&amp;quot; 충격...AI·반도체에 올인[차이나는 중국]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;머니투데이 · 정책 · 경제 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국 대학들이 인공지능 및 반도체 관련 학부 중심으로 전공 개편을 진행 중이다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/421/0009053985&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;日 통과한 태풍 &amp;#x27;바비&amp;#x27; 中 접근…39명 사망, 200만명 대피(종합)&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴스1 · 환경 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;일본 태풍 &amp;#x27;바비&amp;#x27;가 중국에 접근하며 39명 사망, 200만명 대피했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/449/0000352478&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;“보고 있나, 머스크?”…중국, 로켓 회수 성공&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;채널A · 정책 · 경제 · 외교 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국이 재사용 로켓 회수 시험에 성공하며 미국 우주 개발에 도전장을 냈다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/022/0004142328&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;“中 헬륨 수출금지, 희토류와 다르다”…전문가가 본 속내&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;세계일보 · 경제 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국이 반도체 핵심 소재 헬륨 수출 금지 조치로 국내 공급 확보에 주력하고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a001_0016189167">北, 박태성-리창 회담 전해… &#34;각 분야 교류협력 확대발전 토의&#34; (85)
+https://n.news.naver.com/mnews/article/001/0016189167</div>
+  <div class="payload" hidden id="ht-a001_0016189167">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/001/0016189167&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;北, 박태성-리창 회담 전해… &amp;quot;각 분야 교류협력 확대발전 토의&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;연합뉴스 · 외교 · 정치 · 추천 85&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;북한 박태성 내각총리가 중국 리창 국무원 총리와 회담하며 교류협력 확대를 논의했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a008_0005384622">&#34;행정학, 광고학과 줄줄이 폐지&#34; 충격...AI·반도체에 올인[차이나는 중국] (80)
+https://n.news.naver.com/article/008/0005384622</div>
+  <div class="payload" hidden id="ht-a008_0005384622">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/008/0005384622&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;&amp;quot;행정학, 광고학과 줄줄이 폐지&amp;quot; 충격...AI·반도체에 올인[차이나는 중국]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;머니투데이 · 정책 · 경제 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국 대학들이 인공지능 및 반도체 관련 학부 중심으로 전공 개편을 진행 중이다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a421_0009053985">日 통과한 태풍 &#39;바비&#39; 中 접근…39명 사망, 200만명 대피(종합) (80)
+https://n.news.naver.com/mnews/article/421/0009053985</div>
+  <div class="payload" hidden id="ht-a421_0009053985">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/421/0009053985&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;日 통과한 태풍 &amp;#x27;바비&amp;#x27; 中 접근…39명 사망, 200만명 대피(종합)&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴스1 · 환경 · 사회 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;일본 태풍 &amp;#x27;바비&amp;#x27;가 중국에 접근하며 39명 사망, 200만명 대피했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a449_0000352478">“보고 있나, 머스크?”…중국, 로켓 회수 성공 (80)
+https://n.news.naver.com/article/449/0000352478</div>
+  <div class="payload" hidden id="ht-a449_0000352478">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/449/0000352478&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;“보고 있나, 머스크?”…중국, 로켓 회수 성공&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;채널A · 정책 · 경제 · 외교 · 추천 80&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국이 재사용 로켓 회수 시험에 성공하며 미국 우주 개발에 도전장을 냈다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a022_0004142328">“中 헬륨 수출금지, 희토류와 다르다”…전문가가 본 속내 (75)
+https://n.news.naver.com/article/022/0004142328</div>
+  <div class="payload" hidden id="ht-a022_0004142328">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/022/0004142328&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;“中 헬륨 수출금지, 희토류와 다르다”…전문가가 본 속내&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;세계일보 · 경제 · 정책 · 추천 75&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;중국이 반도체 핵심 소재 헬륨 수출 금지 조치로 국내 공급 확보에 주력하고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-r7">[선진국]
+美·中 최첨단 AI 기술 수출통제에 ‘장군 멍군’ [김규환의 핸디 차이나] (95)
+https://n.news.naver.com/mnews/article/119/0003110431
+
+트럼프 “암살 시도 시 이란 초토화”…휴전 공식 종료 선언[美·이란 종전 합의] (95)
+https://n.news.naver.com/article/011/0004640565
+
+트럼프, 이란에 경고 “내 암살 시도하면 완전히 몰살” (90)
+https://n.news.naver.com/article/658/0000149231
+
+[속보] 트럼프 &#34;나를 암살·암살 시도시 이란 전역 파괴, 미사일 1000기 장전 중&#34; (90)
+https://n.news.naver.com/article/003/0014060490
+
+트럼프 “이란에 휴전종료 단호히 밝혔다”…이란 ”항복 없다“ (90)
+https://n.news.naver.com/article/119/0003110334</div>
+  <div class="payload" hidden id="ht-r7">&lt;h2 style=&#34;font-size:17px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1a5490;color:#1a5490&#34;&gt;선진국&lt;/h2&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/119/0003110431&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;美·中 최첨단 AI 기술 수출통제에 ‘장군 멍군’ [김규환의 핸디 차이나]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;데일리안 · 경제 · 정책 · 외교 · 추천 95&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국과 중국이 최첨단 AI 기술 수출 통제를 강화하며 기술 유출을 막고 있다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/011/0004640565&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프 “암살 시도 시 이란 초토화”…휴전 공식 종료 선언[美·이란 종전 합의]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;서울경제 · 외교 · 안보 · 정치 · 추천 95&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 미국 대통령이 이란이 암살 시도 시 전역을 초토화하겠다고 강력 경고하며 휴전 종료를 공식 선언했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/658/0000149231&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프, 이란에 경고 “내 암살 시도하면 완전히 몰살”&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;국제신문 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란이 자신을 암살 시도하면 전역을 파괴하겠다고 경고했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060490&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[속보] 트럼프 &amp;quot;나를 암살·암살 시도시 이란 전역 파괴, 미사일 1000기 장전 중&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 외교 · 안보 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란에 대한 암살 시도 시 전국 파괴와 1000기 미사일 장전을 경고했다.&lt;/div&gt;&lt;/div&gt;&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/119/0003110334&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프 “이란에 휴전종료 단호히 밝혔다”…이란 ”항복 없다“&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;데일리안 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란과의 휴전 종료를 선언하자 이란은 항복하지 않겠다고 맞서고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a119_0003110431">美·中 최첨단 AI 기술 수출통제에 ‘장군 멍군’ [김규환의 핸디 차이나] (95)
+https://n.news.naver.com/mnews/article/119/0003110431</div>
+  <div class="payload" hidden id="ht-a119_0003110431">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/mnews/article/119/0003110431&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;美·中 최첨단 AI 기술 수출통제에 ‘장군 멍군’ [김규환의 핸디 차이나]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;데일리안 · 경제 · 정책 · 외교 · 추천 95&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;미국과 중국이 최첨단 AI 기술 수출 통제를 강화하며 기술 유출을 막고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a011_0004640565">트럼프 “암살 시도 시 이란 초토화”…휴전 공식 종료 선언[美·이란 종전 합의] (95)
+https://n.news.naver.com/article/011/0004640565</div>
+  <div class="payload" hidden id="ht-a011_0004640565">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/011/0004640565&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프 “암살 시도 시 이란 초토화”…휴전 공식 종료 선언[美·이란 종전 합의]&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;서울경제 · 외교 · 안보 · 정치 · 추천 95&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 미국 대통령이 이란이 암살 시도 시 전역을 초토화하겠다고 강력 경고하며 휴전 종료를 공식 선언했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a658_0000149231">트럼프, 이란에 경고 “내 암살 시도하면 완전히 몰살” (90)
+https://n.news.naver.com/article/658/0000149231</div>
+  <div class="payload" hidden id="ht-a658_0000149231">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/658/0000149231&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프, 이란에 경고 “내 암살 시도하면 완전히 몰살”&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;국제신문 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란이 자신을 암살 시도하면 전역을 파괴하겠다고 경고했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a003_0014060490">[속보] 트럼프 &#34;나를 암살·암살 시도시 이란 전역 파괴, 미사일 1000기 장전 중&#34; (90)
+https://n.news.naver.com/article/003/0014060490</div>
+  <div class="payload" hidden id="ht-a003_0014060490">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/003/0014060490&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;[속보] 트럼프 &amp;quot;나를 암살·암살 시도시 이란 전역 파괴, 미사일 1000기 장전 중&amp;quot;&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;뉴시스 · 외교 · 안보 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란에 대한 암살 시도 시 전국 파괴와 1000기 미사일 장전을 경고했다.&lt;/div&gt;&lt;/div&gt;</div>
+  <div class="payload" hidden id="pt-a119_0003110334">트럼프 “이란에 휴전종료 단호히 밝혔다”…이란 ”항복 없다“ (90)
+https://n.news.naver.com/article/119/0003110334</div>
+  <div class="payload" hidden id="ht-a119_0003110334">&lt;div style=&#34;margin:0 0 14px;padding:0&#34;&gt;&lt;a href=&#34;https://n.news.naver.com/article/119/0003110334&#34; style=&#34;color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px&#34;&gt;트럼프 “이란에 휴전종료 단호히 밝혔다”…이란 ”항복 없다“&lt;/a&gt;&lt;div style=&#34;color:#666;font-size:12px;margin-top:2px&#34;&gt;데일리안 · 외교 · 안보 · 정치 · 추천 90&lt;/div&gt;&lt;div style=&#34;color:#444;font-size:13px;margin-top:3px&#34;&gt;트럼프 대통령이 이란과의 휴전 종료를 선언하자 이란은 항복하지 않겠다고 맞서고 있다.&lt;/div&gt;&lt;/div&gt;</div>
+  
+</div>
+
+<button id="to-top" class="to-top" type="button" aria-label="맨 위로" hidden>↑</button>
+<script src="assets/copy.js"></script>
+<script src="assets/ui.js"></script>
+<script src="assets/subscribe.js"></script>
+</body>
+</html>
