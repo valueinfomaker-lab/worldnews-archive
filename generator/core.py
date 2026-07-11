@@ -63,7 +63,7 @@ def select(
     articles: tuple[Article, ...],
     classifications: tuple[Classification, ...],
     *,
-    top_n: int = 5,
+    top_n: int = 3,
     min_score: int = 0,
     topics: tuple[str, ...] | None = None,
 ) -> Selection:
