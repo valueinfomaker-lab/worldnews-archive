@@ -1,37 +1,67 @@
 {% extends "base.html.j2" %}
 {% block title %}{{ day }} · {{ site_title }}{% endblock %}
 {% block content %}
-<header class="site-header">
-  <p><a class="back" href="index.html">← 날짜 목록</a></p>
-  <h1>{{ site_title }}</h1>
-  <p class="subtitle">{{ day }} · 총 {{ total }}건</p>
-  <div class="copybar">
-    <button type="button" class="btn" data-copy="plain" data-pt="pt-day">📋 전체 카톡용 복사</button>
-    <button type="button" class="btn" data-copy="rich" data-pt="pt-day" data-ht="ht-day">✉️ 전체 메일용 복사</button>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">{{ site_title }}</a>
+    <nav class="date-nav" aria-label="날짜 이동">
+      {% if prev_day %}<a class="navbtn" href="{{ prev_day }}.html" title="이전 날">‹ {{ prev_day[5:] }}</a>
+      {% else %}<span class="navbtn is-disabled">‹</span>{% endif %}
+      <span class="cur-date">{{ day }}</span>
+      {% if next_day %}<a class="navbtn" href="{{ next_day }}.html" title="다음 날">{{ next_day[5:] }} ›</a>
+      {% else %}<span class="navbtn is-disabled">›</span>{% endif %}
+    </nav>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="테마 전환" title="테마 전환"></button>
   </div>
 </header>
 
-<main>
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="searchbox">
+      <input id="search" type="search" placeholder="제목·요약 검색" autocomplete="off" aria-label="검색">
+    </div>
+    <div class="filters" id="topic-filters" role="group" aria-label="주제 필터">
+      <button class="chip is-active" data-topic="" type="button">전체</button>
+      {% for topic in topics %}<button class="chip" data-topic="{{ topic }}" type="button">{{ topic }}</button>{% endfor %}
+    </div>
+    <div class="copybar day-copy">
+      <button type="button" class="btn" data-copy="plain" data-pt="pt-day">📋 전체 카톡</button>
+      <button type="button" class="btn btn-ghost" data-copy="rich" data-pt="pt-day" data-ht="ht-day">✉️ 전체 메일</button>
+    </div>
+  </div>
+  {% if regions %}
+  <nav class="jump" aria-label="권역 바로가기">
+    {% for region in regions %}<a class="jchip" href="#region-{{ region.idx }}">{{ region.name }} <b>{{ region.articles|length }}</b></a>{% endfor %}
+  </nav>
+  {% endif %}
+</div>
+
+<main class="wrap">
+  <p class="daymeta">{{ day }} · 총 <span id="visible-count">{{ total }}</span>건</p>
   {% if not regions %}
     <p class="empty">해당 권역 기사가 없습니다.</p>
   {% endif %}
+  <p class="empty" id="no-results" hidden>검색 결과가 없습니다.</p>
+
   {% for region in regions %}
-  <section class="region">
+  <section class="region" id="region-{{ region.idx }}" data-region>
     <div class="region-head">
-      <h2>{{ region.name }}</h2>
+      <h2>{{ region.name }} <span class="rcount">{{ region.articles|length }}</span></h2>
       <div class="copybar">
         <button type="button" class="btn btn-sm" data-copy="plain" data-pt="pt-r{{ region.idx }}">📋 카톡</button>
-        <button type="button" class="btn btn-sm" data-copy="rich" data-pt="pt-r{{ region.idx }}" data-ht="ht-r{{ region.idx }}">✉️ 메일</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-copy="rich" data-pt="pt-r{{ region.idx }}" data-ht="ht-r{{ region.idx }}">✉️ 메일</button>
       </div>
     </div>
     {% for a in region.articles %}
-    <article class="item">
-      <a class="title" href="{{ a.url }}" target="_blank" rel="noreferrer">{{ a.title }}</a>
-      <div class="meta">{{ a.press }} · {{ a.topics }} · 추천 {{ a.score }}</div>
-      <div class="summary">{{ a.summary }}</div>
-      <div class="copybar">
-        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-{{ a.key }}">📋 카톡</button>
-        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-{{ a.key }}" data-ht="ht-{{ a.key }}">✉️ 메일</button>
+    <article class="item" data-topics="{{ a.topics_list|join(',') }}" data-search="{{ (a.title ~ ' ' ~ a.summary)|lower }}">
+      <div class="item-body">
+        <a class="title" href="{{ a.url }}" target="_blank" rel="noreferrer">{{ a.title }}</a>
+        <div class="meta"><span class="press">{{ a.press }}</span>{% for t in a.topics_list %}<span class="tag">{{ t }}</span>{% endfor %}<span class="score">추천 {{ a.score }}</span></div>
+        <div class="summary">{{ a.summary }}</div>
+      </div>
+      <div class="item-copy copybar">
+        <button type="button" class="btn btn-xs" data-copy="plain" data-pt="pt-{{ a.key }}" title="카톡용 평문 복사">📋</button>
+        <button type="button" class="btn btn-xs" data-copy="rich" data-pt="pt-{{ a.key }}" data-ht="ht-{{ a.key }}" title="메일용 서식 복사">✉️</button>
       </div>
     </article>
     {% endfor %}

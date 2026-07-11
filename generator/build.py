@@ -11,7 +11,7 @@ import shutil
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from generator import config, payloads
-from generator.core import select
+from generator.core import TOPICS, select
 from generator.load import DayData, load_days
 
 logger = logging.getLogger(__name__)
@@ -44,6 +44,7 @@ def _day_context(data: DayData) -> dict:
                 "url": article.url,
                 "press": article.press,
                 "topics": " · ".join(c.topics),
+                "topics_list": list(c.topics),
                 "score": c.score,
                 "summary": c.summary,
                 "key": key,
@@ -87,8 +88,13 @@ def build(*, data_dir=None, output_dir=None) -> dict:
 
     common = {"site_title": config.SITE_TITLE, "base_path": config.BASE_PATH}
 
-    for ctx in contexts:
-        html = day_template.render(**common, **ctx)
+    # contexts 는 최신 날짜가 먼저다. 이전날=더 과거(i+1), 다음날=더 최신(i-1).
+    for i, ctx in enumerate(contexts):
+        newer = contexts[i - 1]["day"] if i > 0 else None
+        older = contexts[i + 1]["day"] if i + 1 < len(contexts) else None
+        html = day_template.render(
+            **common, **ctx, topics=TOPICS, prev_day=older, next_day=newer
+        )
         (output_dir / f"{ctx['day']}.html").write_text(html, encoding="utf-8")
 
     index_entries = [
