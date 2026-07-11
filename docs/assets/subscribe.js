@@ -42,10 +42,15 @@
 
     btn.disabled = true;
     show("신청 중…", "pending");
+
+    // Apps Script 콜드스타트로 첫 요청이 오래 걸릴 수 있어 타임아웃으로 멈춤을 방지한다.
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 25000);
     try {
       const res = await fetch(endpoint, {
         method: "POST",
         body: JSON.stringify({ name, email }),
+        signal: controller.signal,
       });
       const data = await res.json().catch(() => ({ ok: res.ok }));
       if (data && data.ok) {
@@ -60,8 +65,13 @@
         show("신청에 실패했습니다. 잠시 후 다시 시도해 주세요.", "error");
       }
     } catch (err) {
-      show("네트워크 오류로 신청하지 못했습니다. 잠시 후 다시 시도해 주세요.", "error");
+      const msg =
+        err && err.name === "AbortError"
+          ? "응답이 지연되고 있습니다. 이미 접수되었을 수 있으니 잠시 후 확인해 주세요."
+          : "네트워크 오류로 신청하지 못했습니다. 잠시 후 다시 시도해 주세요.";
+      show(msg, "error");
     } finally {
+      clearTimeout(timer);
       btn.disabled = false;
     }
   });
