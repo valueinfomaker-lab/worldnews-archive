@@ -119,6 +119,31 @@ def test_build_emits_seo_files_and_per_page_canonical(tmp_path):
     assert 'rel="canonical" href="https://valueinfomaker-lab.github.io/worldnews-archive/"' in index
 
 
+def test_build_emits_structured_data_and_meta(tmp_path):
+    import json as _json
+
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    build(data_dir=data_dir, output_dir=out_dir)
+
+    day = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
+    assert 'apple-touch-icon' in day and "assets/icon.png" in day
+    assert 'property="og:locale" content="ko_KR"' in day
+    # JSON-LD 는 유효 JSON이어야 하고 Organization/WebSite 를 담아야 한다
+    block = day.split('application/ld+json">', 1)[1].split("</script>", 1)[0]
+    graph = _json.loads(block)["@graph"]
+    types = {n["@type"] for n in graph}
+    assert {"Organization", "WebSite"} <= types
+    # 날짜 페이지 description 은 그 날짜/건수를 담는다
+    assert '2026-07-11 세계뉴스 일일 브리핑' in day
+    assert (out_dir / "assets" / "icon.png").exists()
+
+    index = (out_dir / "index.html").read_text(encoding="utf-8")
+    assert "<title>GRIP — 세계뉴스 일일 브리핑</title>" in index
+
+
 def test_build_empty_day_renders_placeholder(tmp_path):
     data_dir = tmp_path / "data"
     out_dir = tmp_path / "docs"

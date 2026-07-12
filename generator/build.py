@@ -96,10 +96,12 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         "subscribe_endpoint": config.SUBSCRIBE_ENDPOINT,
         "site_url": site_url,
         "kakao_openchat_url": config.KAKAO_OPENCHAT_URL,
+        "jsonld": _jsonld(site_url),
         # 페이지별 오버라이드 기본값(인덱스가 사용).
         "og_title": f"{config.SITE_TITLE} — 세계뉴스 일일 브리핑",
         "og_url": site_url,
         "canonical_url": site_url,
+        "page_description": config.SITE_DESC,
     }
 
     # contexts 는 최신 날짜가 먼저다. 이전날=더 과거(i+1), 다음날=더 최신(i-1).
@@ -107,9 +109,16 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         newer = contexts[i - 1]["day"] if i > 0 else None
         older = contexts[i + 1]["day"] if i + 1 < len(contexts) else None
         page_url = f"{site_url}{ctx['day']}.html"
+        regions = list(ctx["region_counts"].keys())
+        day_desc = (
+            f"{ctx['day']} 세계뉴스 일일 브리핑 — {', '.join(regions[:6])} 등 {ctx['total']}건 요약."
+            if regions
+            else f"{ctx['day']} 세계뉴스 일일 브리핑."
+        )
         html = day_template.render(
-            **{**common, "og_title": f"{ctx['day']} 세계뉴스 브리핑 · {config.SITE_TITLE}",
-               "og_url": page_url, "canonical_url": page_url},
+            **{**common,
+               "og_title": f"{ctx['day']} 세계뉴스 브리핑 · {config.SITE_TITLE}",
+               "og_url": page_url, "canonical_url": page_url, "page_description": day_desc},
             **ctx, topics=TOPICS, prev_day=older, next_day=newer,
         )
         (output_dir / f"{ctx['day']}.html").write_text(html, encoding="utf-8")
@@ -134,6 +143,33 @@ def build(*, data_dir=None, output_dir=None) -> dict:
 
     logger.info("빌드 완료: %d일치 → %s", len(contexts), output_dir)
     return {"days": len(contexts), "output_dir": str(output_dir)}
+
+
+def _jsonld(site_url: str) -> str:
+    """사이트 공통 구조화 데이터(Organization + WebSite). 검색엔진 표현 개선."""
+    graph = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": f"{site_url}#org",
+                "name": config.SITE_TITLE,
+                "alternateName": config.SITE_FULL,
+                "url": site_url,
+                "logo": f"{site_url}assets/icon.png",
+            },
+            {
+                "@type": "WebSite",
+                "@id": f"{site_url}#website",
+                "name": config.SITE_TITLE,
+                "url": site_url,
+                "description": config.SITE_DESC,
+                "inLanguage": "ko-KR",
+                "publisher": {"@id": f"{site_url}#org"},
+            },
+        ],
+    }
+    return json.dumps(graph, ensure_ascii=False)
 
 
 def _sitemap(site_url: str, days: list) -> str:
