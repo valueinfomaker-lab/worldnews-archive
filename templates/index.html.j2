@@ -36,10 +36,13 @@
     <ul class="date-list">
       {% for d in group.days %}
       <li class="date-card">
-        <a class="date-main" href="{{ d.day }}.html">
+        <div class="date-row">
           <span class="date">{{ d.day }}</span>
-          <span class="count">{{ d.total }}건</span>
-        </a>
+          <span class="cat-links">
+            <a class="cat-link" href="{{ d.day }}.html">국내 <b>{{ d.dom_total }}</b></a>
+            {% if d.has_foreign %}<a class="cat-link cat-link-foreign" href="{{ d.day }}-foreign.html">🌍 해외 <b>{{ d.for_total }}</b></a>{% endif %}
+          </span>
+        </div>
         <div class="regions">
           {% for region, n in d.regions.items() %}<span class="chip-stat">{{ region }} <b>{{ n }}</b></span>{% endfor %}
         </div>

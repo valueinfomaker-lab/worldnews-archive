@@ -150,14 +150,26 @@ a { color: inherit; }
 .orig { color: var(--muted); font-size: 12px; margin-top: 1px; }
 .item-copy { flex: 0 0 auto; }
 
-/* 해외 언론 섹션 */
-.section-head {
-  max-width: 860px; margin: 40px 0 4px; padding-top: 20px;
-  border-top: 2px solid var(--line); font-size: 19px; font-weight: 800;
-  letter-spacing: -.02em; color: var(--ink); scroll-margin-top: 64px;
+/* 국내/해외 카테고리 탭 */
+.cat-tabs {
+  position: sticky; top: 0; z-index: 4;
+  background: var(--bg); border-bottom: 1px solid var(--line);
 }
-.jchip-foreign b { color: var(--accent); }
-.jchip-foreign { background: var(--accent-weak); }
+.cat-tabs-inner {
+  max-width: 860px; margin: 0 auto; padding: 8px 16px 0;
+  display: flex; gap: 6px;
+}
+.cat-tab {
+  font-size: 14px; font-weight: 700; color: var(--muted); text-decoration: none;
+  padding: 8px 16px; border: 1px solid transparent; border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+.cat-tab:hover { color: var(--ink); }
+.cat-tab.is-active {
+  color: var(--accent); background: var(--accent-weak);
+  border-color: var(--line);
+}
+.cat-tab.is-disabled { color: var(--muted); opacity: .45; cursor: not-allowed; }
 
 /* 버튼 */
 .copybar { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -280,10 +292,16 @@ a { color: inherit; }
 /* 인덱스 날짜 목록 */
 .date-list { list-style: none; padding: 0 0 8px 18px; margin: 0; }
 .date-card { padding: 14px 0; border-bottom: 1px solid var(--line); }
-.date-main { display: inline-flex; align-items: baseline; gap: 10px; text-decoration: none; }
-.date-main .date { font-size: 17px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
-.date-main:hover .date { text-decoration: underline; }
-.date-main .count { font-size: 12px; color: var(--muted); }
+.date-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.date-row .date { font-size: 17px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.cat-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.cat-link {
+  font-size: 13px; font-weight: 600; text-decoration: none; color: var(--accent);
+  background: var(--accent-weak); border-radius: 999px; padding: 3px 12px;
+}
+.cat-link:hover { text-decoration: underline; }
+.cat-link b { font-variant-numeric: tabular-nums; }
+.cat-link-foreign { color: var(--gold); background: var(--chip-bg); }
 .regions { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 5px; }
 .chip-stat { font-size: 11px; color: var(--muted); background: var(--chip-bg); border-radius: 6px; padding: 2px 8px; }
 .chip-stat b { color: var(--accent); }

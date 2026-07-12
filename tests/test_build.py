@@ -112,7 +112,7 @@ def test_build_emits_seo_files_and_per_page_canonical(tmp_path):
     # 날짜 페이지는 자기 URL로 canonical/og:url, 인덱스는 루트
     day = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
     assert 'rel="canonical" href="https://valueinfomaker-lab.github.io/worldnews-archive/2026-07-11.html"' in day
-    assert "2026-07-11 세계뉴스 브리핑" in day  # h1 + og:title
+    assert "2026-07-11 국내 언론 브리핑" in day  # h1 + og:title (카테고리 페이지)
     assert "<h1" in day
 
     index = (out_dir / "index.html").read_text(encoding="utf-8")
@@ -136,8 +136,8 @@ def test_build_emits_structured_data_and_meta(tmp_path):
     graph = _json.loads(block)["@graph"]
     types = {n["@type"] for n in graph}
     assert {"Organization", "WebSite"} <= types
-    # 날짜 페이지 description 은 그 날짜/건수를 담는다
-    assert '2026-07-11 세계뉴스 일일 브리핑' in day
+    # 날짜 페이지 description 은 그 날짜/카테고리를 담는다
+    assert '2026-07-11 국내 언론 브리핑' in day
     assert (out_dir / "assets" / "icon.png").exists()
 
     index = (out_dir / "index.html").read_text(encoding="utf-8")
@@ -173,38 +173,81 @@ def _foreign_cls(aid, region, title_ko, score=75):
             "summary": "요약", "title_ko": title_ko}
 
 
-def test_build_day_has_foreign_section(tmp_path):
-    data_dir = tmp_path / "data"
-    out_dir = tmp_path / "docs"
-    data_dir.mkdir()
+def _mixed_day(data_dir):
     _write_day(
         data_dir, "2026-07-11",
         [_art("020/1", "국내기사가"), _foreign_art("bbc/xyz", "Sudan clashes escalate")],
         [_cls("020/1", "아세안"), _foreign_cls("bbc/xyz", "아프리카·중동", "수단 충돌 격화")],
     )
+
+
+def test_foreign_goes_to_separate_page(tmp_path):
+    """해외 기사는 {day}-foreign.html 로 분리되고, 국내 페이지에는 안 나온다."""
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _mixed_day(data_dir)
     build(data_dir=data_dir, output_dir=out_dir)
-    page = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
 
-    assert "해외 언론 브리핑" in page          # 구분 헤더
-    assert "수단 충돌 격화" in page             # 한국어 번역 제목(대표)
-    assert "Sudan clashes escalate" in page    # 원문 제목(부제)
-    assert 'id="fregion-0"' in page            # 해외 권역 섹션(전용 anchor)
-    assert 'data-pt="pt-fr0"' in page          # 해외 권역 복사 버튼
-    assert 'id="pt-abbc_xyz"' in page          # 해외 기사 페이로드(안전 키)
-    assert "국내기사가" in page                 # 국내 기사는 그대로
-    # 전체 메일 페이로드(ht-day)에도 해외가 포함된다(실제 이메일과 동일)
-    assert page.count("해외 언론 브리핑") >= 2  # 본문 헤더 + ht-day 페이로드 내부
+    domestic = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
+    foreign = (out_dir / "2026-07-11-foreign.html").read_text(encoding="utf-8")
+
+    # 국내 페이지: 국내 기사만, 해외 기사·제목은 없음
+    assert "국내기사가" in domestic
+    assert "수단 충돌 격화" not in domestic
+    assert "Sudan clashes escalate" not in domestic
+    # 해외 페이지: 한국어 번역 제목(대표) + 원문(부제), 국내 기사는 없음
+    assert "수단 충돌 격화" in foreign
+    assert "Sudan clashes escalate" in foreign
+    assert 'id="pt-abbc_xyz"' in foreign
+    assert "국내기사가" not in foreign
+    assert "해외 언론 브리핑" in foreign  # 카테고리 라벨(h1/타이틀)
 
 
-def test_build_day_without_foreign_has_no_section(tmp_path):
+def test_day_pages_cross_link_categories(tmp_path):
+    """국내/해외 페이지 상단 탭이 서로를 가리킨다."""
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _mixed_day(data_dir)
+    build(data_dir=data_dir, output_dir=out_dir)
+
+    domestic = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
+    foreign = (out_dir / "2026-07-11-foreign.html").read_text(encoding="utf-8")
+    # 국내 페이지에서 해외 탭이 해외 페이지로 링크
+    assert 'href="2026-07-11-foreign.html"' in domestic
+    assert 'class="cat-tab is-active" href="2026-07-11.html"' in domestic
+    # 해외 페이지에서 국내 탭이 국내 페이지로 링크
+    assert 'href="2026-07-11.html"' in foreign
+    assert 'class="cat-tab is-active" href="2026-07-11-foreign.html"' in foreign
+
+
+def test_index_offers_both_category_links(tmp_path):
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _mixed_day(data_dir)
+    build(data_dir=data_dir, output_dir=out_dir)
+    index = (out_dir / "index.html").read_text(encoding="utf-8")
+    assert 'href="2026-07-11.html"' in index          # 국내 진입
+    assert 'href="2026-07-11-foreign.html"' in index  # 해외 진입
+    sitemap = (out_dir / "sitemap.xml").read_text(encoding="utf-8")
+    assert "2026-07-11-foreign.html" in sitemap
+
+
+def test_domestic_only_day_has_no_foreign_page(tmp_path):
+    """해외 기사가 없는 날은 해외 페이지를 만들지 않고, 탭은 비활성."""
     data_dir = tmp_path / "data"
     out_dir = tmp_path / "docs"
     data_dir.mkdir()
     _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
     build(data_dir=data_dir, output_dir=out_dir)
-    page = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
-    assert "해외 언론 브리핑" not in page
-    assert "fregion-" not in page
+    assert not (out_dir / "2026-07-11-foreign.html").exists()
+    domestic = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
+    assert "cat-tab is-disabled" in domestic
+    # 인덱스엔 해외 진입 링크가 없다
+    index = (out_dir / "index.html").read_text(encoding="utf-8")
+    assert "2026-07-11-foreign.html" not in index
 
 
 def test_build_empty_day_renders_placeholder(tmp_path):

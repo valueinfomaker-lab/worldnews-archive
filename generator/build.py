@@ -21,17 +21,17 @@ def _safe_key(article_id: str) -> str:
     return "a" + article_id.replace("/", "_")
 
 
-def _region_dicts(selection, embed: dict, *, foreign: bool, rprefix: str) -> list:
-    """한 selection(국내 또는 해외)의 권역 목록 dict 를 만들고 embed 에 페이로드를 채운다.
+def _region_dicts(selection, embed: dict, *, foreign: bool) -> list:
+    """한 카테고리(국내 또는 해외) selection 의 권역 목록 dict 를 만들고 embed 를 채운다.
 
     해외 항목은 대표 제목=title_ko(없으면 원제), orig=원문 제목(부제)로 준다.
-    권역 페이로드 키는 rprefix 로 구분(국내 r0/r1…, 해외 fr0/fr1…). 기사 페이로드 키는
-    id 해시라 국내·해외가 애초에 충돌하지 않는다.
+    국내·해외는 서로 다른 페이지로 나뉘어 embed 가 분리되므로 권역 키는 r{idx} 로 공통.
+    기사 페이로드 키(id 해시)는 국내·해외가 애초에 충돌하지 않는다.
     """
     regions = []
     for idx, (region, pairs) in enumerate(selection.items()):
-        embed[f"pt-{rprefix}{idx}"] = payloads.region_plain(region, pairs, foreign=foreign)
-        embed[f"ht-{rprefix}{idx}"] = payloads.region_html(region, pairs, foreign=foreign)
+        embed[f"pt-r{idx}"] = payloads.region_plain(region, pairs, foreign=foreign)
+        embed[f"ht-r{idx}"] = payloads.region_html(region, pairs, foreign=foreign)
         articles = []
         for article, c in pairs:
             key = _safe_key(article.id)
@@ -52,34 +52,29 @@ def _region_dicts(selection, embed: dict, *, foreign: bool, rprefix: str) -> lis
     return regions
 
 
-def _day_context(data: DayData) -> dict:
-    """한 날짜 페이지에 필요한 컨텍스트 + 숨은 페이로드를 구성한다."""
+def _split(data: DayData):
+    """한 날짜를 (국내 selection, 해외 selection)로 나눈다."""
     domestic = tuple(a for a in data.articles if a.origin == "domestic")
     overseas = tuple(a for a in data.articles if a.origin == "foreign")
     dsel = select(domestic, data.classifications, top_n=config.TOP_N)
     fsel = select(overseas, data.classifications, top_n=config.TOP_N)
-    total = sum(len(p) for p in dsel.values()) + sum(len(p) for p in fsel.values())
+    return dsel, fsel
 
-    embed: dict[str, str] = {
-        "pt-day": payloads.day_plain(dsel, day=data.day, foreign=fsel),
-        "ht-day": payloads.day_html(dsel, day=data.day, foreign=fsel),
-    }
-    regions = _region_dicts(dsel, embed, foreign=False, rprefix="r")
-    foreign_regions = _region_dicts(fsel, embed, foreign=True, rprefix="fr")
 
-    region_counts = {
-        region: len(dsel.get(region, ())) + len(fsel.get(region, ()))
-        for region in REGIONS
-        if dsel.get(region) or fsel.get(region)
-    }
-    return {
-        "day": data.day,
-        "total": total,
-        "regions": regions,
-        "foreign": foreign_regions,
-        "embed": embed,
-        "region_counts": region_counts,
-    }
+def _page_embed(day: str, selection, *, foreign: bool) -> tuple[dict, list]:
+    """한 카테고리 페이지의 embed(숨은 페이로드) + 권역 목록을 만든다."""
+    if foreign:
+        embed: dict[str, str] = {
+            "pt-day": payloads.day_plain({}, day=day, foreign=selection),
+            "ht-day": payloads.day_html({}, day=day, foreign=selection),
+        }
+    else:
+        embed = {
+            "pt-day": payloads.day_plain(selection, day=day),
+            "ht-day": payloads.day_html(selection, day=day),
+        }
+    regions = _region_dicts(selection, embed, foreign=foreign)
+    return embed, regions
 
 
 def build(*, data_dir=None, output_dir=None) -> dict:
@@ -95,7 +90,7 @@ def build(*, data_dir=None, output_dir=None) -> dict:
     index_template = env.get_template("index.html.j2")
 
     days = load_days(data_dir)
-    contexts = [_day_context(d) for d in days]
+    infos = [{"day": d.day, "sels": _split(d)} for d in days]  # sels=(dsel, fsel)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / ".nojekyll").write_text("", encoding="utf-8")
@@ -125,29 +120,55 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         "page_description": config.SITE_DESC,
     }
 
-    # contexts 는 최신 날짜가 먼저다. 이전날=더 과거(i+1), 다음날=더 최신(i-1).
-    for i, ctx in enumerate(contexts):
-        newer = contexts[i - 1]["day"] if i > 0 else None
-        older = contexts[i + 1]["day"] if i + 1 < len(contexts) else None
-        page_url = f"{site_url}{ctx['day']}.html"
-        regions = list(ctx["region_counts"].keys())
-        day_desc = (
-            f"{ctx['day']} 세계뉴스 일일 브리핑 — {', '.join(regions[:6])} 등 {ctx['total']}건 요약."
-            if regions
-            else f"{ctx['day']} 세계뉴스 일일 브리핑."
+    # 카테고리별 날짜 순서(최신 먼저). 국내는 모든 날짜, 해외는 해외 기사가 있는 날짜만.
+    domestic_days = [x["day"] for x in infos]
+    foreign_days = [x["day"] for x in infos if x["sels"][1]]
+
+    def _render(day: str, selection, *, foreign: bool, has_foreign: bool, ordered: list) -> None:
+        embed, regions = _page_embed(day, selection, foreign=foreign)
+        total = sum(len(p) for p in selection.values())
+        suffix = "-foreign" if foreign else ""
+        cat_label = "해외 언론 브리핑" if foreign else "국내 언론 브리핑"
+        i = ordered.index(day)
+        newer = ordered[i - 1] if i > 0 else None
+        older = ordered[i + 1] if i + 1 < len(ordered) else None
+        page_url = f"{site_url}{day}{suffix}.html"
+        names = [r["name"] for r in regions]
+        desc = (
+            f"{day} {cat_label} — {', '.join(names[:6])} 등 {total}건 요약."
+            if names else f"{day} {cat_label} (기사 없음)."
         )
         html = day_template.render(
             **{**common,
-               "og_title": f"{ctx['day']} 세계뉴스 브리핑 · {config.SITE_TITLE}",
-               "og_url": page_url, "canonical_url": page_url, "page_description": day_desc},
-            **ctx, topics=TOPICS, prev_day=older, next_day=newer,
+               "og_title": f"{day} {cat_label} · {config.SITE_TITLE}",
+               "og_url": page_url, "canonical_url": page_url, "page_description": desc},
+            day=day, total=total, regions=regions, embed=embed, topics=TOPICS,
+            is_foreign=foreign, category_sub=cat_label, has_foreign=has_foreign,
+            page_suffix=suffix, prev_day=older, next_day=newer,
         )
-        (output_dir / f"{ctx['day']}.html").write_text(html, encoding="utf-8")
+        (output_dir / f"{day}{suffix}.html").write_text(html, encoding="utf-8")
 
-    index_entries = [
-        {"day": c["day"], "total": c["total"], "regions": c["region_counts"]}
-        for c in contexts
-    ]
+    for x in infos:
+        dsel, fsel = x["sels"]
+        has_foreign = bool(fsel)
+        _render(x["day"], dsel, foreign=False, has_foreign=has_foreign, ordered=domestic_days)
+        if has_foreign:
+            _render(x["day"], fsel, foreign=True, has_foreign=True, ordered=foreign_days)
+
+    index_entries = []
+    for x in infos:
+        dsel, fsel = x["sels"]
+        combined = {
+            r: len(dsel.get(r, ())) + len(fsel.get(r, ()))
+            for r in REGIONS if dsel.get(r) or fsel.get(r)
+        }
+        index_entries.append({
+            "day": x["day"],
+            "dom_total": sum(len(p) for p in dsel.values()),
+            "for_total": sum(len(p) for p in fsel.values()),
+            "has_foreign": bool(fsel),
+            "regions": combined,
+        })
     months = _group_by_month(index_entries)
     (output_dir / "index.html").write_text(
         index_template.render(**common, months=months, total_days=len(index_entries)),
@@ -157,15 +178,19 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         json.dumps(index_entries, ensure_ascii=False, indent=1), encoding="utf-8"
     )
 
-    days = [c["day"] for c in contexts]
-    (output_dir / "sitemap.xml").write_text(_sitemap(site_url, days), encoding="utf-8")
+    (output_dir / "sitemap.xml").write_text(
+        _sitemap(site_url, domestic_days, foreign_days), encoding="utf-8"
+    )
     (output_dir / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {site_url}sitemap.xml\n", encoding="utf-8"
     )
     (output_dir / "404.html").write_text(_not_found_page(site_url), encoding="utf-8")
 
-    logger.info("빌드 완료: %d일치 → %s", len(contexts), output_dir)
-    return {"days": len(contexts), "output_dir": str(output_dir)}
+    logger.info(
+        "빌드 완료: 국내 %d일 + 해외 %d일 → %s",
+        len(domestic_days), len(foreign_days), output_dir,
+    )
+    return {"days": len(infos), "foreign_days": len(foreign_days), "output_dir": str(output_dir)}
 
 
 def _group_by_month(entries: list) -> list:
@@ -206,10 +231,14 @@ def _jsonld(site_url: str) -> str:
     return json.dumps(graph, ensure_ascii=False)
 
 
-def _sitemap(site_url: str, days: list) -> str:
-    """인덱스 + 모든 날짜 페이지의 sitemap.xml. lastmod 는 해당 날짜."""
-    latest = days[0] if days else None
-    urls = [(site_url, latest)] + [(f"{site_url}{d}.html", d) for d in days]
+def _sitemap(site_url: str, domestic_days: list, foreign_days: list) -> str:
+    """인덱스 + 국내/해외 날짜 페이지의 sitemap.xml. lastmod 는 해당 날짜."""
+    latest = domestic_days[0] if domestic_days else None
+    urls = (
+        [(site_url, latest)]
+        + [(f"{site_url}{d}.html", d) for d in domestic_days]
+        + [(f"{site_url}{d}-foreign.html", d) for d in foreign_days]
+    )
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, lastmod in urls:

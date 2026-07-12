@@ -1,7 +1,9 @@
 [
  {
   "day": "2026-07-12",
-  "total": 61,
+  "dom_total": 35,
+  "for_total": 26,
+  "has_foreign": true,
   "regions": {
    "아세안": 6,
    "인도·남아시아": 4,
@@ -15,7 +17,9 @@
  },
  {
   "day": "2026-07-11",
-  "total": 37,
+  "dom_total": 37,
+  "for_total": 0,
+  "has_foreign": false,
   "regions": {
    "아세안": 5,
    "인도·남아시아": 2,
