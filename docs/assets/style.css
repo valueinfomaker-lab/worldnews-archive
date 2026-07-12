@@ -145,7 +145,6 @@ a { color: inherit; }
 .meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 4px 0 2px; }
 .press { color: var(--muted); font-size: 12px; }
 .tag { font-size: 11px; color: var(--accent); background: var(--accent-weak); border-radius: 4px; padding: 0 6px; }
-.score { color: var(--muted); font-size: 11px; margin-left: auto; font-variant-numeric: tabular-nums; }
 .summary { color: var(--summary); font-size: 13px; margin-top: 3px; }
 .orig { color: var(--muted); font-size: 12px; margin-top: 1px; }
 .item-copy { flex: 0 0 auto; }

@@ -16,10 +16,11 @@ def _cls(aid, region, score):
     return Classification(id=aid, region=region, topics=("경제", "외교"), score=score, summary="요약")
 
 
-def test_article_plain_is_title_score_then_url():
+def test_article_plain_is_title_then_url():
     a = _art("020/1", "테스트 제목")
     c = _cls("020/1", "아세안", 80)
-    assert article_plain(a, c) == "테스트 제목 (80)\nhttps://n.news.naver.com/mnews/article/020/1"
+    # 추천점수는 표시하지 않는다(제목 다음 바로 URL).
+    assert article_plain(a, c) == "테스트 제목\nhttps://n.news.naver.com/mnews/article/020/1"
 
 
 def test_region_plain_has_bracket_header():
@@ -27,7 +28,8 @@ def test_region_plain_has_bracket_header():
     c = _cls("020/1", "중국", 70)
     text = region_plain("중국", ((a, c),))
     assert text.startswith("[중국]\n")
-    assert "제목 (70)" in text and a.url in text
+    assert "제목\n" in text and a.url in text
+    assert "(70)" not in text  # 점수 미표시
 
 
 def test_day_plain_matches_render_plain_format():
@@ -37,7 +39,8 @@ def test_day_plain_matches_render_plain_format():
     text = day_plain(sel, day="2026-07-11")
     assert text.startswith("세계뉴스 일일 브리핑 2026-07-11\n\n")
     assert "[아세안]" in text and "[중국]" in text
-    assert "가 (90)" in text
+    assert "가\n" in text
+    assert "(90)" not in text  # 점수 미표시
 
 
 def test_day_html_has_wrapper_and_escapes():

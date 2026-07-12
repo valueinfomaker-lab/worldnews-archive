@@ -36,7 +36,7 @@ def _title(article: Article, c: Classification, *, foreign: bool) -> str:
 # ---- 평문 (카톡용) --------------------------------------------------------
 
 def article_plain(article: Article, c: Classification, *, foreign: bool = False) -> str:
-    return f"{_title(article, c, foreign=foreign)} ({c.score})\n{article.url}"
+    return f"{_title(article, c, foreign=foreign)}\n{article.url}"
 
 
 def region_plain(
@@ -44,7 +44,7 @@ def region_plain(
 ) -> str:
     lines = [f"[{region}]"]
     for article, c in pairs:
-        lines += [f"{_title(article, c, foreign=foreign)} ({c.score})", article.url, ""]
+        lines += [_title(article, c, foreign=foreign), article.url, ""]
     return "\n".join(lines).rstrip("\n")
 
 
@@ -53,7 +53,7 @@ def _plain_region_lines(selection: Selection, *, foreign: bool) -> list[str]:
     for region, pairs in selection.items():
         lines.append(f"[{region}]")
         for article, c in pairs:
-            lines += [f"{_title(article, c, foreign=foreign)} ({c.score})", article.url, ""]
+            lines += [_title(article, c, foreign=foreign), article.url, ""]
     return lines
 
 
@@ -81,7 +81,7 @@ def article_html(article: Article, c: Classification, *, foreign: bool = False) 
         f'<div style="{_ITEM}">'
         f'<a href="{escape(article.url)}" style="{_TITLE_LINK}">{escape(title)}</a>'
         f"{orig}"
-        f'<div style="{_META}">{escape(article.press)} · {topics} · 추천 {c.score}</div>'
+        f'<div style="{_META}">{escape(article.press)} · {topics}</div>'
         f'<div style="{_SUMMARY}">{escape(c.summary)}</div>'
         f"</div>"
     )

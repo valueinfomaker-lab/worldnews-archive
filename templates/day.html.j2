@@ -72,7 +72,7 @@
       <div class="item-body">
         <a class="title" href="{{ a.url }}" target="_blank" rel="noreferrer">{{ a.title }}</a>
         {% if a.orig %}<div class="orig">{{ a.orig }}</div>{% endif %}
-        <div class="meta"><span class="press">{{ a.press }}</span>{% for t in a.topics_list %}<span class="tag">{{ t }}</span>{% endfor %}<span class="score">추천 {{ a.score }}</span></div>
+        <div class="meta"><span class="press">{{ a.press }}</span>{% for t in a.topics_list %}<span class="tag">{{ t }}</span>{% endfor %}</div>
         <div class="summary">{{ a.summary }}</div>
       </div>
       <div class="item-copy copybar">
