@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://valueinfomaker-lab.github.io/worldnews-archive/sitemap.xml

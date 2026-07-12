@@ -40,7 +40,8 @@
 </div>
 
 <main class="wrap">
-  <p class="daymeta">{{ day }} · 총 <span id="visible-count">{{ total }}</span>건</p>
+  <h1 class="day-title">{{ day }} <span class="day-title-sub">세계뉴스 브리핑</span></h1>
+  <p class="daymeta">총 <span id="visible-count">{{ total }}</span>건</p>
   {% if not regions %}
     <p class="empty">해당 권역 기사가 없습니다.</p>
   {% endif %}

@@ -86,6 +86,7 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         if asset.is_file():
             shutil.copy2(asset, assets_out / asset.name)
 
+    site_url = config.SITE_URL
     common = {
         "site_title": config.SITE_TITLE,
         "site_full": config.SITE_FULL,
@@ -93,16 +94,23 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         "site_desc": config.SITE_DESC,
         "base_path": config.BASE_PATH,
         "subscribe_endpoint": config.SUBSCRIBE_ENDPOINT,
-        "site_url": config.SITE_URL,
+        "site_url": site_url,
         "kakao_openchat_url": config.KAKAO_OPENCHAT_URL,
+        # 페이지별 오버라이드 기본값(인덱스가 사용).
+        "og_title": f"{config.SITE_TITLE} — 세계뉴스 일일 브리핑",
+        "og_url": site_url,
+        "canonical_url": site_url,
     }
 
     # contexts 는 최신 날짜가 먼저다. 이전날=더 과거(i+1), 다음날=더 최신(i-1).
     for i, ctx in enumerate(contexts):
         newer = contexts[i - 1]["day"] if i > 0 else None
         older = contexts[i + 1]["day"] if i + 1 < len(contexts) else None
+        page_url = f"{site_url}{ctx['day']}.html"
         html = day_template.render(
-            **common, **ctx, topics=TOPICS, prev_day=older, next_day=newer
+            **{**common, "og_title": f"{ctx['day']} 세계뉴스 브리핑 · {config.SITE_TITLE}",
+               "og_url": page_url, "canonical_url": page_url},
+            **ctx, topics=TOPICS, prev_day=older, next_day=newer,
         )
         (output_dir / f"{ctx['day']}.html").write_text(html, encoding="utf-8")
 
@@ -117,8 +125,49 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         json.dumps(index_entries, ensure_ascii=False, indent=1), encoding="utf-8"
     )
 
+    days = [c["day"] for c in contexts]
+    (output_dir / "sitemap.xml").write_text(_sitemap(site_url, days), encoding="utf-8")
+    (output_dir / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {site_url}sitemap.xml\n", encoding="utf-8"
+    )
+    (output_dir / "404.html").write_text(_not_found_page(site_url), encoding="utf-8")
+
     logger.info("빌드 완료: %d일치 → %s", len(contexts), output_dir)
     return {"days": len(contexts), "output_dir": str(output_dir)}
+
+
+def _sitemap(site_url: str, days: list) -> str:
+    """인덱스 + 모든 날짜 페이지의 sitemap.xml. lastmod 는 해당 날짜."""
+    latest = days[0] if days else None
+    urls = [(site_url, latest)] + [(f"{site_url}{d}.html", d) for d in days]
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for loc, lastmod in urls:
+        mod = f"<lastmod>{lastmod}</lastmod>" if lastmod else ""
+        lines.append(f"  <url><loc>{loc}</loc>{mod}</url>")
+    lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+
+def _not_found_page(site_url: str) -> str:
+    """자체 완결형 브랜드 404(경로 무관하게 뜨므로 절대 URL만 사용)."""
+    return (
+        '<!doctype html><html lang="ko"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">'
+        "<title>페이지를 찾을 수 없습니다 · GRIP</title>"
+        '<meta name="robots" content="noindex">'
+        "<style>body{font-family:-apple-system,'Apple SD Gothic Neo',sans-serif;"
+        "background:#0d2b49;color:#fff;margin:0;min-height:100vh;display:flex;"
+        "align-items:center;justify-content:center;text-align:center}"
+        ".wm{font-weight:800;font-size:30px;letter-spacing:-.02em}"
+        ".wm i{color:#e6b25f;font-style:normal}"
+        "p{color:#c7d8ec;font-size:15px;margin:14px 0 22px}"
+        "a{display:inline-block;background:#fee500;color:#3c1e1e;text-decoration:none;"
+        "font-weight:700;font-size:14px;padding:11px 20px;border-radius:8px}</style></head>"
+        '<body><div><div class="wm">GR<i>I</i>P</div>'
+        "<p>요청하신 페이지를 찾을 수 없습니다.</p>"
+        f'<a href="{site_url}">홈으로 돌아가기</a></div></body></html>'
+    )
 
 
 def main() -> int:

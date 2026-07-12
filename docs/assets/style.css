@@ -115,7 +115,12 @@ a { color: inherit; }
 
 /* 본문 */
 .wrap { max-width: 860px; margin: 0 auto; padding: 4px 16px 80px; }
-.daymeta { color: var(--muted); font-size: 13px; margin: 16px 0 8px; font-variant-numeric: tabular-nums; }
+.day-title {
+  font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: var(--ink);
+  margin: 20px 0 2px; font-variant-numeric: tabular-nums;
+}
+.day-title-sub { font-size: 15px; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+.daymeta { color: var(--muted); font-size: 13px; margin: 0 0 8px; font-variant-numeric: tabular-nums; }
 .empty { color: var(--muted); padding: 40px 0; text-align: center; }
 
 .region { margin: 8px 0 26px; scroll-margin-top: 64px; }

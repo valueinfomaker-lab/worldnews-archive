@@ -97,6 +97,28 @@ def test_build_index_has_kakao_openchat_button(tmp_path, monkeypatch):
     assert "카카오톡 오픈채팅" in index
 
 
+def test_build_emits_seo_files_and_per_page_canonical(tmp_path):
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    build(data_dir=data_dir, output_dir=out_dir)
+
+    assert (out_dir / "robots.txt").exists()
+    assert (out_dir / "404.html").exists()
+    sitemap = (out_dir / "sitemap.xml").read_text(encoding="utf-8")
+    assert "<urlset" in sitemap and "2026-07-11.html" in sitemap
+
+    # 날짜 페이지는 자기 URL로 canonical/og:url, 인덱스는 루트
+    day = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
+    assert 'rel="canonical" href="https://valueinfomaker-lab.github.io/worldnews-archive/2026-07-11.html"' in day
+    assert "2026-07-11 세계뉴스 브리핑" in day  # h1 + og:title
+    assert "<h1" in day
+
+    index = (out_dir / "index.html").read_text(encoding="utf-8")
+    assert 'rel="canonical" href="https://valueinfomaker-lab.github.io/worldnews-archive/"' in index
+
+
 def test_build_empty_day_renders_placeholder(tmp_path):
     data_dir = tmp_path / "data"
     out_dir = tmp_path / "docs"
