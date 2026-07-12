@@ -246,8 +246,29 @@ a { color: inherit; }
 }
 .sec-label span { color: var(--muted); font-weight: 500; letter-spacing: 0; text-transform: none; }
 
+/* 인덱스 월별 그룹(접기) */
+.month { border-bottom: 1px solid var(--line); }
+.month:last-of-type { border-bottom: 0; }
+.month-head {
+  cursor: pointer; list-style: none; padding: 14px 2px;
+  display: flex; align-items: center; gap: 9px;
+  font-size: 15px; font-weight: 700; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.month-head::-webkit-details-marker { display: none; }
+.month-head::before {
+  content: "▸"; color: var(--muted); font-size: 12px;
+  transition: transform .15s; display: inline-block;
+}
+.month[open] > .month-head::before { transform: rotate(90deg); }
+.month-count {
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  background: var(--accent-weak); border-radius: 999px; padding: 1px 8px;
+}
+.month-head:hover { color: var(--accent); }
+
 /* 인덱스 날짜 목록 */
-.date-list { list-style: none; padding: 0; margin: 12px 0; }
+.date-list { list-style: none; padding: 0 0 8px 18px; margin: 0; }
 .date-card { padding: 14px 0; border-bottom: 1px solid var(--line); }
 .date-main { display: inline-flex; align-items: baseline; gap: 10px; text-decoration: none; }
 .date-main .date { font-size: 17px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }

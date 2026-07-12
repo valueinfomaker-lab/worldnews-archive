@@ -127,8 +127,10 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         {"day": c["day"], "total": c["total"], "regions": c["region_counts"]}
         for c in contexts
     ]
+    months = _group_by_month(index_entries)
     (output_dir / "index.html").write_text(
-        index_template.render(**common, days=index_entries), encoding="utf-8"
+        index_template.render(**common, months=months, total_days=len(index_entries)),
+        encoding="utf-8",
     )
     (output_dir / "dates.json").write_text(
         json.dumps(index_entries, ensure_ascii=False, indent=1), encoding="utf-8"
@@ -143,6 +145,17 @@ def build(*, data_dir=None, output_dir=None) -> dict:
 
     logger.info("빌드 완료: %d일치 → %s", len(contexts), output_dir)
     return {"days": len(contexts), "output_dir": str(output_dir)}
+
+
+def _group_by_month(entries: list) -> list:
+    """최신순 날짜 목록을 'YYYY-MM' 단위로 묶는다(월 내에서도 최신순 유지)."""
+    from itertools import groupby
+
+    groups = []
+    for key, items in groupby(entries, key=lambda e: e["day"][:7]):
+        year, month = key.split("-")
+        groups.append({"key": key, "label": f"{year}년 {int(month)}월", "days": list(items)})
+    return groups
 
 
 def _jsonld(site_url: str) -> str:

@@ -144,6 +144,24 @@ def test_build_emits_structured_data_and_meta(tmp_path):
     assert "<title>GRIP — 세계뉴스 일일 브리핑</title>" in index
 
 
+def test_build_index_groups_dates_by_month(tmp_path):
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    # 두 달에 걸친 3일
+    _write_day(data_dir, "2026-07-12", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    _write_day(data_dir, "2026-07-11", [_art("020/2", "나")], [_cls("020/2", "중국")])
+    _write_day(data_dir, "2026-06-30", [_art("020/3", "다")], [_cls("020/3", "선진국")])
+    build(data_dir=data_dir, output_dir=out_dir)
+
+    index = (out_dir / "index.html").read_text(encoding="utf-8")
+    assert "2026년 7월" in index and "2026년 6월" in index
+    assert index.count("<details class=\"month\"") == 2
+    # 최신 달(7월)만 펼쳐짐
+    assert '<details class="month" open>' in index
+    assert "전체 3일치" in index
+
+
 def test_build_empty_day_renders_placeholder(tmp_path):
     data_dir = tmp_path / "data"
     out_dir = tmp_path / "docs"
