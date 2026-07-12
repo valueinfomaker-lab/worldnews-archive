@@ -147,7 +147,17 @@ a { color: inherit; }
 .tag { font-size: 11px; color: var(--accent); background: var(--accent-weak); border-radius: 4px; padding: 0 6px; }
 .score { color: var(--muted); font-size: 11px; margin-left: auto; font-variant-numeric: tabular-nums; }
 .summary { color: var(--summary); font-size: 13px; margin-top: 3px; }
+.orig { color: var(--muted); font-size: 12px; margin-top: 1px; }
 .item-copy { flex: 0 0 auto; }
+
+/* 해외 언론 섹션 */
+.section-head {
+  max-width: 860px; margin: 40px 0 4px; padding-top: 20px;
+  border-top: 2px solid var(--line); font-size: 19px; font-weight: 800;
+  letter-spacing: -.02em; color: var(--ink); scroll-margin-top: 64px;
+}
+.jchip-foreign b { color: var(--accent); }
+.jchip-foreign { background: var(--accent-weak); }
 
 /* 버튼 */
 .copybar { display: flex; gap: 6px; flex-wrap: wrap; }

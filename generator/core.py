@@ -48,7 +48,8 @@ class Article:
     lede: str
     url: str
     date: str
-    section: str
+    section: str  # 국내=sid2, 해외=피드 slug
+    origin: str = "domestic"  # "domestic"(네이버) | "foreign"(해외 RSS)
 
 
 @dataclass(frozen=True, slots=True)
@@ -58,6 +59,7 @@ class Classification:
     topics: tuple[str, ...]
     score: int
     summary: str
+    title_ko: str = ""  # 외국어 기사의 한국어 번역 제목(국내 기사는 빈 문자열)
 
 
 Selection = dict[str, tuple[tuple[Article, Classification], ...]]

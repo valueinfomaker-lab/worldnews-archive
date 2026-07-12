@@ -11,7 +11,7 @@ import shutil
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from generator import config, payloads
-from generator.core import TOPICS, select
+from generator.core import REGIONS, TOPICS, select
 from generator.load import DayData, load_days
 
 logger = logging.getLogger(__name__)
@@ -21,26 +21,25 @@ def _safe_key(article_id: str) -> str:
     return "a" + article_id.replace("/", "_")
 
 
-def _day_context(data: DayData) -> dict:
-    """한 날짜 페이지에 필요한 컨텍스트 + 숨은 페이로드를 구성한다."""
-    selection = select(data.articles, data.classifications, top_n=config.TOP_N)
-    total = sum(len(pairs) for pairs in selection.values())
+def _region_dicts(selection, embed: dict, *, foreign: bool, rprefix: str) -> list:
+    """한 selection(국내 또는 해외)의 권역 목록 dict 를 만들고 embed 에 페이로드를 채운다.
 
-    embed: dict[str, str] = {
-        "pt-day": payloads.day_plain(selection, day=data.day),
-        "ht-day": payloads.day_html(selection, day=data.day),
-    }
+    해외 항목은 대표 제목=title_ko(없으면 원제), orig=원문 제목(부제)로 준다.
+    권역 페이로드 키는 rprefix 로 구분(국내 r0/r1…, 해외 fr0/fr1…). 기사 페이로드 키는
+    id 해시라 국내·해외가 애초에 충돌하지 않는다.
+    """
     regions = []
     for idx, (region, pairs) in enumerate(selection.items()):
-        embed[f"pt-r{idx}"] = payloads.region_plain(region, pairs)
-        embed[f"ht-r{idx}"] = payloads.region_html(region, pairs)
+        embed[f"pt-{rprefix}{idx}"] = payloads.region_plain(region, pairs, foreign=foreign)
+        embed[f"ht-{rprefix}{idx}"] = payloads.region_html(region, pairs, foreign=foreign)
         articles = []
         for article, c in pairs:
             key = _safe_key(article.id)
-            embed[f"pt-{key}"] = payloads.article_plain(article, c)
-            embed[f"ht-{key}"] = payloads.article_html(article, c)
+            embed[f"pt-{key}"] = payloads.article_plain(article, c, foreign=foreign)
+            embed[f"ht-{key}"] = payloads.article_html(article, c, foreign=foreign)
             articles.append({
-                "title": article.title,
+                "title": (c.title_ko or article.title) if foreign else article.title,
+                "orig": article.title if (foreign and c.title_ko and c.title_ko != article.title) else "",
                 "url": article.url,
                 "press": article.press,
                 "topics": " · ".join(c.topics),
@@ -50,12 +49,34 @@ def _day_context(data: DayData) -> dict:
                 "key": key,
             })
         regions.append({"name": region, "idx": idx, "articles": articles})
+    return regions
 
-    region_counts = {region: len(pairs) for region, pairs in selection.items()}
+
+def _day_context(data: DayData) -> dict:
+    """한 날짜 페이지에 필요한 컨텍스트 + 숨은 페이로드를 구성한다."""
+    domestic = tuple(a for a in data.articles if a.origin == "domestic")
+    overseas = tuple(a for a in data.articles if a.origin == "foreign")
+    dsel = select(domestic, data.classifications, top_n=config.TOP_N)
+    fsel = select(overseas, data.classifications, top_n=config.TOP_N)
+    total = sum(len(p) for p in dsel.values()) + sum(len(p) for p in fsel.values())
+
+    embed: dict[str, str] = {
+        "pt-day": payloads.day_plain(dsel, day=data.day, foreign=fsel),
+        "ht-day": payloads.day_html(dsel, day=data.day, foreign=fsel),
+    }
+    regions = _region_dicts(dsel, embed, foreign=False, rprefix="r")
+    foreign_regions = _region_dicts(fsel, embed, foreign=True, rprefix="fr")
+
+    region_counts = {
+        region: len(dsel.get(region, ())) + len(fsel.get(region, ()))
+        for region in REGIONS
+        if dsel.get(region) or fsel.get(region)
+    }
     return {
         "day": data.day,
         "total": total,
         "regions": regions,
+        "foreign": foreign_regions,
         "embed": embed,
         "region_counts": region_counts,
     }

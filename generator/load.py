@@ -30,6 +30,7 @@ def _parse_file(path: Path) -> DayData | None:
             Article(
                 id=a["id"], title=a["title"], press=a["press"], lede=a["lede"],
                 url=a["url"], date=a["date"], section=a["section"],
+                origin=a.get("origin", "domestic"),
             )
             for a in payload["articles"]
         )
@@ -37,6 +38,7 @@ def _parse_file(path: Path) -> DayData | None:
             Classification(
                 id=c["id"], region=c["region"], topics=tuple(c["topics"]),
                 score=int(c["score"]), summary=c["summary"],
+                title_ko=c.get("title_ko", ""),
             )
             for c in payload["classifications"]
         )

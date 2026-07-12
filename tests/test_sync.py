@@ -75,3 +75,25 @@ def test_day_payloads_match_sibling_render():
     sel = select(arts, cls)
     assert day_plain(sel, day="2026-07-11") == brender.render_plain(sel, day="2026-07-11")
     assert day_html(sel, day="2026-07-11") == brender.render_html(sel, day="2026-07-11")
+
+
+def test_day_payloads_with_foreign_match_sibling_render():
+    """해외 섹션 포함 day 페이로드도 형제 앱 render 와 바이트 동일해야 한다."""
+    _, brender = _import_sibling()
+    from generator.core import Article, Classification, select  # noqa: PLC0415
+    from generator.payloads import day_html, day_plain  # noqa: PLC0415
+
+    dom_arts, dom_cls = _sample()
+    fa = Article(id="bbc/abc123", title="Sudan clashes escalate", press="BBC", lede="l",
+                 url="https://www.bbc.com/x", date="20260711", section="bbc", origin="foreign")
+    fc = Classification(id="bbc/abc123", region="아프리카·중동", topics=("외교",), score=75,
+                        summary="수단 상황", title_ko="수단 충돌 격화")
+    dsel = select(dom_arts, dom_cls)
+    fsel = select((fa,), (fc,))
+
+    assert day_plain(dsel, day="2026-07-11", foreign=fsel) == brender.render_plain(
+        dsel, day="2026-07-11", foreign=fsel
+    )
+    assert day_html(dsel, day="2026-07-11", foreign=fsel) == brender.render_html(
+        dsel, day="2026-07-11", foreign=fsel
+    )

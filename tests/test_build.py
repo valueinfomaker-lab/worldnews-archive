@@ -162,6 +162,51 @@ def test_build_index_groups_dates_by_month(tmp_path):
     assert "전체 3일치" in index
 
 
+def _foreign_art(aid, title):
+    return {"id": aid, "title": title, "press": "BBC", "lede": "lede",
+            "url": f"https://www.bbc.com/{aid}", "date": "20260711", "section": "bbc",
+            "origin": "foreign"}
+
+
+def _foreign_cls(aid, region, title_ko, score=75):
+    return {"id": aid, "region": region, "topics": ["외교"], "score": score,
+            "summary": "요약", "title_ko": title_ko}
+
+
+def test_build_day_has_foreign_section(tmp_path):
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _write_day(
+        data_dir, "2026-07-11",
+        [_art("020/1", "국내기사가"), _foreign_art("bbc/xyz", "Sudan clashes escalate")],
+        [_cls("020/1", "아세안"), _foreign_cls("bbc/xyz", "아프리카·중동", "수단 충돌 격화")],
+    )
+    build(data_dir=data_dir, output_dir=out_dir)
+    page = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
+
+    assert "해외 언론 브리핑" in page          # 구분 헤더
+    assert "수단 충돌 격화" in page             # 한국어 번역 제목(대표)
+    assert "Sudan clashes escalate" in page    # 원문 제목(부제)
+    assert 'id="fregion-0"' in page            # 해외 권역 섹션(전용 anchor)
+    assert 'data-pt="pt-fr0"' in page          # 해외 권역 복사 버튼
+    assert 'id="pt-abbc_xyz"' in page          # 해외 기사 페이로드(안전 키)
+    assert "국내기사가" in page                 # 국내 기사는 그대로
+    # 전체 메일 페이로드(ht-day)에도 해외가 포함된다(실제 이메일과 동일)
+    assert page.count("해외 언론 브리핑") >= 2  # 본문 헤더 + ht-day 페이로드 내부
+
+
+def test_build_day_without_foreign_has_no_section(tmp_path):
+    data_dir = tmp_path / "data"
+    out_dir = tmp_path / "docs"
+    data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    build(data_dir=data_dir, output_dir=out_dir)
+    page = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
+    assert "해외 언론 브리핑" not in page
+    assert "fregion-" not in page
+
+
 def test_build_empty_day_renders_placeholder(tmp_path):
     data_dir = tmp_path / "data"
     out_dir = tmp_path / "docs"
