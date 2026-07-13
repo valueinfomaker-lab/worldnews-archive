@@ -7,12 +7,16 @@ KIEP 세계뉴스 브리핑의 **공개 열람용 정적 사이트**. 짝이 되
 
 - 서버·DB 없음(정적). 하루 1회만 갱신, 열람은 읽기 전용.
 - 자동화: launchd `com.joseph.worldnews-archive` **매일 08:20** (파이프라인 08:00 직후).
+- **국내/해외 카테고리 분리**: 하루당 두 페이지 — `{날짜}.html`(국내) · `{날짜}-foreign.html`(해외).
+  각 페이지엔 해당 카테고리 기사만, 상단에 국내⇄해외 전환 탭. 해외 기사가 없는 날은 해외 페이지를
+  만들지 않고 탭만 비활성. `Article.origin`(`domestic`/`foreign`)으로 나눈다.
 
 ## 파이프라인과의 관계
 - **데이터 입력**: 형제 저장소의 `data/briefing_*.json`을 읽는다(`generator/config.py`의 `DATA_DIR`).
-- **vendored core**: `generator/core.py`는 파이프라인의 `REGIONS`/`TOPICS`/`Article`/`Classification`/
-  `select()`를 **복사**한 것. `tests/test_sync.py`가 형제 저장소와 바이트 동등성을 검증 → **파이프라인이
-  권역/로직을 바꾸면 여기 core도 같이 갱신**해야 sync 테스트 통과.
+- **vendored core**: `generator/core.py`는 파이프라인의 `REGIONS`/`TOPICS`/`Article`(+`origin`)/
+  `Classification`(+`title_ko`)/`select()`를 **복사**한 것. `tests/test_sync.py`가 형제 저장소와
+  바이트 동등성을 검증(국내 + 해외 포함 day 페이로드까지) → **파이프라인이 권역/로직/렌더 형식을
+  바꾸면 여기 core·payloads도 같이 갱신**해야 sync 테스트 통과.
 - **구독자 명단의 실제 저장소는 여기**(Apps Script + 구글 시트). 파이프라인이 이 사이트의 Apps Script
   엔드포인트를 호출해 목록을 읽고 뉴스레터를 발송한다.
 
@@ -20,14 +24,15 @@ KIEP 세계뉴스 브리핑의 **공개 열람용 정적 사이트**. 짝이 되
 ```
 generator/            빌드 코드
   config.py           경로·SITE_*·TOP_N·SUBSCRIBE_ENDPOINT·SITE_URL·KAKAO_OPENCHAT_URL
-  core.py             VENDORED: REGIONS/TOPICS/models/select (출처 주석)
-  load.py             briefing_*.json 로드(손상 파일 skip)
-  payloads.py         복사용 평문/HTML 페이로드 생성
-  build.py            오케스트레이터  `python -m generator.build`
-templates/            base / index / day (Jinja2, autoescape)
+  core.py             VENDORED: REGIONS/TOPICS/models(origin·title_ko)/select (출처 주석)
+  load.py             briefing_*.json 로드(origin·title_ko 하위호환, 손상 파일 skip)
+  payloads.py         복사용 평문/HTML 페이로드(해외는 foreign=True로 한국어 제목). 점수 미표시.
+  build.py            오케스트레이터. 하루당 국내/해외 두 페이지 생성. `python -m generator.build`
+templates/            base / index / day (Jinja2, autoescape). day는 국내·해외 공용(카테고리 파라미터)
 assets/               style.css, copy.js, ui.js, subscribe.js, og-image.png  (→ docs/assets 로 복사)
 apps_script/          Code.gs(구독 백엔드) + README (구글 시트에 붙이는 코드)
-docs/                 빌드 출력 = 배포 대상. .nojekyll, index.html, YYYY-MM-DD.html, dates.json, assets/
+docs/                 빌드 출력 = 배포 대상. .nojekyll, index.html, YYYY-MM-DD.html,
+                      YYYY-MM-DD-foreign.html(해외 있는 날만), dates.json, sitemap.xml, assets/
 scripts/build_and_publish.sh   빌드→변경시 커밋·push
 tests/                core/load/payloads/build/sync
 vercel.json           outputDirectory=docs (정적)
@@ -52,7 +57,10 @@ scripts/build_and_publish.sh             # 빌드 → git add docs → 변경시
 
 ## 화면 기능
 - 인덱스: GRIP 히어로 + 날짜 아카이브 목록 + **하단 연결 카드 2개**(뉴스레터 구독 / 카카오톡 오픈채팅).
-- 날짜 페이지: 권역별 카드, 주제 필터·키워드 검색(`ui.js`), 날짜 이동, **복사 버튼**(카톡 평문 / 메일 서식, `copy.js`).
+  각 날짜 카드에 **`[국내 N]` `[🌍 해외 M]` 두 진입 버튼**(해외 없으면 국내만).
+- 날짜 페이지: 상단 **국내⇄해외 전환 탭**, 권역별 카드, 주제 필터·키워드 검색(`ui.js`), 날짜 이동(같은
+  카테고리 안에서), **복사 버튼**(카톡 평문 / 메일 서식, `copy.js`). 해외 카드는 한국어 번역 제목 + 원문 부제.
+- **추천점수 미표시**(정렬용으로만 유지) — 메타 라인은 `언론사 · 주제`만.
 - 공유(OG): 모든 페이지 `<head>`에 og:*/twitter 메타 + `assets/og-image.png`(1200×630 GRIP 카드).
 
 ## 구독 백엔드 (Apps Script + 구글 시트)
