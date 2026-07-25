@@ -77,8 +77,8 @@ def _page_embed(day: str, selection, *, foreign: bool) -> tuple[dict, list]:
     return embed, regions
 
 
-def build(*, data_dir=None, output_dir=None) -> dict:
-    """전체 빌드. 생성 요약(dict)을 돌려준다."""
+def build(*, data_dir=None, output_dir=None, only_day=None) -> dict:
+    """전체 또는 단일 날짜 빌드. 생성 요약(dict, mode 포함)을 돌려준다."""
     data_dir = data_dir or config.DATA_DIR
     output_dir = output_dir or config.OUTPUT_DIR
 
@@ -148,6 +148,34 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         )
         (output_dir / f"{day}{suffix}.html").write_text(html, encoding="utf-8")
 
+    # 단일 날짜 안전 판정: 그 날짜가 있고, docs 의 날짜 페이지 집합이 data 와 일치할 때만.
+    def _existing_doc_days(od):
+        import re as _re
+        days = set()
+        for p in od.glob("*.html"):
+            m = _re.fullmatch(r"(\d{4}-\d{2}-\d{2})", p.stem)
+            if m:
+                days.add(p.stem)
+        return days
+
+    single_ok = (
+        only_day is not None
+        and only_day in domestic_days
+        and (output_dir / f"{only_day}.html").exists()
+        and _existing_doc_days(output_dir) == set(domestic_days)
+    )
+
+    if single_ok:
+        x = next(xx for xx in infos if xx["day"] == only_day)
+        dsel, fsel = x["sels"]
+        has_foreign = bool(fsel)
+        _render(only_day, dsel, foreign=False, has_foreign=has_foreign, ordered=domestic_days)
+        if has_foreign:
+            _render(only_day, fsel, foreign=True, has_foreign=True, ordered=foreign_days)
+        logger.info("단일 날짜 재빌드: %s → %s", only_day, output_dir)
+        return {"days": 1, "foreign_days": 1 if has_foreign else 0,
+                "output_dir": str(output_dir), "mode": "single", "day": only_day}
+
     for x in infos:
         dsel, fsel = x["sels"]
         has_foreign = bool(fsel)
@@ -190,7 +218,8 @@ def build(*, data_dir=None, output_dir=None) -> dict:
         "빌드 완료: 국내 %d일 + 해외 %d일 → %s",
         len(domestic_days), len(foreign_days), output_dir,
     )
-    return {"days": len(infos), "foreign_days": len(foreign_days), "output_dir": str(output_dir)}
+    return {"days": len(infos), "foreign_days": len(foreign_days),
+            "output_dir": str(output_dir), "mode": "full"}
 
 
 def _group_by_month(entries: list) -> list:
@@ -270,9 +299,13 @@ def _not_found_page(site_url: str) -> str:
 
 
 def main() -> int:
+    import argparse
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
-    summary = build()
-    print(f"빌드 완료: {summary['days']}일치 → {summary['output_dir']}")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--day", help="YYYY-MM-DD 단일 날짜만 재생성(안전하지 않으면 전체)")
+    args = parser.parse_args()
+    summary = build(only_day=args.day)
+    print(f"빌드 완료(mode={summary['mode']}): {summary['days']}일치 → {summary['output_dir']}")
     return 0
 
 

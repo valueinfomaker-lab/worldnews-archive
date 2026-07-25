@@ -259,3 +259,41 @@ def test_build_empty_day_renders_placeholder(tmp_path):
     build(data_dir=data_dir, output_dir=out_dir)
     page = (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
     assert "해당 권역 기사가 없습니다" in page
+
+
+def test_build_only_day_renders_single(tmp_path):
+    data_dir = tmp_path / "data"; out_dir = tmp_path / "docs"; data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    _write_day(data_dir, "2026-07-10", [_art("020/3", "다")], [_cls("020/3", "선진국")])
+    build(data_dir=data_dir, output_dir=out_dir)  # 전체 1회
+    index_before = (out_dir / "index.html").read_text(encoding="utf-8")
+    older_before = (out_dir / "2026-07-10.html").read_text(encoding="utf-8")
+
+    # 그 날짜 기사 내용만 바꿔 단일 재빌드
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "수정됨")], [_cls("020/1", "아세안")])
+    summary = build(data_dir=data_dir, output_dir=out_dir, only_day="2026-07-11")
+
+    assert summary["mode"] == "single"
+    assert "수정됨" in (out_dir / "2026-07-11.html").read_text(encoding="utf-8")
+    # 이웃/인덱스는 손대지 않음
+    assert (out_dir / "index.html").read_text(encoding="utf-8") == index_before
+    assert (out_dir / "2026-07-10.html").read_text(encoding="utf-8") == older_before
+
+
+def test_build_only_day_falls_back_to_full_for_new_day(tmp_path):
+    data_dir = tmp_path / "data"; out_dir = tmp_path / "docs"; data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    build(data_dir=data_dir, output_dir=out_dir)  # docs 에는 07-11 만 존재
+    # data 에 새 날짜 추가 → 단일 요청이라도 전체로 폴백해야 함
+    _write_day(data_dir, "2026-07-12", [_art("020/9", "새날")], [_cls("020/9", "중국")])
+    summary = build(data_dir=data_dir, output_dir=out_dir, only_day="2026-07-12")
+    assert summary["mode"] == "full"
+    assert (out_dir / "2026-07-12.html").exists()
+    assert "2026-07-12" in (out_dir / "index.html").read_text(encoding="utf-8")
+
+
+def test_build_full_reports_mode(tmp_path):
+    data_dir = tmp_path / "data"; out_dir = tmp_path / "docs"; data_dir.mkdir()
+    _write_day(data_dir, "2026-07-11", [_art("020/1", "가")], [_cls("020/1", "아세안")])
+    summary = build(data_dir=data_dir, output_dir=out_dir)
+    assert summary["mode"] == "full"
