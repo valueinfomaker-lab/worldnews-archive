@@ -36,6 +36,12 @@ SITE_URL = os.environ.get(
     "ARCHIVE_SITE_URL", "https://valueinfomaker-lab.github.io/worldnews-archive/"
 )
 
+# VENDORED: 형제 앱 briefing/config.py 의 SITE_LINK_URL/SITE_LINK_LABEL.
+# 복사 페이로드(전체 카톡·전체 메일) 맨 아래에 붙는 '사이트 바로가기'로, 메일 본문과
+# 바이트 동일해야 하므로 형제 앱과 값이 정확히 같아야 한다(tests/test_sync.py 가 검증).
+SITE_LINK_URL = "https://worldnewsarchivesite.vercel.app/index.html"
+SITE_LINK_LABEL = "📰 GRIP 아카이브에서 전체 브리핑 보기"
+
 # 카카오톡 오픈채팅 참여 링크(공개). 비우면 버튼이 표시되지 않는다.
 KAKAO_OPENCHAT_URL = os.environ.get(
     "KAKAO_OPENCHAT_URL", "https://open.kakao.com/o/gnZNxBDi"

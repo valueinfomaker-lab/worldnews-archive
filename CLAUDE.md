@@ -27,6 +27,7 @@ generator/            빌드 코드
   core.py             VENDORED: REGIONS/TOPICS/models(origin·title_ko)/select (출처 주석)
   load.py             briefing_*.json 로드(origin·title_ko 하위호환, 손상 파일 skip)
   payloads.py         복사용 평문/HTML 페이로드(해외는 foreign=True로 한국어 제목). 점수 미표시.
+                      맨 끝에 '사이트 바로가기'(config.SITE_LINK_URL/LABEL, 형제 앱 vendor) 자동 첨부.
   build.py            오케스트레이터. 하루당 국내/해외 두 페이지 생성. `python -m generator.build`
 templates/            base / index / day (Jinja2, autoescape). day는 국내·해외 공용(카테고리 파라미터)
 assets/               style.css, copy.js, ui.js, subscribe.js, og-image.png  (→ docs/assets 로 복사)

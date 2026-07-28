@@ -1,3 +1,4 @@
+from generator import config
 from generator.core import Article, Classification, select
 from generator.payloads import (
     article_plain,
@@ -50,3 +51,22 @@ def test_day_html_has_wrapper_and_escapes():
     assert html.startswith("<div style=")
     assert "총 1건" in html
     assert "&lt;b&gt;위험&lt;/b&gt;" in html  # 제목 이스케이프
+
+
+def test_day_plain_ends_with_site_link():
+    """'전체 카톡' 복사본 마지막 줄이 사이트 URL로 끝난다(카톡에서 자동 링크)."""
+    a, c = _art("020/1", "가"), _cls("020/1", "아세안", 90)
+    text = day_plain(select((a,), (c,)), day="2026-07-11")
+    assert text.endswith(config.SITE_LINK_URL)
+    assert config.SITE_LINK_LABEL in text
+    assert "<" not in text
+
+
+def test_day_html_ends_with_site_link_button():
+    """'전체 메일' 복사본 하단에 클릭 가능한 사이트 바로가기가 붙는다."""
+    a, c = _art("020/1", "가"), _cls("020/1", "아세안", 90)
+    html = day_html(select((a,), (c,)), day="2026-07-11")
+    assert f'href="{config.SITE_LINK_URL}"' in html
+    assert config.SITE_LINK_LABEL in html
+    assert html.index("가") < html.index(config.SITE_LINK_URL)
+    assert html.endswith("</div>")

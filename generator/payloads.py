@@ -8,6 +8,7 @@ day 스코프 평문·HTML 은 이메일 본문과 바이트 동일해야 한다
 
 from html import escape
 
+from generator.config import SITE_LINK_LABEL, SITE_LINK_URL
 from generator.core import Article, Classification, Selection
 
 _WRAPPER = (
@@ -27,6 +28,25 @@ _SECTION = (  # 해외 언론 구분 헤더
     "font-size:18px;font-weight:800;margin:34px 0 8px;padding-top:16px;"
     "border-top:2px solid #e5e7eb;color:#1a5490"
 )
+_SITE_LINK_BOX = "margin:30px 0 0;padding-top:18px;border-top:2px solid #e5e7eb"
+_SITE_LINK = (
+    "display:inline-block;padding:11px 18px;background:#1a5490;color:#ffffff;"
+    "border-radius:6px;text-decoration:none;font-size:14px;font-weight:700"
+)
+
+
+def site_link_html() -> str:
+    """render.site_link_html 과 바이트 동일."""
+    return (
+        f'<div style="{_SITE_LINK_BOX}">'
+        f'<a href="{escape(SITE_LINK_URL)}" style="{_SITE_LINK}">{escape(SITE_LINK_LABEL)}</a>'
+        f"</div>"
+    )
+
+
+def site_link_plain() -> list[str]:
+    """render.site_link_plain 과 바이트 동일."""
+    return [SITE_LINK_LABEL, SITE_LINK_URL]
 
 
 def _title(article: Article, c: Classification, *, foreign: bool) -> str:
@@ -64,6 +84,7 @@ def day_plain(selection: Selection, *, day: str, foreign: Selection | None = Non
     if foreign:
         lines += ["=== 해외 언론 브리핑 ===", ""]
         lines += _plain_region_lines(foreign, foreign=True)
+    lines += site_link_plain()
     return "\n".join(lines)
 
 
@@ -112,5 +133,6 @@ def day_html(selection: Selection, *, day: str, foreign: Selection | None = None
             parts.append(region_html(region, pairs, foreign=True))
     if not selection and not foreign:
         parts.append('<p style="color:#666">해당 권역 기사가 없습니다.</p>')
+    parts.append(site_link_html())
     parts.append("</div>")
     return "".join(parts)
